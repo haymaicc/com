@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>唐伯虎点蜡烛</title>
+  <subtitle>春风十里都不如你</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://haymai.cc/"/>
+  <updated>2016-09-07T14:02:47.212Z</updated>
+  <id>http://haymai.cc/</id>
+  
+  <author>
+    <name>杨励志</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>POI 导出大量数据到Excel</title>
+    <link href="http://haymai.cc/2016/05/06/poi/"/>
+    <id>http://haymai.cc/2016/05/06/poi/</id>
+    <published>2016-05-06T13:44:55.000Z</published>
+    <updated>2016-09-07T14:02:47.212Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近在做一个excel导出功能的时候，发现一个很严重的性能问题，只能导出4W条，再多不仅特别慢，导不出来，可能还会内存溢出。于是查了下资料，发现是poi 3.8以前的版本不支持大批量数据的导出，<a href="http://poi.apache.org/spreadsheet/how-to.html#sxssf" target="_blank" rel="external">参考官方介绍</a><br>于是将jar包升级后，修改代码，最终能在5分钟内导出100W的数据。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">SXSSFWorkbook workbook = <span class="keyword">new</span> SXSSFWorkbook(<span class="number">1000</span>);</div><div class="line">      Sheet sheet = workbook.createSheet();</div><div class="line"><span class="keyword">try</span></div><div class="line">      &#123;</div><div class="line"></div><div class="line">          Row  hSSFRowHead = sheet.createRow(<span class="number">0</span>);</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headNames.length; i++)</div><div class="line">	&#123;</div><div class="line">          Cell hSSFCell hSSFCell = hSSFRowHead.createCell(i, HSSFCell.CELL_TYPE_STRING);</div><div class="line">          hSSFCell.setCellValue(<span class="keyword">new</span> XSSFRichTextString(headNames[i]));</div><div class="line">	&#125;</div><div class="line">          List prdList = getExcelDataList();</div><div class="line">	<span class="keyword">for</span> (Object prd : prdList)</div><div class="line">          &#123;</div><div class="line">              Row hSSFRowData = sheet.createRow(count);</div><div class="line">              createDataRows(hSSFRowData, (Map) prd, headsName);</div><div class="line">		Cell hSSFCell;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headsName.length; i++)</div><div class="line">		&#123;</div><div class="line">			hSSFCell = hSSFRowData.createCell(i, HSSFCell.CELL_TYPE_STRING);</div><div class="line">			setStringValue(prd, headsName[i], hSSFCell);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//刷新内存</span></div><div class="line">              <span class="keyword">if</span> (count % <span class="number">1000</span> == <span class="number">0</span>)</div><div class="line">              &#123;</div><div class="line">                  ((SXSSFSheet) sheet).flushRows();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          </div><div class="line">      &#125;</div><div class="line">      <span class="keyword">catch</span> (Exception e)</div><div class="line">      &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">      &#125;</div><div class="line">      ByteArrayOutputStream ot = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">      workbook.write(ot);</div><div class="line">      <span class="comment">//不调用此方法会在tomcat/temp/poifiles下生成  **.xml文件，并且不会清理，调用清理临时文件</span></div><div class="line">      workbook.dispose();</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在做一个excel导出功能的时候，发现一个很严重的性能问题，只能导出4W条，再多不仅特别慢，导不出来，可能还会内存溢出。于是查了下资料，发现是poi 3.8以前的版本不支持大批量数据的导出，&lt;a href=&quot;http://poi.apache.org/spreadshe
+    
+    </summary>
+    
+      <category term="java" scheme="http://haymai.cc/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://haymai.cc/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Tips（持续更新）</title>
+    <link href="http://haymai.cc/2016/04/09/Tips/"/>
+    <id>http://haymai.cc/2016/04/09/Tips/</id>
+    <published>2016-04-09T11:20:12.000Z</published>
+    <updated>2016-09-07T10:57:02.915Z</updated>
+    
+    <content type="html"><![CDATA[<p>通过<a href="http://haymai.cc/2016/04/06/hexo/">Hexo 安装教程</a>,我们已经能基本使用Hexo了。但是笔者在使用过程中还是遇到了一些问题，在这一篇中希望能总结一些经验，不能说是很有用的东西，也只是希望做一个记录。遇到了能在这里找到解决方法。</p>
+<h3 id="代码提交到了Github上"><a href="#代码提交到了Github上" class="headerlink" title="代码提交到了Github上"></a>代码提交到了Github上</h3><p>我把hexo的源码和主题的修改都用<a href="https://github.com/haymaicc/xiamu/tree/master" target="_blank" rel="external">Git提交到了Github上</a>,如果想看本站源码可以down下来，Git具体操作<a href="http://1ke.co/course/194" target="_blank" rel="external">这篇文章</a>介绍的很详细，我也是通过这篇文章Get到套路的。</p>
+<h3 id="Node-forever"><a href="#Node-forever" class="headerlink" title="Node forever"></a>Node forever</h3><p>在搭好环境后，我发现有时候莫名其妙的Hexo就挂了，然后整个网站就无法浏览，实际上通过Node forever 就可以解决这个问题，原理就是在后台用定时任务去跑<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
+<p>如果挂了就重启。具体怎么做呢？</p>
+<blockquote>
+<ul>
+<li>通过<strong>npm</strong>安装forever</li>
+<li>在hexo目录下写好一个javascript脚本</li>
+<li>通过forever定时执行该脚本</li>
+</ul>
+</blockquote>
+<p>1、通过<strong>npm</strong>安装forever，执行如下命令安装forever<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install forever -g   #安装</div></pre></td></tr></table></figure></p>
+<p>2、在hexo的根目录下新建一个haymai.js文件，内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</div><div class="line">free = spawn(<span class="string">'hexo'</span>, [<span class="string">'server'</span>, <span class="string">'-p 80'</span>]);</div><div class="line"></div><div class="line">free.stdout.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'standard output:\n'</span> + data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">free.stderr.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123; </div><div class="line"><span class="built_in">console</span>.log(<span class="string">'standard error output:\n'</span> + data);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">free.on(<span class="string">'exit'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">code, signal</span>) </span>&#123;</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'child process eixt ,exit:'</span> + code);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>3、执行如下命令跑定时任务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ forever --minUptime 10000 --spinSleepTime 26000 start haymai.js</div></pre></td></tr></table></figure></p>
+<h3 id="加入RSS和Sitemap"><a href="#加入RSS和Sitemap" class="headerlink" title="加入RSS和Sitemap"></a>加入RSS和Sitemap</h3><p>1、在Hexo根目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-feed</div><div class="line">$ npm install hexo-generator-sitemap</div></pre></td></tr></table></figure></p>
+<p>2、在Hexo根目录下加入<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Extensions</span></div><div class="line"><span class="attr">Plugins:</span></div><div class="line"><span class="bullet">-</span> hexo-generator-feed</div><div class="line"><span class="bullet">-</span> hexo-generator-sitemap</div><div class="line"></div><div class="line"><span class="comment">#Feed Atom</span></div><div class="line"><span class="attr">feed:</span></div><div class="line"><span class="attr">  type:</span> atom</div><div class="line"><span class="attr">  path:</span> atom.xml</div><div class="line"><span class="attr">  limit:</span> <span class="number">20</span></div><div class="line"></div><div class="line"><span class="comment">#sitemap</span></div><div class="line"><span class="attr">sitemap:</span></div><div class="line"><span class="attr">  path:</span> sitemap.xml</div></pre></td></tr></table></figure></p>
+<p>3、执行hexo clean和hexo deploy 后，打开haymai.cc/atom.xml，haymai.cc/sitemap.xml即可看到已生效</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;通过&lt;a href=&quot;http://haymai.cc/2016/04/06/hexo/&quot;&gt;Hexo 安装教程&lt;/a&gt;,我们已经能基本使用Hexo了。但是笔者在使用过程中还是遇到了一些问题，在这一篇中希望能总结一些经验，不能说是很有用的东西，也只是希望做一个记录。遇到了能在
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://haymai.cc/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://haymai.cc/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 安装教程</title>
+    <link href="http://haymai.cc/2016/04/06/hexo/"/>
+    <id>http://haymai.cc/2016/04/06/hexo/</id>
+    <published>2016-04-06T17:16:24.000Z</published>
+    <updated>2016-09-07T10:57:03.035Z</updated>
+    
+    <content type="html"><![CDATA[<p>从去年来，这台服务器一直处于闲置状态，近来觉得还是要做点什么。于是在网上找了一些博客的框架，最终敲定了<strong>Hexo</strong>，只是觉得<strong>node.js</strong> 很火，平时也没时间接触，借此机会熟悉一下也挺好。<br><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo官网</a>介绍的很酷炫，实际上用起来也让我觉得很强大，但是开发文档编写的相当羞涩，所以在这总结一下Hexo的安装教程，希望对大家有所帮助。</p>
+<p>首先要想使用Hexo,有两个先决条件：</p>
+<blockquote>
+<p>安装Git(可以通过GitHub down 一些主题，还有一些源码)<br>安装node.js</p>
+</blockquote>
+<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>这个相当简单，通过 <a href="https://git-scm.com/download/linux/" target="_blank" rel="external">Git linux命令即可安装</a> ，但是笔者的用的阿里云suse版本的linux，使用Git官网的zypper软件源</p>
+<pre><code>$ zypper install git</code></pre>
+
+<p>安装不成功，遂在网上下载了源码，解压安装。</p>
+<h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>安装 <a href="https://github.com/creationix/nvm" target="_blank" rel="external">nvm</a> </p>
+<pre><code>$ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash</code></pre>
+CURL安装node
+<pre><code>$ curl https://raw.github.com/creationix/nvm/master/install.sh| sh</code></pre>
+重启终端并执行下列命令即可安装 Node.js。
+<pre><code>$ nvm install 4</code></pre>
+
+<h3 id="所有必备的应用程序安装完成后，即可使用npm安装Hexo。"><a href="#所有必备的应用程序安装完成后，即可使用npm安装Hexo。" class="headerlink" title="所有必备的应用程序安装完成后，即可使用npm安装Hexo。"></a>所有必备的应用程序安装完成后，即可使用npm安装Hexo。</h3><p>如果第一条命令失败，可以试试 –unsafe那条命令安装。</p>
+<pre><code>$ npm install -g hexo-cli
+$ npm install --unsafe-perm -g hexo-cli</code></pre>
+
+<h3 id="Hexo-基本操作"><a href="#Hexo-基本操作" class="headerlink" title="Hexo 基本操作"></a>Hexo 基本操作</h3><p>到这里Hexo的运行环境基本搭建完成，若是在安装过程中遇到一些依赖包找不到的情况，再用npm安装一些依赖包。<br>Hexo的简单操作，可以看官网的命令介绍 <a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">Hexo指令</a><br>通过</p>
+<pre><code>$ hexo init [folder]</code></pre>
+建立网站，folder就是hexo 要安装的文件夹，若不指定则在当前目录建立。值得一提的是在Hexo安装目录下有个_config.yml文件，可以配置Hexo的一些基本参数，如网站的标题什么的。
+然后通过 
+<pre><code>$ hexo new [layout]</code></pre>
+
+<p>新建文章，layout默认有三种：post、page 和 draft，存在source/_posts 文件夹。<br>执行完new 命令会生成一个 xxx.md 文件，通过markdown来编写文章，附上 <a href="https://www.zybuluo.com/mdeditor" target="_blank" rel="external">markdown在线编辑器</a></p>
+<p>还有几个常用的 <strong>命令</strong></p>
+<pre><code>$ hexo clean
+$ hexo generate
+$ hexo server -p 80</code></pre>
+
+<p>用来清理和生成静态文件，以固定端口启动hexo</p>
+<h3 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h3><p>[1]:<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">Hexo Themes 主题下载</a>,通过如下命令下载到主题文件夹</p>
+<pre><code>git clone git://github.com/SuperKieran/TKL [folder]</code></pre>
+[2]:查看Hexo 进程
+<pre><code>ps -aux | grep hexo</code></pre>
+
+
+<hr>
+<p>再一次感谢您花费时间阅读，祝您在这里记录、阅读、分享愉快！</p>
+<p>作者 <a href="http://weibo.com/u/2413072655?s_all=1&amp;is_all=1" target="_blank" rel="external">夏目</a><br>2016 年 04月 06日</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;从去年来，这台服务器一直处于闲置状态，近来觉得还是要做点什么。于是在网上找了一些博客的框架，最终敲定了&lt;strong&gt;Hexo&lt;/strong&gt;，只是觉得&lt;strong&gt;node.js&lt;/strong&gt; 很火，平时也没时间接触，借此机会熟悉一下也挺好。&lt;br&gt;&lt;a href
+    
+    </summary>
+    
+      <category term="hexo" scheme="http://haymai.cc/categories/hexo/"/>
+    
+    
+      <category term="hexo" scheme="http://haymai.cc/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>

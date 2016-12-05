@@ -97,7 +97,7 @@
                </div>
                <div class="sb-item sb-words">
                   <a href="javascript:void(0)">
-                    <span class="sb-item-count">2.8k</span>
+                    <span class="sb-item-count">1.7k</span>
                     <span class="sb-item-name">字数</span>
                   </a>
                </div>
@@ -205,7 +205,7 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-04-09T11:20:12.000Z" itemprop="datePublished">
+      <time datetime="2016-04-09T03:20:12.000Z" itemprop="datePublished">
           2016-04-09
       </time>
     
@@ -236,6 +236,14 @@
 <h3 id="加入RSS和Sitemap"><a href="#加入RSS和Sitemap" class="headerlink" title="加入RSS和Sitemap"></a>加入RSS和Sitemap</h3><p>1、在Hexo根目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-generator-feed</div><div class="line">$ npm install hexo-generator-sitemap</div></pre></td></tr></table></figure></p>
 <p>2、在Hexo根目录下加入<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Extensions</span></div><div class="line"><span class="attr">Plugins:</span></div><div class="line"><span class="bullet">-</span> hexo-generator-feed</div><div class="line"><span class="bullet">-</span> hexo-generator-sitemap</div><div class="line"></div><div class="line"><span class="comment">#Feed Atom</span></div><div class="line"><span class="attr">feed:</span></div><div class="line"><span class="attr">  type:</span> atom</div><div class="line"><span class="attr">  path:</span> atom.xml</div><div class="line"><span class="attr">  limit:</span> <span class="number">20</span></div><div class="line"></div><div class="line"><span class="comment">#sitemap</span></div><div class="line"><span class="attr">sitemap:</span></div><div class="line"><span class="attr">  path:</span> sitemap.xml</div></pre></td></tr></table></figure></p>
 <p>3、执行hexo clean和hexo deploy 后，打开haymai.cc/atom.xml，haymai.cc/sitemap.xml即可看到已生效</p>
+<h3 id="公益404页面"><a href="#公益404页面" class="headerlink" title="公益404页面"></a>公益404页面</h3><p><a href="haymai.cc/aaa">haymai.cc/aaa -&gt; 腾讯公益</a><br>这个真心蛋疼死了，网上大多数人说只要把一个404.html放进source文件夹就行了，但是我放了死活不行，结果找了半天，原来是用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
+<p>启动的不会去跳转到404.html，这不就是说hexo 没有这功能？！ 最终我只好祭出杀手锏，抛弃 hexo启动，转而将public文件夹路径指向了tomcat ROOT应用，然后配置ROOT下的web.xml如下内容：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">error-page</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="name">error-code</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">location</span>&gt;</span>/404.html<span class="tag">&lt;/<span class="name">location</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">error-page</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>当然source下的404.html 也要加上，这里用了腾旭公益404页面，内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">layout: false</div><div class="line">title: &quot;404&quot;</div><div class="line">---</div><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">  &lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8;&quot;/&gt;</div><div class="line">  &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot; /&gt;</div><div class="line">  &lt;meta name=&quot;robots&quot; content=&quot;all&quot; /&gt;</div><div class="line">  &lt;meta name=&quot;robots&quot; content=&quot;index,follow&quot;/&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;http://www.qq.com/404/search_children.js&quot; charset=&quot;utf-8&quot; homePageUrl=&quot;http://www.haymai.cc&quot; homePageName=&quot;回到唐伯虎点蜡烛&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure></p>
+<p>不知道各位看官是怎么解决的，有没有更好的方法？</p>
+<h3 id="网易云音乐引入"><a href="#网易云音乐引入" class="headerlink" title="网易云音乐引入"></a>网易云音乐引入</h3><p>哈哈，网站第一次发声，链的网易云，在页面上加入如下iframe，你也能听我的红心啦~23333<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;iframe frameborder=&quot;no&quot; border=&quot;0&quot; marginwidth=&quot;0&quot; marginheight=&quot;0&quot; width=330 height=450 src=&quot;http://music.163.com/outchain/player?type=0&amp;id=28560713&amp;auto=1&amp;height=430&quot;&gt;&lt;/iframe&gt;</div></pre></td></tr></table></figure></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="530" height="411" src="http://music.163.com/outchain/player?type=0&id=28560713&auto=0&height=430"></iframe>
+
+<p>作者 <a href="http://weibo.com/u/2413072655?s_all=1&amp;is_all=1" target="_blank" rel="external">夏目</a><br>2016 年 04月 09日</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">

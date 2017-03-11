@@ -4,7 +4,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2016/4 | 唐伯虎点蜡烛</title>
+  <title>java 代码执行linux命令 | 唐伯虎点蜡烛</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -73,7 +73,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 	  <!-- ============================ Off-canvas navigation =========================== -->
@@ -201,74 +201,58 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-	        <section id="hero" class="scrollme">
-            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
-                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
-                            <div>
-                            	
-                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
-                                <p></p>
-				    			
-                                <h2></h2>
-                                <p>春风十里都不如你</p>
-				    			
-
-                            </div>
-                        </div>
-                    </div>
-                    <!-- // .col-md-12 -->
-                </div>
-                <div class="herofade beige-dk"></div>
-            </div>
-        </section>
-
-        <!-- Height spacing helper -->
-        <div class="heightblock"></div>
-        <!-- // End height spacing helper -->
-	  
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/04/09/tips/">Hexo Tips（持续更新）</a></h4>
-                            
-                            <p><time datetime="2016-04-09T03:20:12.000Z"><a href="/2016/04/09/tips/">2016-04-09</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/04/06/hexo/">Hexo 安装教程</a></h4>
-                            
-                            <p><time datetime="2016-04-06T09:16:24.000Z"><a href="/2016/04/06/hexo/">2016-04-06</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2017-02-10T04:32:35.000Z" itemprop="datePublished">
+          2017-02-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/生活/'>生活</a>
+    
+    
+</span>
+                <h1>java 代码执行linux命令</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>在做一个java执行pyhton脚本命令时在网上找了许多方案都不行，最后在stackoverflow上<br>找到，执行脚本的时候需要带上shell的版本，类似于bash，zsh。看了下服务器上的是zsh，<br>于是优化代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.xiamu.utils;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.slf4j.Logger;</div><div class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</div><div class="line"><span class="keyword">import</span> java.io.BufferedReader;</div><div class="line"><span class="keyword">import</span> java.io.InputStreamReader;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Description: 调用脚本帮助类</div><div class="line"> *</div><div class="line"> * <span class="doctag">@author</span> haoyuan.yang</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@date</span>: 2017/3/10</div><div class="line"> * <span class="doctag">@since</span> JDK 1.8</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PythonUtil</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(PythonUtil.class);</div><div class="line"></div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * Description:调用系统命令</div><div class="line">	 *</div><div class="line">	 * <span class="doctag">@author</span> haoyuan.yang</div><div class="line">	 * <span class="doctag">@version</span> 1.0</div><div class="line">	 * <span class="doctag">@date</span>: 2017/3/10 17:55</div><div class="line">	 * <span class="doctag">@since</span> JDK 1.8</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">executeCommand</span><span class="params">(String command)</span> </span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Process proc = Runtime.getRuntime()</div><div class="line">					.exec(<span class="keyword">new</span> String[] &#123; <span class="string">"zsh"</span>, <span class="string">"-c"</span>, command &#125;);</div><div class="line">			proc.waitFor();</div><div class="line"></div><div class="line">			BufferedReader reader = <span class="keyword">new</span> BufferedReader(</div><div class="line">					<span class="keyword">new</span> InputStreamReader(proc.getInputStream()));</div><div class="line"></div><div class="line">			StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">			String line;</div><div class="line">			<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">				sb.append(line).append(<span class="string">"\n"</span>);</div><div class="line">			&#125;</div><div class="line">			logger.info(<span class="string">"execute command &#123;&#125; , result is &#123;&#125;"</span>, command, sb.toString());</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			logger.info(<span class="string">"execute command &#123;&#125; fault, e=&#123;&#125;"</span>, command, e.getMessage());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>妄图分享一些有趣的故事和酒。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2017/02/10/resume/">
+        原型列表 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2017/02/10/java_execute_shell/" data-title="java 代码执行linux命令" data-url="http://haymai.cc/2017/02/10/java_execute_shell/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"haymai"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 

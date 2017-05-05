@@ -4,7 +4,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>POI 导出大量数据到Excel | 唐伯虎点蜡烛</title>
+  <title>Archives: 2017/3 | 唐伯虎点蜡烛</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -73,7 +73,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 	  <!-- ============================ Off-canvas navigation =========================== -->
@@ -201,62 +201,65 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-      
-<section id="intro">
-    <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-05-06T05:44:55.000Z" itemprop="datePublished">
-          2016-05-06
-      </time>
-    
-    
-    | 
-    <a href='/tags/java/'>java</a>
-    
-    
-</span>
-                <h1>POI 导出大量数据到Excel</h1>
+	        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/bg_img.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>春风十里都不如你</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
             </div>
-        </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>最近在做一个excel导出功能的时候，发现一个很严重的性能问题，只能导出4W条，再多不仅特别慢，导不出来，可能还会内存溢出。于是查了下资料，发现是poi 3.8以前的版本不支持大批量数据的导出，<a href="http://poi.apache.org/spreadsheet/how-to.html#sxssf" target="_blank" rel="external">参考官方介绍</a><br>于是将jar包升级后，修改代码，最终能在5分钟内导出100W的数据。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">SXSSFWorkbook workbook = <span class="keyword">new</span> SXSSFWorkbook(<span class="number">1000</span>);</div><div class="line">      Sheet sheet = workbook.createSheet();</div><div class="line"><span class="keyword">try</span></div><div class="line">      &#123;</div><div class="line"></div><div class="line">          Row  hSSFRowHead = sheet.createRow(<span class="number">0</span>);</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headNames.length; i++)</div><div class="line">	&#123;</div><div class="line">          Cell hSSFCell hSSFCell = hSSFRowHead.createCell(i, HSSFCell.CELL_TYPE_STRING);</div><div class="line">          hSSFCell.setCellValue(<span class="keyword">new</span> XSSFRichTextString(headNames[i]));</div><div class="line">	&#125;</div><div class="line">          List prdList = getExcelDataList();</div><div class="line">	<span class="keyword">for</span> (Object prd : prdList)</div><div class="line">          &#123;</div><div class="line">              Row hSSFRowData = sheet.createRow(count);</div><div class="line">              createDataRows(hSSFRowData, (Map) prd, headsName);</div><div class="line">		Cell hSSFCell;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headsName.length; i++)</div><div class="line">		&#123;</div><div class="line">			hSSFCell = hSSFRowData.createCell(i, HSSFCell.CELL_TYPE_STRING);</div><div class="line">			setStringValue(prd, headsName[i], hSSFCell);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//刷新内存</span></div><div class="line">              <span class="keyword">if</span> (count % <span class="number">1000</span> == <span class="number">0</span>)</div><div class="line">              &#123;</div><div class="line">                  ((SXSSFSheet) sheet).flushRows();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          </div><div class="line">      &#125;</div><div class="line">      <span class="keyword">catch</span> (Exception e)</div><div class="line">      &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">      &#125;</div><div class="line">      ByteArrayOutputStream ot = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">      workbook.write(ot);</div><div class="line">      <span class="comment">//不调用此方法会在tomcat/temp/poifiles下生成  **.xml文件，并且不会清理，调用清理临时文件</span></div><div class="line">      workbook.dispose();</div></pre></td></tr></table></figure></p>
+        </section>
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
-        </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/12/05/sort/" style="float: left;">
-        ← 排序算法Java实现
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/04/09/tips/">
-        Hexo Tips（持续更新） →
-    </a>
-    
-</nav>
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+	  
+      
 
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/06/poi/" data-title="POI 导出大量数据到Excel" data-url="http://haymai.cc/2016/05/06/poi/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"haymai"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2017/03/10/java_execute_shell/">java 代码执行linux命令</a></h4>
+                            
+                            <p><time datetime="2017-03-10T10:32:35.000Z"><a href="/2017/03/10/java_execute_shell/">2017-03-10</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
+        </div>
+    </div>
+</section> 
+
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>妄图分享一些有趣的故事和酒。</p>
+        </div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 

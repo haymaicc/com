@@ -4,7 +4,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>POI 导出大量数据到Excel | 唐伯虎点蜡烛</title>
+  <title>java 代码执行linux命令 | 唐伯虎点蜡烛</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -207,8 +207,8 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-05-06T05:44:55.000Z" itemprop="datePublished">
-          2016-05-06
+      <time datetime="2017-03-10T10:32:35.000Z" itemprop="datePublished">
+          2017-03-10
       </time>
     
     
@@ -217,30 +217,26 @@
     
     
 </span>
-                <h1>POI 导出大量数据到Excel</h1>
+                <h1>java 代码执行linux命令</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>最近在做一个excel导出功能的时候，发现一个很严重的性能问题，只能导出4W条，再多不仅特别慢，导不出来，可能还会内存溢出。于是查了下资料，发现是poi 3.8以前的版本不支持大批量数据的导出，<a href="http://poi.apache.org/spreadsheet/how-to.html#sxssf" target="_blank" rel="external">参考官方介绍</a><br>于是将jar包升级后，修改代码，最终能在5分钟内导出100W的数据。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">SXSSFWorkbook workbook = <span class="keyword">new</span> SXSSFWorkbook(<span class="number">1000</span>);</div><div class="line">      Sheet sheet = workbook.createSheet();</div><div class="line"><span class="keyword">try</span></div><div class="line">      &#123;</div><div class="line"></div><div class="line">          Row  hSSFRowHead = sheet.createRow(<span class="number">0</span>);</div><div class="line">         <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headNames.length; i++)</div><div class="line">	&#123;</div><div class="line">          Cell hSSFCell hSSFCell = hSSFRowHead.createCell(i, HSSFCell.CELL_TYPE_STRING);</div><div class="line">          hSSFCell.setCellValue(<span class="keyword">new</span> XSSFRichTextString(headNames[i]));</div><div class="line">	&#125;</div><div class="line">          List prdList = getExcelDataList();</div><div class="line">	<span class="keyword">for</span> (Object prd : prdList)</div><div class="line">          &#123;</div><div class="line">              Row hSSFRowData = sheet.createRow(count);</div><div class="line">              createDataRows(hSSFRowData, (Map) prd, headsName);</div><div class="line">		Cell hSSFCell;</div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; headsName.length; i++)</div><div class="line">		&#123;</div><div class="line">			hSSFCell = hSSFRowData.createCell(i, HSSFCell.CELL_TYPE_STRING);</div><div class="line">			setStringValue(prd, headsName[i], hSSFCell);</div><div class="line">		&#125;</div><div class="line">		<span class="comment">//刷新内存</span></div><div class="line">              <span class="keyword">if</span> (count % <span class="number">1000</span> == <span class="number">0</span>)</div><div class="line">              &#123;</div><div class="line">                  ((SXSSFSheet) sheet).flushRows();</div><div class="line">              &#125;</div><div class="line">          &#125;</div><div class="line">          </div><div class="line">      &#125;</div><div class="line">      <span class="keyword">catch</span> (Exception e)</div><div class="line">      &#123;</div><div class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(e);</div><div class="line">      &#125;</div><div class="line">      ByteArrayOutputStream ot = <span class="keyword">new</span> ByteArrayOutputStream();</div><div class="line">      workbook.write(ot);</div><div class="line">      <span class="comment">//不调用此方法会在tomcat/temp/poifiles下生成  **.xml文件，并且不会清理，调用清理临时文件</span></div><div class="line">      workbook.dispose();</div></pre></td></tr></table></figure></p>
+      		<p>在做一个java执行pyhton脚本命令时在网上找了许多方案都不行，最后在stackoverflow上<br>找到，执行脚本的时候需要带上shell的版本，类似于bash，zsh。看了下服务器上的是zsh，<br>于是优化代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> com.xiamu.utils;</div><div class="line"><span class="keyword">import</span> org.slf4j.Logger;</div><div class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</div><div class="line"><span class="keyword">import</span> java.io.BufferedReader;</div><div class="line"><span class="keyword">import</span> java.io.InputStreamReader;</div><div class="line"><span class="comment">/**</span></div><div class="line"> * Description: 调用脚本帮助类</div><div class="line"> *</div><div class="line"> * <span class="doctag">@author</span> haoyuan.yang</div><div class="line"> * <span class="doctag">@version</span> 1.0</div><div class="line"> * <span class="doctag">@date</span>: 2017/3/10</div><div class="line"> * <span class="doctag">@since</span> JDK 1.8</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PythonUtil</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(PythonUtil.class);</div><div class="line">	<span class="comment">/**</span></div><div class="line">	 * Description:调用系统命令</div><div class="line">	 *</div><div class="line">	 * <span class="doctag">@author</span> haoyuan.yang</div><div class="line">	 * <span class="doctag">@version</span> 1.0</div><div class="line">	 * <span class="doctag">@date</span>: 2017/3/10 17:55</div><div class="line">	 * <span class="doctag">@since</span> JDK 1.8</div><div class="line">	 */</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">executeCommand</span><span class="params">(String command)</span> </span>&#123;</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Process proc = Runtime.getRuntime()</div><div class="line">					.exec(<span class="keyword">new</span> String[] &#123; <span class="string">"zsh"</span>, <span class="string">"-c"</span>, command &#125;);</div><div class="line">			proc.waitFor();</div><div class="line">			BufferedReader reader = <span class="keyword">new</span> BufferedReader(</div><div class="line">					<span class="keyword">new</span> InputStreamReader(proc.getInputStream()));</div><div class="line">			StringBuilder sb = <span class="keyword">new</span> StringBuilder();</div><div class="line">			String line;</div><div class="line">			<span class="keyword">while</span> ((line = reader.readLine()) != <span class="keyword">null</span>) &#123;</div><div class="line">				sb.append(line).append(<span class="string">"\n"</span>);</div><div class="line">			&#125;</div><div class="line">			logger.info(<span class="string">"execute command &#123;&#125; , result is &#123;&#125;"</span>, command, sb.toString());</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">catch</span> (Exception e) &#123;</div><div class="line">			logger.info(<span class="string">"execute command &#123;&#125; fault, e=&#123;&#125;"</span>, command, e.getMessage());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/12/05/sort/" style="float: left;">
-        ← 排序算法Java实现
-    </a>
     
-    
-    <a class="pull-right" href="/2016/04/09/tips/">
-        Hexo Tips（持续更新） →
+    <a class="pull-right" href="/2016/12/05/sort/">
+        排序算法Java实现 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/06/poi/" data-title="POI 导出大量数据到Excel" data-url="http://haymai.cc/2016/05/06/poi/"></div>
+<div class="ds-thread" data-thread-key="2017/03/10/java_execute_shell/" data-title="java 代码执行linux命令" data-url="http://haymai.cc/2017/03/10/java_execute_shell/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"haymai"};
 (function() {

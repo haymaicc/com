@@ -2,30 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://haymai.cc/tags/index.html</loc>
-    
-    <lastmod>2017-05-07T08:51:33.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://haymai.cc/2017/05/06/data_structure/</loc>
-    
-    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://haymai.cc/2016/04/06/hexo/</loc>
     
-    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    <lastmod>2017-05-07T11:59:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2017/05/06/data_structure1/</loc>
+    
+    <lastmod>2017-05-07T11:59:40.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2016/04/09/tips/</loc>
+    
+    <lastmod>2017-05-07T11:59:40.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://haymai.cc/2017/03/10/java_execute_shell/</loc>
     
-    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    <lastmod>2017-05-07T10:12:47.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/tags/index.html</loc>
+    
+    <lastmod>2017-05-07T08:51:33.000Z</lastmod>
     
   </url>
   
@@ -38,13 +45,6 @@
   
   <url>
     <loc>http://haymai.cc/2016/12/05/sort/</loc>
-    
-    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://haymai.cc/2016/04/09/tips/</loc>
     
     <lastmod>2017-05-07T08:27:14.000Z</lastmod>
     

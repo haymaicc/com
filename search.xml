@@ -3,6 +3,19 @@
   
     
     <entry>
+      <title><![CDATA[各种IO的区别]]></title>
+      <url>/2017/05/07/IO/</url>
+      <content type="html"><![CDATA[<h2 id="BIO（同步阻塞IO）"><a href="#BIO（同步阻塞IO）" class="headerlink" title="BIO（同步阻塞IO）"></a>BIO（同步阻塞IO）</h2><p>使用ServerSocket绑定IP地址和监听端口，客户端发起连接，通过三次握手建立连接，用socket来进行通信，通过输入输出流的方式来进行同步阻塞的通信<br>每次客户端发起连接请求，都会启动一个线程<br>线程数量：客户端并发访问数为1：1，由于线程是JAVA虚拟机中非常宝贵的资源，一旦线程数急剧增加，系统性能会急剧下降，导致线程栈溢出，创建新的线程失败，并最终导致宕机<br>所以在JDK1.4之前，人们想到了一种方法，即PIO方式</p>
+<a id="more"></a>
+<h2 id="PIO（伪异步阻塞IO）"><a href="#PIO（伪异步阻塞IO）" class="headerlink" title="PIO（伪异步阻塞IO）"></a>PIO（伪异步阻塞IO）</h2><p>使用线程池来处理客户端的请求<br>客户端个数：线程池最大线程数=M：N，其中M远大于N<br>在read和write的时候，还是IO阻塞的，只是把每个线程交由线程池来控制管理</p>
+<h2 id="NIO（异步阻塞IO）"><a href="#NIO（异步阻塞IO）" class="headerlink" title="NIO（异步阻塞IO）"></a>NIO（异步阻塞IO）</h2><p>用NIO方式处理IO<br>使用多路复用器Selector来轮询每个通道Channel，当通道中有事件时就通知处理，不会阻塞<br>使用相当复杂</p>
+<h2 id="AIO（真正的异步非阻塞IO）"><a href="#AIO（真正的异步非阻塞IO）" class="headerlink" title="AIO（真正的异步非阻塞IO）"></a>AIO（真正的异步非阻塞IO）</h2><p>NIO2.0引入了新的异步通道的概念，不需要使用多路复用器（Selector）对注册通道进行轮询即可实现异步读写，从而简化了NIO编程模型</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[大话数据结构学习笔记（二）]]></title>
       <url>/2017/05/07/data-structure2/</url>
       <content type="html"><![CDATA[<p><a href="https://haymaicc.github.io/2017/05/06/data_structure1/" target="_blank" rel="external">笔记（一）的传送门</a></p>

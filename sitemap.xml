@@ -2,7 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://haymai.cc/2017/05/07/data-structure2/</loc>
+    
+    <lastmod>2017-05-07T14:51:05.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://haymai.cc/2016/04/06/hexo/</loc>
+    
+    <lastmod>2017-05-07T13:36:26.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2016/04/09/tips/</loc>
     
     <lastmod>2017-05-07T11:59:40.000Z</lastmod>
     
@@ -10,13 +24,6 @@
   
   <url>
     <loc>http://haymai.cc/2017/05/06/data_structure1/</loc>
-    
-    <lastmod>2017-05-07T11:59:40.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://haymai.cc/2016/04/09/tips/</loc>
     
     <lastmod>2017-05-07T11:59:40.000Z</lastmod>
     

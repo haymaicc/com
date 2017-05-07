@@ -3,6 +3,83 @@
   
     
     <entry>
+      <title><![CDATA[大话数据结构学习笔记（二）]]></title>
+      <url>/2017/05/07/data-structure2/</url>
+      <content type="html"><![CDATA[<p><a href="https://haymaicc.github.io/2017/05/06/data_structure1/" target="_blank" rel="external">笔记（一）的传送门</a></p>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><blockquote>
+<p>是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中G表示一个图，V是图G中的顶点，E是图G中边的集合</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="关于图的一些术语解释"><a href="#关于图的一些术语解释" class="headerlink" title="关于图的一些术语解释"></a>关于图的一些术语解释</h3><p><code>顶点（Vertex）</code>：<br>图中的结点又称为顶点。 </p>
+<p><code>无边图</code>：<br>若顶点Vi到Vj之间的边没有方向，则称这条边为无项边（Edge），用序偶对(Vi,Vj)标示。<br>对于下图无向图G1来说，G1=(V1, {E1})，其中顶点集合V1={A,B,C,D}；边集合E1={(A,B),(B,C),(C,D),(D,A),(A,C)}:<br><img src="http://images.cnitblog.com/blog/380281/201307/13102520-912a10a40eb347b1a550f60a4feaae02.png" alt=""></p>
+<p><code>有向图</code>：<br>若从顶点Vi到Vj的边是有方向的，则成这条边为有向边，也称为弧（Arc）。用有序对（Vi，Vj）标示，Vi称为弧尾，Vj称为弧头。如果任意两条边之间都是有向的，则称该图为有向图。<br>有向图G2中，G2=（V2,{E2}），顶点集合（A,B,C,D）,弧集合E2={<a,d>,{B,A},<c,a>,<b,c>}.</b,c></c,a></a,d></p>
+<p><code>有向和无向完全图</code><br><img src="http://img.blog.csdn.net/20131113203819437" alt=""></p>
+<p><code>权（Weight）</code>：<br>有些图的边和弧有相关的数，这个数叫做权（Weight）。这些带权的图通常称为网（Network）</p>
+<p><code>度（Degree）</code>：<br>无向图中顶点v的度是关联于该顶点的边的数目，记为TD(v)。<br>入度（Indegree）：若G为有向图，则把以顶点v为终点的边的数目，称为v的入度，记为ID(v)。<br>出度（Outdegree）：若G为有向图，则把以顶点v为始点的边的数目，称为v的出度，记为OD(v)。<br>如图①：A的度为3。<br>如图②：A的入度为2，出度为1，所以A的度为3。<br><img src="http://img.blog.csdn.net/20131113205232156" alt=""></p>
+<p><code>子图（Subgraph</code>：<br>设G=(V,E)是一个图，若E’是E的子集，V’是V的子集，使得E’中的边仅与V’中顶点相关联，则图G’=(V’,E’)称为图G的子图。<br>如图：②为①的4个子图<br><img src="http://img.blog.csdn.net/20131112231539062" alt=""></p>
+<p><code>路径（Path</code><br>无向图G=(V,E)中从顶点v到顶点v’的路径是一个顶点序列(v=vi0,vi1,…,vin=v’)，其中(vij-1,vij)∈E，1≤j≤n。有向图G=(V,E)中从顶点v到顶点v’的路径是一个顶点序列(v=vi0,vi1,…,vin=v’)，其中〈vij-1,vij〉∈E，1≤j≤n。<br>　简单路径：序列中顶点不重复出现的路径。<br>　环（Cycle）：又称回路，第一个顶点和最后一个顶点相同的路径。<br>　简单回路：又称简单环，除了第一个顶点和最后一个顶点外，其余顶点不重复的回路。</p>
+<p><code>连通</code>：<br>在无向图G中，如果从顶点v到顶点v’有路径，则称v和v’是连通的。<br>    连通图（Connected Graph）：如果对于图中的任意两个顶点vi、vj∈V，vi和vj都是连通的，则称该图为连通图。<br>    连通分量（Connected Component）：无向图中的极大连通子图。<br>    强连通图：在有向图G中，如果对于每一对vi，vj∈V，vi≠vj，从vi到vj和从vj到vi都存在路径，则称G是强连通图。<br>    强连通分量：有向图中的极大连通子图<br><img src="http://img.blog.csdn.net/20131113205509265" alt=""></p>
+<p><code>生成树（Spanning Tree）</code>：<br>含有连通图的全部顶点的一个极小连通子图。</p>
+<h3 id="图的存储结构"><a href="#图的存储结构" class="headerlink" title="图的存储结构"></a>图的存储结构</h3><p><code>邻接矩阵</code>：<br>图的邻接矩阵存储方式是用两个数组来标示图。一个一位数组存储图顶点的信息，一个二维数组（称为邻接矩阵）存储图中边或者弧的信息。</p>
+<p>设图G有n个顶点，则邻接矩阵是一个n*n的方阵，定义为：<br><img src="http://images.cnitblog.com/blog/380281/201307/13102724-c49b3c87958e493696d55d3306597b5c.png" alt=""></p>
+<p>实例如下，左图是一个无向图。右图是邻接矩阵表示：<br><img src="http://images.cnitblog.com/blog/380281/201307/13102739-ae381b43e0124cc7908c055f350dc03a.png" alt=""></p>
+<p>无向网图的创建代码，时间复杂度为O{n + n2 + e}。</p>
+<p><code>邻接表</code><br>用数组和链表结合的存储方式来标示图的方法称为邻接表。</p>
+<blockquote>
+<p>原理：（类似于树的孩子表示法的第三种存储方式）<br>图中顶点用一个一维数组存储，当然也可以用单链表存储。<br>图中每个顶点 Vi 的所有邻接点构成一个线性表，由于邻接点的个数不确定，所以我们选择用单链表来存储。无向图成为顶点vi的边表，有向图则称为顶点vi作为弧尾的出边表。</p>
+</blockquote>
+<p><img src="http://images.cnitblog.com/blog/380281/201307/13103212-bec29eec5fda4044a93ee18ee4c10607.png" alt=""></p>
+<p><code>十字链表（OrthogonalList）</code><br>十字链表把邻接表与逆邻接表结合起来，解决了出度和入度的问题。</p>
+<h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><blockquote>
+<p>从图中某个顶点出发访遍图中其余顶点，且使每个顶点仅被访问依次，这一过程叫做图的遍历.</p>
+</blockquote>
+<p>遍历方法： 深度优先遍历和广度优先遍历</p>
+<p><code>深度优先遍历 O(n^2)</code>：从图中某个顶点出发v出发，访问此顶点，然后从v的未被访问的邻接点出发深度优先便利图，直到图中所有和v有相同路径的顶点都被访问。</p>
+<p><code>广度优先遍历（Breadth_First_Search）O(n^2)</code> 又称为广度优先搜索，简称BFS</p>
+<p>深度优先更适合目标比较明确，以找到目标为主要目的的情况。<br>广度优先更适合在不断扩大遍历范围时找到相对最优解的情况。</p>
+<h3 id="图的应用"><a href="#图的应用" class="headerlink" title="图的应用"></a>图的应用</h3><p><code>最小生成树（普里姆算法 O(n^2)）</code></p>
+<blockquote>
+<p>我们把构造连通图的最小代价生成树称为最小生成树</p>
+</blockquote>
+<p>最小生成树实现算法：普利姆算法和克鲁斯卡尔算法</p>
+<p><code>普利姆算法</code></p>
+<blockquote>
+<p>假设 N=(P, {E})是连通网， TE是N上最小生成树中边的集合。算法从 U={u0}（u0∈V），TE={}开始。重复执行下述操作：在所有 u∈U,v∈V-U的边（u,v）∈E中找一条代价最小的边（u0,v0）并入集合TE，同时v0并入U，直至U=V为止。此时TE中必有 n-1条边。则T=（V,{TE}）为最小生成树。</p>
+</blockquote>
+<p><code>克鲁斯卡尔算法</code></p>
+<blockquote>
+<p>假设 N=（V, {E}）是连通网，则令最小生成树的初始状态为只有n个顶点而无边的非连通图 T={V,{}}，图中每个顶点自成一格连通分量。在 E 中选择代价最小的边，若该边依附的顶点落在 T 中不同的连通分量上，则将此边加入到T中，否则舍去此边而选择下一条代价最小的边。以此类推，直至T中所有顶点都在同一连通分量上为止。</p>
+</blockquote>
+<h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3><blockquote>
+<p>对于网图来说，最短路径是指两个顶点之间经过的边上权值之和最少的路径，并且我们称路径上的第一个顶点式源点，最后一个顶点是终点。</p>
+</blockquote>
+<p>两种计算最短路径算法：迪杰斯特拉(Djikstra)算法和佛洛伊德算法</p>
+<p><code>迪杰斯特拉(Djikstra)算法 O(n^2)</code><br>迪杰斯特拉算法并不是一下子求出开始节点到尾节点的最短路径，而是一步步求出它们之间顶点的最短路径，过程中都是基于已经求出的最短路径的基础上，求得更远顶点的最短路径，最终得到你要的结果。</p>
+<p><code>佛洛依德算法 O(n^3)</code></p>
+<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><blockquote>
+<p>在一个表示工程的有向图中，用顶点表示活动，用弧表示活动之间的优先关系，这样的有向图为顶点表示活动的网，我们称为AOV网(Activity On Vertex)。<br>设G=(V,E)是一个具有n个顶点的有向图，V中的顶点序列V1,V2…..,Vn满足若从顶点Vi到顶点Vj有一条路径，则在顶点序列中Vi必在Vj顶点之前。则我们称这样的顶点序列为拓扑序列。<br>所谓拓扑序列，其实就是对一个有向图构造拓扑序列的过程。</p>
+</blockquote>
+<h3 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h3><blockquote>
+<p>在一个表示工程的带权有向图中，用顶点表示事件，用有向图表示活动，用边上的权值表示活动的持续事件，这种这种有向图的边表示活动图，我们称之为AOE网(Activity On Edge Network)。<br>我们把路径上各个活动所持续的时间之和称为路径的长度，从原点到汇点具有最大长度的路径叫做关键路径，在关键路径上的活动叫关键活动。</p>
+</blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> 数据结构 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[大话数据结构学习笔记（一）]]></title>
       <url>/2017/05/06/data_structure1/</url>
       <content type="html"><![CDATA[<p><strong>数据结构</strong>在面试中经常遇到，以前没有系统的梳理过，最近在看《大话数据结构》，所以想整理一些笔记，供日后参考。</p>
@@ -278,7 +355,7 @@
     <entry>
       <title><![CDATA[Hexo 安装教程]]></title>
       <url>/2016/04/06/hexo/</url>
-      <content type="html"><![CDATA[<p>近来觉得<strong>node.js</strong> 很火，平时也没时间接触，借此机会熟悉一下也挺好。</p>
+      <content type="html"><![CDATA[<p>近来觉得需要一隅来发发牢骚，于是用Hexo搭建了这个博客。</p>
 <p><img src="http://i.v2ex.co/5bb7J7NT.png" alt=""></p>
 <a id="more"></a>
 <p><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo官网</a>介绍的很酷炫，实际上用起来也让我觉得很强大，但是开发文档编写的相当羞涩，所以在这总结一下Hexo的安装教程，希望对大家有所帮助。</p>

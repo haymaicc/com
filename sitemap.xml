@@ -2,37 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://haymai.cc/2016/05/06/poi/</loc>
+    <loc>http://haymai.cc/tags/index.html</loc>
     
-    <lastmod>2016-09-07T14:02:47.212Z</lastmod>
+    <lastmod>2017-05-07T08:51:33.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://haymai.cc/2016/04/06/hexo/</loc>
     
-    <lastmod>2016-09-07T10:57:03.035Z</lastmod>
+    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://haymai.cc/2016/04/09/Tips/</loc>
+    <loc>http://haymai.cc/2017/03/10/java_execute_shell/</loc>
     
-    <lastmod>2016-09-07T10:57:02.915Z</lastmod>
+    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2016/05/06/poi/</loc>
+    
+    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2017/05/06/data_structure/</loc>
+    
+    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2016/12/05/sort/</loc>
+    
+    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/2016/04/09/tips/</loc>
+    
+    <lastmod>2017-05-07T08:27:14.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymai.cc/categories/index.html</loc>
+    
+    <lastmod>2017-05-07T08:22:31.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://haymai.cc/about.html</loc>
     
-    <lastmod>2016-09-07T10:56:54.555Z</lastmod>
+    <lastmod>2017-05-05T06:13:39.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://haymai.cc/404.html</loc>
     
-    <lastmod>2016-09-07T10:56:53.919Z</lastmod>
+    <lastmod>2017-02-10T04:25:58.000Z</lastmod>
     
   </url>
   

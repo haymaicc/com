@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="YOU'VE MADE A <span>BRAVE</span> DECISION, WELCOME." />
+  <meta name="keywords" content="分布式," />
 
 
 
@@ -92,15 +92,28 @@
 
 
 
-<meta name="description" content="春风十里都不如你">
-<meta property="og:type" content="website">
-<meta property="og:title" content="唐伯虎点蜡烛">
-<meta property="og:url" content="http://haymaicc.github.io/categories/hexo/index.html">
+<meta name="description" content="应用场景：
+分布式通知，协调
+集群管理
+Master 选举
+分布式锁 分布式队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zookeeper 学习">
+<meta property="og:url" content="http://haymaicc.github.io/2017/05/17/zk/index.html">
 <meta property="og:site_name" content="唐伯虎点蜡烛">
-<meta property="og:description" content="春风十里都不如你">
+<meta property="og:description" content="应用场景：
+分布式通知，协调
+集群管理
+Master 选举
+分布式锁 分布式队列">
+<meta property="og:updated_time" content="2017-05-17T04:50:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="唐伯虎点蜡烛">
-<meta name="twitter:description" content="春风十里都不如你">
+<meta name="twitter:title" content="zookeeper 学习">
+<meta name="twitter:description" content="应用场景：
+分布式通知，协调
+集群管理
+Master 选举
+分布式锁 分布式队列">
 
 
 
@@ -128,13 +141,13 @@
 
 
 
-  <link rel="canonical" href="http://haymaicc.github.io/categories/hexo/"/>
+  <link rel="canonical" href="http://haymaicc.github.io/2017/05/17/zk/"/>
 
 
 
 
 
-  <title>分类: hexo | 唐伯虎点蜡烛</title>
+  <title>zookeeper 学习 | 唐伯虎点蜡烛</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -159,7 +172,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -287,73 +300,261 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h1>hexo<small>分类</small>
-      </h1>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/09/tips/" itemprop="url">
-              
-                <span itemprop="name">Hexo Tips</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-09T11:20:12+08:00"
-              content="2016-04-09" >
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2016/04/06/hexo/" itemprop="url">
-              
-                <span itemprop="name">Hexo 安装教程</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-04-06T17:16:24+08:00"
-              content="2016-04-06" >
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </section>
 
   
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/17/zk/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨励志">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/res/icon.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唐伯虎点蜡烛">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">zookeeper 学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-17T12:37:07+08:00">
+                2017-05-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/05/17/zk/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/17/zk/" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/05/17/zk/" class="leancloud_visitors" data-flag-title="zookeeper 学习">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  348
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="http://haymaicc.github.io/res/zk.png"></a></p>
+<h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><ol>
+<li>分布式通知，协调</li>
+<li>集群管理</li>
+<li>Master 选举</li>
+<li>分布式锁 分布式队列</li>
+</ol>
+<a id="more"></a>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><blockquote>
+<p>类似于文件系统结构，每一个节点称为ZNode   可以存放数据</p>
+</blockquote>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
+<li>2n+1 个server   当n+1个节点可用时，系统可用</li>
+<li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     follwer：接受客户端请求并返回，参与leader 发起的投票</li>
+</ol>
+<h2 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h2><p>leader 失去Leader 地位时使用paxos 算法选举</p>
+<ol>
+<li>每一个server向所有server 请求成为leader</li>
+<li>投票超过一半的成为leader ,否则重新执行第一步</li>
+</ol>
+<h2 id="数据交互"><a href="#数据交互" class="headerlink" title="数据交互"></a>数据交互</h2><ul>
+<li>读：直接 读取client连接的server 的数据</li>
+<li>更新  1、 client向server发送请求 2、server向leader发送请求 3、leader发起proposol过程 4、follower反馈结果 5、leader接收响应，如果超过⼀半认为成功，则认为 成功，否则认为失败。并将结果反馈给server 6、server将结果反馈给client</li>
+</ul>
+<h2 id="ObServer节点"><a href="#ObServer节点" class="headerlink" title="ObServer节点"></a>ObServer节点</h2><pre><code>ObServer节点：和client交互，存有数据的副本，不参与投票
+</code></pre><h2 id="client架构"><a href="#client架构" class="headerlink" title="client架构"></a>client架构</h2><ol>
+<li>ClientCnxn：管理  client和ZooKeeper间  的网络连接</li>
+<li>WatcherManager：管 理Watcher，如：负 责对ZNode的监控</li>
+<li>Zookeeper：Client交 互的主要接⼝，如创 建Znode、更新ZNode</li>
+</ol>
+<h2 id="ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性"><a href="#ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性" class="headerlink" title="ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性"></a>ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>叔叔，阿姨给点钱买棒棒糖吃</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/res/wx.JPG" alt="杨励志 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/res/ali.JPG" alt="杨励志 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"># 分布式</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/16/data-structure3/" rel="next" title="大话数据结构学习笔记（三）">
+                <i class="fa fa-chevron-left"></i> 大话数据结构学习笔记（三）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -361,6 +562,12 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="SOHUCS"></div>
+    
+  </div>
+
 
         </div>
         
@@ -380,8 +587,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/res/icon.JPG"
@@ -488,6 +704,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景："><span class="nav-number">1.</span> <span class="nav-text">应用场景：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#架构"><span class="nav-number">3.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#leader-选举"><span class="nav-number">4.</span> <span class="nav-text">leader 选举</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据交互"><span class="nav-number">5.</span> <span class="nav-text">数据交互</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ObServer节点"><span class="nav-number">6.</span> <span class="nav-text">ObServer节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#client架构"><span class="nav-number">7.</span> <span class="nav-text">client架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性"><span class="nav-number">8.</span> <span class="nav-text">ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -611,6 +843,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
 
   
 

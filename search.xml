@@ -3,6 +3,131 @@
   
     
     <entry>
+      <title><![CDATA[zookeeper 学习]]></title>
+      <url>/2017/05/17/zk/</url>
+      <content type="html"><![CDATA[<p><a href="http://haymaicc.github.io/res/zk.png"></a></p>
+<h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><ol>
+<li>分布式通知，协调</li>
+<li>集群管理</li>
+<li>Master 选举</li>
+<li>分布式锁 分布式队列</li>
+</ol>
+<a id="more"></a>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><blockquote>
+<p>类似于文件系统结构，每一个节点称为ZNode   可以存放数据</p>
+</blockquote>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
+<li>2n+1 个server   当n+1个节点可用时，系统可用</li>
+<li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     follwer：接受客户端请求并返回，参与leader 发起的投票</li>
+</ol>
+<h2 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h2><p>leader 失去Leader 地位时使用paxos 算法选举</p>
+<ol>
+<li>每一个server向所有server 请求成为leader</li>
+<li>投票超过一半的成为leader ,否则重新执行第一步</li>
+</ol>
+<h2 id="数据交互"><a href="#数据交互" class="headerlink" title="数据交互"></a>数据交互</h2><ul>
+<li>读：直接 读取client连接的server 的数据</li>
+<li>更新  1、 client向server发送请求 2、server向leader发送请求 3、leader发起proposol过程 4、follower反馈结果 5、leader接收响应，如果超过⼀半认为成功，则认为 成功，否则认为失败。并将结果反馈给server 6、server将结果反馈给client</li>
+</ul>
+<h2 id="ObServer节点"><a href="#ObServer节点" class="headerlink" title="ObServer节点"></a>ObServer节点</h2><pre><code>ObServer节点：和client交互，存有数据的副本，不参与投票
+</code></pre><h2 id="client架构"><a href="#client架构" class="headerlink" title="client架构"></a>client架构</h2><ol>
+<li>ClientCnxn：管理  client和ZooKeeper间  的网络连接</li>
+<li>WatcherManager：管 理Watcher，如：负 责对ZNode的监控</li>
+<li>Zookeeper：Client交 互的主要接⼝，如创 建Znode、更新ZNode</li>
+</ol>
+<h2 id="ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性"><a href="#ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性" class="headerlink" title="ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性"></a>ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性</h2>]]></content>
+      
+        <categories>
+            
+            <category> 分布式 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 分布式 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[大话数据结构学习笔记（三）]]></title>
+      <url>/2017/05/16/data-structure3/</url>
+      <content type="html"><![CDATA[<p><a href="https://haymaicc.github.io/2017/05/06/data_structure1/">笔记（一）的传送门</a><br><a href="https://haymaicc.github.io/2017/05/07/data-structure2/">笔记（二）的传送门</a></p>
+<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><blockquote>
+<p>查找就是根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素</p>
+</blockquote>
+<h2 id="顺序查找-O-n"><a href="#顺序查找-O-n" class="headerlink" title="顺序查找 O(n)"></a>顺序查找 O(n)</h2><blockquote>
+<p>从表中第一个记录开始，逐个与给定值进行比较，若某个记录的关键字和给定值相等，则查找成功；反之，若直到最后一个记录，其关键字和给定值都不相等，则表明表中没有所查记录，查找失败。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="二分-折半查找（有序表）-O-logn"><a href="#二分-折半查找（有序表）-O-logn" class="headerlink" title="二分/折半查找（有序表） O(logn)"></a>二分/折半查找（有序表） O(logn)</h3><blockquote>
+<p>先确定待查记录所在的范围，然后逐步缩小范围，直到找到或者找不到记录为止。</p>
+</blockquote>
+<h3 id="插值查找-O-logn"><a href="#插值查找-O-logn" class="headerlink" title="插值查找  O(logn)"></a>插值查找  O(logn)</h3><blockquote>
+<p>插值查找和折半查找类似，可以通过比较表中的某项记录，确定查找记录的范围。唯一不同的是，对每次查找的中间点进行了变换，使之更加接近待查找的记录，减少了查找的次数。折半查找的中间点mid = low + (high – low) / 2，插值查找对1/2进行了修正，mid = low + (key – a[low])/(a[high] – a[low]) * (high – low)</p>
+</blockquote>
+<h3 id="斐波那契查找-O-logn"><a href="#斐波那契查找-O-logn" class="headerlink" title="斐波那契查找 O(logn)"></a>斐波那契查找 O(logn)</h3><blockquote>
+<p>依然是对查找点的优化，采用Fibonacci数组，找到对于当前长度的有序表的黄金分割点，作为每次的中间值。</p>
+</blockquote>
+<p>对于平均性能，斐波那契查找要优于折半查找，但如果是最坏情况，查找效率低于折半查找。有序表查找是一种针对查找优化的表结构，查找的时间复杂度是O(logn)。但有序表的插入和删除性能是比较差的，插入和删除不能破坏有序表的特性。</p>
+<h2 id="线形索引查找"><a href="#线形索引查找" class="headerlink" title="线形索引查找"></a>线形索引查找</h2><blockquote>
+<p>索引是关键词和记录关联的过程，按照结构可以分为线形索引，树形索引和多级索引。线形索引就是将索引项集合组织为线形结构，也称索引表。</p>
+</blockquote>
+<h3 id="稠密索引-O-logn"><a href="#稠密索引-O-logn" class="headerlink" title="稠密索引 O(logn)"></a>稠密索引 O(logn)</h3><blockquote>
+<p>稠密索引是关键码有序的，因此可以对索引使用折半、插值、斐波那契等有序表查找算法，大大提高了效率。</p>
+</blockquote>
+<p>优缺点：和有序表类似的是，稠密索引必须要维护索引的有序性。另外如果数据量很大，也要同时维护一个同样规模的索引，可能就需要反复访问磁盘，降低了查找性能。</p>
+<h3 id="分块索引-介于O-n-和O-logn-之间"><a href="#分块索引-介于O-n-和O-logn-之间" class="headerlink" title="分块索引  介于O(n)和O(logn)之间"></a>分块索引  介于O(n)和O(logn)之间</h3><blockquote>
+<p>如果对索引进行一次分级呢？对于一级索引下，可能会有多个记录，称之为一个块，块内的记录再获得一个二级的索引。这些块有一个条件，就是块内无序，块间有序。块内无序就是在一级索引内部的记录可以是无序的，只要落在索引的范围内就可以；块间有序就是下一个块所有的关键字都要大于上一个块的最大关键字。因此对于一个块结构来讲，它具有最大关键码，块中的记录个数和指向块首数据的指针</p>
+</blockquote>
+<p>分块索引兼顾了有序和无序的需求，平衡了插入，删除和查找的性能，普遍用于数据库查找技术等</p>
+<h3 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h3><blockquote>
+<p>倒排索引主要应用于搜索引擎。基本思想就是将得到的key-value关系进行一个反映射，得到某个value有多少个key指向它。比如查找某个单词出现在哪些文章中，可以先访问文章中的所有单词，建立一个单词的索引，将出现该单词的文章记录到索引中。这样在搜索时直接输入单词，就能得到文章列表。</p>
+</blockquote>
+<p>优缺点：倒排索引的优点是速度快，缺点就是记录不等长，维护比较困难，插入和删除都要做相应的处理。比如删除某个文章，就可能要对所有的单词都进行考察。</p>
+<h2 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h2><blockquote>
+<p>有序表的问题就是如果插入一个较小的记录，就要把比它大的记录依次移动，腾出插入的位置。如果用二叉树来实现呢，只需要让这个较小的记录成为某个结点的左孩子就可以了。为什么是左孩子呢，和二叉排序数的定义有关，简单来说，二叉排序树的中序遍历就是一个有序表。这样插入任何一个记录都不需要改变已经建好的树</p>
+</blockquote>
+<h3 id="查找："><a href="#查找：" class="headerlink" title="查找："></a>查找：</h3><blockquote>
+<p>查找某个记录时，从根结点开始，如果查找记录大于该结点的值，就走右子树；如果小于该结点的值，就走左子树。不断向下查找，直到找到该记录，或者到叶子结点的值和查找记录不同，未找到该记录。</p>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入和查找类似，向下找到最接近它的结点，然后把该记录作为它的左孩子或者右孩子。</p>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除相对查找和插入来讲复杂一点，主要复杂在如果处理它的子树。删除分为几种情况，如果删除结点是叶子结点，直接把它和二叉排序树断开即可，不影响树上的其他结点。如果删除结点带左子树或者右子树（不同时），那就将它左子树或者右子树的根结点代替它，连接到树上。如果删除结点同时带有左子树和右子树呢？想要对原排序树的破坏最小，最好的办法是找到该结点的前驱或者后继结点，这可以很容易的找到。假设我们这里使用删除结点的前驱结点，要先将前驱结点的值赋给删除结点，如果前驱结点就是删除结点的左孩子（删除结点及其子孙只有左孩子，斜树），就将前驱结点的左子树接到删除结点的左子树上；如果前驱结点是某个结点的右孩子（删除结点及其子孙不只有左孩子），还要将它的左子树接到它父母的右子树上。</p>
+<p>###时间复杂度<br>如果二叉排序树是平衡的，那么查找的时间复杂度是O(logn)；如果是不平衡，比如最极端的斜树，那么时间复杂度是O(n)。</p>
+<p>###优缺点<br>二叉排序树保留了有序表查找高效的特点，最理想的情况能达到O(logn)的时间复杂度，并且解决了插入和删除记录的问题，能够保证树的整体结构不受影响。缺点就是可能在插入的过程中，二叉排序树不能保持平衡，出现了某一边的树远远大于另一边，降低了查找的效率。后面提到的平衡二叉树解决了这个问题。</p>
+</blockquote>
+<h2 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h2><blockquote>
+<p>平衡二叉树的出现是为了解决二叉排序树可能出现的不平衡问题。平衡二叉树的概念是树中任何结点的平衡因子只能是-1,0,1，也就左子树和右子树的深度相差最多是1。为了实现这个目的，每次插入记录后，都会检查二叉树是否处在平衡状态，如果不是的话，会进行相应的旋转操作使之平衡。平衡的过程就是从新插入的结点向上查找，如果某个结点的BF=2，就顺时针旋转。最简单的旋转就是对于斜树，直接将BF=2结点的孩子作为新的子树根结点，将BF=2连接到它的右孩子。稍复杂的旋转就是BF=2和它的左孩子有相同的旋转方向，这样将它的左孩子作为新的子数根结点，BF=2连接在新根结点的右子树上，再将新的根结点原来的右孩子连接到BF=2的左子树上。最复杂的旋转就是BF=2和它的左孩子是相反的旋转方向，就要将它的左孩子先进行一次右旋转，再对BF=2作左旋转。同样，如果找到某个结点的BF=-2，做逆时针旋转，旋转的方法和顺时针旋转类似。</p>
+</blockquote>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><blockquote>
+<p>由于平衡二叉树的特性，它的时间复杂度一直是O(logn)。</p>
+</blockquote>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote>
+<p>平衡二叉树的优点就在于将不平衡消灭在最初的阶段，保持了很好的查找特性。缺点？比较复杂？</p>
+</blockquote>
+<h3 id="2-3树，2-3-4树"><a href="#2-3树，2-3-4树" class="headerlink" title="2-3树，2-3-4树"></a>2-3树，2-3-4树</h3><blockquote>
+<p>结点的孩子可以多于2个，可以是3个，4个。</p>
+</blockquote>
+<h3 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h3>]]></content>
+      
+        <categories>
+            
+            <category> 数据结构 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[各种IO的区别]]></title>
       <url>/2017/05/07/IO/</url>
       <content type="html"><![CDATA[<h2 id="BIO（同步阻塞IO）"><a href="#BIO（同步阻塞IO）" class="headerlink" title="BIO（同步阻塞IO）"></a>BIO（同步阻塞IO）</h2><p>使用ServerSocket绑定IP地址和监听端口，客户端发起连接，通过三次握手建立连接，用socket来进行通信，通过输入输出流的方式来进行同步阻塞的通信<br>每次客户端发起连接请求，都会启动一个线程<br>线程数量：客户端并发访问数为1：1，由于线程是JAVA虚拟机中非常宝贵的资源，一旦线程数急剧增加，系统性能会急剧下降，导致线程栈溢出，创建新的线程失败，并最终导致宕机<br>所以在JDK1.4之前，人们想到了一种方法，即PIO方式</p>

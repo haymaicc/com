@@ -107,7 +107,7 @@ Master 选举
 Master 选举
 分布式锁 分布式队列">
 <meta property="og:image" content="https://haymaicc.github.io/res/zk.png">
-<meta property="og:updated_time" content="2017-05-17T05:06:28.000Z">
+<meta property="og:updated_time" content="2017-05-17T05:08:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zookeeper 学习">
 <meta name="twitter:description" content="应用场景：
@@ -417,7 +417,7 @@ Master 选举
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  348
+                  349
                 </span>
               
 
@@ -452,7 +452,8 @@ Master 选举
 </blockquote>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
 <li>2n+1 个server   当n+1个节点可用时，系统可用</li>
-<li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     follwer：接受客户端请求并返回，参与leader 发起的投票</li>
+<li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     </li>
+<li>follwer：接受客户端请求并返回，参与leader 发起的投票</li>
 </ol>
 <h2 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h2><blockquote>
 <p>leader 失去Leader 地位时使用paxos 算法选举</p>

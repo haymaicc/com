@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haymaicc.github.io/"/>
-  <updated>2017-05-17T05:06:28.000Z</updated>
+  <updated>2017-05-17T05:08:29.000Z</updated>
   <id>http://haymaicc.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://haymaicc.github.io/2017/05/17/zk/"/>
     <id>http://haymaicc.github.io/2017/05/17/zk/</id>
     <published>2017-05-17T04:37:07.000Z</published>
-    <updated>2017-05-17T05:06:28.000Z</updated>
+    <updated>2017-05-17T05:08:29.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://haymaicc.github.io/res/zk.png" alt=""></p>
 <h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><ol>
@@ -35,7 +35,8 @@
 </blockquote>
 <h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><ol>
 <li>2n+1 个server   当n+1个节点可用时，系统可用</li>
-<li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     follwer：接受客户端请求并返回，参与leader 发起的投票</li>
+<li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     </li>
+<li>follwer：接受客户端请求并返回，参与leader 发起的投票</li>
 </ol>
 <h2 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h2><blockquote>
 <p>leader 失去Leader 地位时使用paxos 算法选举</p>

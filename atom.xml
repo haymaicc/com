@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haymaicc.github.io/"/>
-  <updated>2017-05-17T05:00:34.000Z</updated>
+  <updated>2017-05-17T05:06:28.000Z</updated>
   <id>http://haymaicc.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://haymaicc.github.io/2017/05/17/zk/"/>
     <id>http://haymaicc.github.io/2017/05/17/zk/</id>
     <published>2017-05-17T04:37:07.000Z</published>
-    <updated>2017-05-17T05:00:34.000Z</updated>
+    <updated>2017-05-17T05:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://haymaicc.github.io/res/zk.png" alt=""></p>
 <h2 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h2><ol>
@@ -37,22 +37,25 @@
 <li>2n+1 个server   当n+1个节点可用时，系统可用</li>
 <li>server 角色类型 存放数据  ( leader： 不接受客户端请求负责投票和决议，最终更新状态     follwer：接受客户端请求并返回，参与leader 发起的投票</li>
 </ol>
-<h2 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h2><p>leader 失去Leader 地位时使用paxos 算法选举</p>
+<h2 id="leader-选举"><a href="#leader-选举" class="headerlink" title="leader 选举"></a>leader 选举</h2><blockquote>
+<p>leader 失去Leader 地位时使用paxos 算法选举</p>
 <ol>
 <li>每一个server向所有server 请求成为leader</li>
 <li>投票超过一半的成为leader ,否则重新执行第一步</li>
 </ol>
+</blockquote>
 <h2 id="数据交互"><a href="#数据交互" class="headerlink" title="数据交互"></a>数据交互</h2><ul>
 <li>读：直接 读取client连接的server 的数据</li>
 <li>更新  1、 client向server发送请求 2、server向leader发送请求 3、leader发起proposol过程 4、follower反馈结果 5、leader接收响应，如果超过⼀半认为成功，则认为 成功，否则认为失败。并将结果反馈给server 6、server将结果反馈给client</li>
 </ul>
-<h2 id="ObServer节点"><a href="#ObServer节点" class="headerlink" title="ObServer节点"></a>ObServer节点</h2><pre><code>ObServer节点：和client交互，存有数据的副本，不参与投票
-</code></pre><h2 id="client架构"><a href="#client架构" class="headerlink" title="client架构"></a>client架构</h2><ol>
+<h2 id="ObServer节点"><a href="#ObServer节点" class="headerlink" title="ObServer节点"></a>ObServer节点</h2><p>ObServer节点：和client交互，存有数据的副本，不参与投票</p>
+<h2 id="client架构"><a href="#client架构" class="headerlink" title="client架构"></a>client架构</h2><ol>
 <li>ClientCnxn：管理  client和ZooKeeper间  的网络连接</li>
 <li>WatcherManager：管 理Watcher，如：负 责对ZNode的监控</li>
 <li>Zookeeper：Client交 互的主要接⼝，如创 建Znode、更新ZNode</li>
 </ol>
-<h2 id="ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性"><a href="#ZooKeeper承诺-顺序性-原⼦性-强⼀致性-可靠性-实时性" class="headerlink" title="ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性"></a>ZooKeeper承诺  顺序性  原⼦性 强⼀致性 可靠性 实时性</h2>]]></content>
+<h2 id="ZooKeeper承诺"><a href="#ZooKeeper承诺" class="headerlink" title="ZooKeeper承诺"></a>ZooKeeper承诺</h2><p>顺序性  原⼦性 强⼀致性 可靠性 实时性</p>
+]]></content>
     
     <summary type="html">
     

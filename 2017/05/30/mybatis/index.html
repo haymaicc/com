@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据结构," />
+  <meta name="keywords" content="java," />
 
 
 
@@ -92,42 +92,26 @@
 
 
 
-<meta name="description" content="笔记（一）的传送门笔记（二）的传送门
-查找
-查找就是根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素
-
-顺序查找 O(n)
-从表中第一个记录开始，逐个与给定值进行比较，若某个记录的关键字和给定值相等，则查找成功；反之，若直到最后一个记录，其关键字和给定值都不相等，则表明表中没有所查记录，查找失败。">
+<meta name="description" content="目录介绍mybatismybatis入门从配置文件入手了解怎么使用mybatismapper 接口没有实现类，是怎么执行数据库操作的，原理是什么sqlsession 内部实现的原理阅读源码的主要几个重要类
+mybatis是啥
+MyBatis 世界上流行最广泛的SQL 映射框架，由 Clinton Begin 在 2002年创建，其后，捐献给了Apache 基金会，成立了iBatis 项目。2010">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大话数据结构学习笔记（三）">
-<meta property="og:url" content="http://haymaicc.github.io/2017/05/16/data-structure3/index.html">
+<meta property="og:title" content="mybatis 学习">
+<meta property="og:url" content="http://haymaicc.github.io/2017/05/30/mybatis/index.html">
 <meta property="og:site_name" content="唐伯虎点蜡烛">
-<meta property="og:description" content="笔记（一）的传送门笔记（二）的传送门
-查找
-查找就是根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素
-
-顺序查找 O(n)
-从表中第一个记录开始，逐个与给定值进行比较，若某个记录的关键字和给定值相等，则查找成功；反之，若直到最后一个记录，其关键字和给定值都不相等，则表明表中没有所查记录，查找失败。">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_1.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_2.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_3.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_4.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_5.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_6.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_7.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_8.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_9.jpg">
-<meta property="og:image" content="https://haymaicc.github.io/res/structure_10.jpg">
-<meta property="og:updated_time" content="2017-05-30T10:01:50.000Z">
+<meta property="og:description" content="目录介绍mybatismybatis入门从配置文件入手了解怎么使用mybatismapper 接口没有实现类，是怎么执行数据库操作的，原理是什么sqlsession 内部实现的原理阅读源码的主要几个重要类
+mybatis是啥
+MyBatis 世界上流行最广泛的SQL 映射框架，由 Clinton Begin 在 2002年创建，其后，捐献给了Apache 基金会，成立了iBatis 项目。2010">
+<meta property="og:image" content="https://haymaicc.github.io/res/mybatis_1.jpg">
+<meta property="og:image" content="https://haymaicc.github.io/res/mybatis_2.jpg">
+<meta property="og:image" content="https://haymaicc.github.io/res/mybatis_3.jpg">
+<meta property="og:updated_time" content="2017-05-30T11:03:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大话数据结构学习笔记（三）">
-<meta name="twitter:description" content="笔记（一）的传送门笔记（二）的传送门
-查找
-查找就是根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素
-
-顺序查找 O(n)
-从表中第一个记录开始，逐个与给定值进行比较，若某个记录的关键字和给定值相等，则查找成功；反之，若直到最后一个记录，其关键字和给定值都不相等，则表明表中没有所查记录，查找失败。">
-<meta name="twitter:image" content="https://haymaicc.github.io/res/structure_1.jpg">
+<meta name="twitter:title" content="mybatis 学习">
+<meta name="twitter:description" content="目录介绍mybatismybatis入门从配置文件入手了解怎么使用mybatismapper 接口没有实现类，是怎么执行数据库操作的，原理是什么sqlsession 内部实现的原理阅读源码的主要几个重要类
+mybatis是啥
+MyBatis 世界上流行最广泛的SQL 映射框架，由 Clinton Begin 在 2002年创建，其后，捐献给了Apache 基金会，成立了iBatis 项目。2010">
+<meta name="twitter:image" content="https://haymaicc.github.io/res/mybatis_1.jpg">
 
 
 
@@ -155,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="http://haymaicc.github.io/2017/05/16/data-structure3/"/>
+  <link rel="canonical" href="http://haymaicc.github.io/2017/05/30/mybatis/"/>
 
 
 
 
 
-  <title>大话数据结构学习笔记（三） | 唐伯虎点蜡烛</title>
+  <title>mybatis 学习 | 唐伯虎点蜡烛</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -324,7 +308,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/16/data-structure3/">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/30/mybatis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨励志">
@@ -341,7 +325,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">大话数据结构学习笔记（三）</h1>
+          <h1 class="post-title" itemprop="name headline">mybatis 学习</h1>
         
 
         <div class="post-meta">
@@ -353,8 +337,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-16T12:47:05+08:00">
-                2017-05-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T18:15:13+08:00">
+                2017-05-30
               </time>
             
 
@@ -376,8 +360,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
                   </a>
                 </span>
 
@@ -395,8 +379,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/05/16/data-structure3/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/16/data-structure3/" itemprop="commentsCount"></span>
+                <a href="/2017/05/30/mybatis/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/30/mybatis/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -404,7 +388,7 @@
 
           
           
-             <span id="/2017/05/16/data-structure3/" class="leancloud_visitors" data-flag-title="大话数据结构学习笔记（三）">
+             <span id="/2017/05/30/mybatis/" class="leancloud_visitors" data-flag-title="mybatis 学习">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -429,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,303
+                  1,812
                 </span>
               
 
@@ -451,78 +435,53 @@
       
 
       
-        <p><a href="https://haymaicc.github.io/2017/05/06/data_structure1/">笔记（一）的传送门</a><br><a href="https://haymaicc.github.io/2017/05/07/data-structure2/">笔记（二）的传送门</a></p>
-<h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><blockquote>
-<p>查找就是根据给定的某个值，在查找表中确定一个其关键字等于给定值的数据元素</p>
+        <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><strong>介绍mybatis</strong><br><strong>mybatis入门</strong><br><strong>从配置文件入手了解怎么使用mybatis</strong><br><strong>mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么</strong><br><strong>sqlsession 内部实现的原理</strong><br><strong>阅读源码的主要几个重要类</strong></p>
+<h2 id="mybatis是啥"><a href="#mybatis是啥" class="headerlink" title="mybatis是啥"></a>mybatis是啥</h2><blockquote>
+<p>MyBatis 世界上流行最广泛的SQL 映射框架，由 Clinton Begin 在 2002年创建，其后，捐献给了Apache 基金会，成立了iBatis 项目。<br>2010年 5月，将代码库迁致 Google Code，并更名为MyBatis。<br>关于以前的版本，请访问   <a href="http://ibatis.apache.org" target="_blank" rel="external"></a><br>关于更名后最新的版本，请访问：<a href="http://code.google.com/p/mybatis" target="_blank" rel="external"></a></p>
 </blockquote>
-<h2 id="顺序查找-O-n"><a href="#顺序查找-O-n" class="headerlink" title="顺序查找 O(n)"></a>顺序查找 O(n)</h2><blockquote>
-<p>从表中第一个记录开始，逐个与给定值进行比较，若某个记录的关键字和给定值相等，则查找成功；反之，若直到最后一个记录，其关键字和给定值都不相等，则表明表中没有所查记录，查找失败。</p>
+<p>MyBatis 是一个可以自定义 SQL、存储过程和高级映射的持久层框架。MyBatis 摒除了大部分的 JDBC 代码、手工设置参数和结果集重获。<br>MyBatis 只使用简单的 XML 和注解来配置和映射基本数据类型、 Map 接口和 POJO 到数据库记录</p>
+<h2 id="mybatis入门"><a href="#mybatis入门" class="headerlink" title="mybatis入门"></a>mybatis入门</h2><p><a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="external">官方文档</a></p>
+<h3 id="使用简介"><a href="#使用简介" class="headerlink" title="使用简介"></a>使用简介</h3><p>每一个 MyBatis 应该都是以一个 <code>SqlSessionFactory</code>实例为中心。<br>一个SqlSessionFactory实例可以使用 <code>SqlSessionFactoryBuilder</code> 来创造。从配置类中创造的定制 SqlSessionFactoryBuilder 实例，<br>可以使用XML 配置文件来生成一个SqlSessionFactory实例<br>SqlSessionFactoryBuilder通过Java io流读取配置文件构建 SqlSessionFactory对象<br><code>Resources</code>A class to simplify access to resources through the classloader.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String resource = &quot;org/mybatis/example/Configuration.xml&quot;;</div><div class="line">Reader reader = Resources.getResourceAsReader(resource);</div><div class="line">SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE configuration</span></div><div class="line">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</div><div class="line">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</div><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"org/mybatis/example/BlogMapper.xml"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="SqlSessionFactory："><a href="#SqlSessionFactory：" class="headerlink" title="SqlSessionFactory："></a>SqlSessionFactory：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SqlSessionFactory</span> </span>&#123;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(<span class="keyword">boolean</span> var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(Connection var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(TransactionIsolationLevel var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1, <span class="keyword">boolean</span> var2)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1, TransactionIsolationLevel var2)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1, Connection var2)</span></span>;</div><div class="line">    <span class="function">Configuration <span class="title">getConfiguration</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="SqlSessionFactoryBuilder"><a href="#SqlSessionFactoryBuilder" class="headerlink" title="SqlSessionFactoryBuilder"></a>SqlSessionFactoryBuilder</h3><blockquote>
+<p>这个类可以被实例化、使用和丢弃，一旦创建了 SqlSessionFactory，就不再需要它了。因此 SqlSessionFactoryBuilder 实例的最佳范围是方法范围<br>（也就是局部方法变量）。你可以重用 SqlSessionFactoryBuilder 来创建多个 SqlSessionFactory 实例，但是最好还是不要让其一直存在以保证所有的<br> XML 解析资源开放给更重要的事情。</p>
 </blockquote>
-<a id="more"></a>
-<h3 id="二分-折半查找（有序表）-O-logn"><a href="#二分-折半查找（有序表）-O-logn" class="headerlink" title="二分/折半查找（有序表） O(logn)"></a>二分/折半查找（有序表） O(logn)</h3><blockquote>
-<p>先确定待查记录所在的范围，然后逐步缩小范围，直到找到或者找不到记录为止。</p>
+<h3 id="SqlSessionFactory"><a href="#SqlSessionFactory" class="headerlink" title="SqlSessionFactory"></a>SqlSessionFactory</h3><blockquote>
+<p>SqlSessionFactory 一旦被创建就应该在应用的运行期间一直存在，没有任何理由对它进行清除或重建。使用 SqlSessionFactory<br>的最佳实践是在应用运行期间不要重复创建多次，多次重建 SqlSessionFactory 被视为一种代码“坏味道（bad smell）”。因此 SqlSessionFactory<br>的最佳范围是应用范围。有很多方法可以做到，最简单的就是使用单例模式或者静态单例模式。</p>
 </blockquote>
-<h3 id="插值查找-O-logn"><a href="#插值查找-O-logn" class="headerlink" title="插值查找  O(logn)"></a>插值查找  O(logn)</h3><blockquote>
-<p>插值查找和折半查找类似，可以通过比较表中的某项记录，确定查找记录的范围。唯一不同的是，对每次查找的中间点进行了变换，使之更加接近待查找的记录，减少了查找的次数。折半查找的中间点mid = low + (high – low) / 2，插值查找对1/2进行了修正，mid = low + (key – a[low])/(a[high] – a[low]) * (high – low)</p>
+<h3 id="SqlSession"><a href="#SqlSession" class="headerlink" title="SqlSession"></a>SqlSession</h3><blockquote>
+<p>每个线程都应该有它自己的 SqlSession 实例。SqlSession 的实例不是线程安全的，因此是不能被共享的，所以它的最佳的范围是请求或方法范围。<br>绝对不能将 SqlSession 实例的引用放在一个类的静态域，甚至一个类的实例变量也不行。也绝不能将 SqlSession 实例的引用放在任何类型的管理范围中，<br>比如 Serlvet 架构中的 HttpSession。如果你现在正在使用一种 Web 框架，要考虑 SqlSession 放在一个和 HTTP 请求对象相似的范围中。换句话说，<br>每次收到的 HTTP 请求，就可以打开一个 SqlSession，返回一个响应，就关闭它。这个关闭操作是很重要的,<br>你应该把这个关闭操作放到 finally 块中以确保每次都能执行关闭。</p>
 </blockquote>
-<h3 id="斐波那契查找-O-logn"><a href="#斐波那契查找-O-logn" class="headerlink" title="斐波那契查找 O(logn)"></a>斐波那契查找 O(logn)</h3><blockquote>
-<p>依然是对查找点的优化，采用Fibonacci数组，找到对于当前长度的有序表的黄金分割点，作为每次的中间值。</p>
+<p>下面的示例就是一个确保 SqlSession 关闭的标准模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SqlSession session = sqlSessionFactory.openSession();</div><div class="line">    try &#123;</div><div class="line">        // do work</div><div class="line">    &#125; </div><div class="line">    finally &#123;</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>在你的所有的代码中一致性地使用这种模式来保证所有数据库资源都能被正确地关闭。</p>
+<h2 id="从配置文件入手了解怎么使用mybatis"><a href="#从配置文件入手了解怎么使用mybatis" class="headerlink" title="从配置文件入手了解怎么使用mybatis"></a>从配置文件入手了解怎么使用mybatis</h2><blockquote>
+<p>主要分为 xml 配置文件和xml 映射文件，<a href="http://www.mybatis.org/mybatis-3/zh/configuration.html" target="_blank" rel="external">官方文档</a>写的很详细不做赘述。</p>
 </blockquote>
-<p>对于平均性能，斐波那契查找要优于折半查找，但如果是最坏情况，查找效率低于折半查找。有序表查找是一种针对查找优化的表结构，查找的时间复杂度是O(logn)。但有序表的插入和删除性能是比较差的，插入和删除不能破坏有序表的特性。</p>
-<h2 id="线形索引查找"><a href="#线形索引查找" class="headerlink" title="线形索引查找"></a>线形索引查找</h2><blockquote>
-<p>索引是关键词和记录关联的过程，按照结构可以分为线形索引，树形索引和多级索引。线形索引就是将索引项集合组织为线形结构，也称索引表。</p>
+<h2 id="mapper-接口没有实现类，是怎么执行数据库操作的，原理是什么？？"><a href="#mapper-接口没有实现类，是怎么执行数据库操作的，原理是什么？？" class="headerlink" title="mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么？？"></a>mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么？？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SqlSession session = sqlSessionFactory.openSession();</div><div class="line">try &#123;</div><div class="line">  BlogMapper mapper = session.getMapper(BlogMapper.class);</div><div class="line">  mapper.insert(Blog blog); </div><div class="line">&#125; finally &#123;</div><div class="line">  session.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="mybatis-mapper-执行原理图-画的不好不要怪我，捂脸-jpg-："><a href="#mybatis-mapper-执行原理图-画的不好不要怪我，捂脸-jpg-：" class="headerlink" title="mybatis  mapper 执行原理图(画的不好不要怪我，捂脸.jpg)："></a>mybatis  mapper 执行原理图(画的不好不要怪我，捂脸.jpg)：</h3><p><img src="https://haymaicc.github.io/res/mybatis_1.jpg" alt=""><br>详细怎么使用动态代理来实现可以参考 <a href="https://my.oschina.net/zudajun/blog/666223" target="_blank" rel="external">Mybatis3.3.x技术内幕（二）：动态代理之投鞭断流（自动映射器Mapper的底层实现原理）</a></p>
+<h2 id="sqlseesion-的实现原理"><a href="#sqlseesion-的实现原理" class="headerlink" title="sqlseesion 的实现原理"></a>sqlseesion 的实现原理</h2><p>上面讲到了由mapper 接口执行方法，到sqlsession的api 的调用，下面简单的介绍一下sqlseesion 的实现原理：<br><img src="https://haymaicc.github.io/res/mybatis_2.jpg" alt=""></p>
+<h3 id="sqlsession中有confirguration-配置文件信息"><a href="#sqlsession中有confirguration-配置文件信息" class="headerlink" title="sqlsession中有confirguration(配置文件信息)"></a>sqlsession中有confirguration(配置文件信息)</h3><blockquote>
+<p>配置文件的读取XML 的解析封装占了mybatis 源码的很多篇幅。简单来说就是mybatis 从xml中取得的信息全部封装在Confirguration类中，很多类都冗余了confirguration 字段。</p>
 </blockquote>
-<h3 id="稠密索引-O-logn"><a href="#稠密索引-O-logn" class="headerlink" title="稠密索引 O(logn)"></a>稠密索引 O(logn)</h3><blockquote>
-<p>稠密索引是关键码有序的，因此可以对索引使用折半、插值、斐波那契等有序表查找算法，大大提高了效率。</p>
+<h3 id="根据configuration-调用executor"><a href="#根据configuration-调用executor" class="headerlink" title="根据configuration 调用executor"></a>根据configuration 调用executor</h3><blockquote>
+<p>在xml 里有个defaultExecutorType是配置Excutor 的类别的</p>
 </blockquote>
-<p>优缺点：和有序表类似的是，稠密索引必须要维护索引的有序性。另外如果数据量很大，也要同时维护一个同样规模的索引，可能就需要反复访问磁盘，降低了查找性能。</p>
-<h3 id="分块索引-介于O-n-和O-logn-之间"><a href="#分块索引-介于O-n-和O-logn-之间" class="headerlink" title="分块索引  介于O(n)和O(logn)之间"></a>分块索引  介于O(n)和O(logn)之间</h3><blockquote>
-<p>如果对索引进行一次分级呢？对于一级索引下，可能会有多个记录，称之为一个块，块内的记录再获得一个二级的索引。这些块有一个条件，就是块内无序，块间有序。块内无序就是在一级索引内部的记录可以是无序的，只要落在索引的范围内就可以；块间有序就是下一个块所有的关键字都要大于上一个块的最大关键字。因此对于一个块结构来讲，它具有最大关键码，块中的记录个数和指向块首数据的指针</p>
-</blockquote>
-<p>分块索引兼顾了有序和无序的需求，平衡了插入，删除和查找的性能，普遍用于数据库查找技术等</p>
-<h3 id="倒排索引"><a href="#倒排索引" class="headerlink" title="倒排索引"></a>倒排索引</h3><blockquote>
-<p>倒排索引主要应用于搜索引擎。基本思想就是将得到的key-value关系进行一个反映射，得到某个value有多少个key指向它。比如查找某个单词出现在哪些文章中，可以先访问文章中的所有单词，建立一个单词的索引，将出现该单词的文章记录到索引中。这样在搜索时直接输入单词，就能得到文章列表。</p>
-</blockquote>
-<p>优缺点：倒排索引的优点是速度快，缺点就是记录不等长，维护比较困难，插入和删除都要做相应的处理。比如删除某个文章，就可能要对所有的单词都进行考察。</p>
-<h2 id="二叉排序树"><a href="#二叉排序树" class="headerlink" title="二叉排序树"></a>二叉排序树</h2><blockquote>
-<p>有序表的问题就是如果插入一个较小的记录，就要把比它大的记录依次移动，腾出插入的位置。如果用二叉树来实现呢，只需要让这个较小的记录成为某个结点的左孩子就可以了。为什么是左孩子呢，和二叉排序数的定义有关，简单来说，二叉排序树的中序遍历就是一个有序表。这样插入任何一个记录都不需要改变已经建好的树</p>
-</blockquote>
-<h3 id="查找："><a href="#查找：" class="headerlink" title="查找："></a>查找：</h3><blockquote>
-<p>查找某个记录时，从根结点开始，如果查找记录大于该结点的值，就走右子树；如果小于该结点的值，就走左子树。不断向下查找，直到找到该记录，或者到叶子结点的值和查找记录不同，未找到该记录。</p>
-<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入和查找类似，向下找到最接近它的结点，然后把该记录作为它的左孩子或者右孩子。</p>
-<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除相对查找和插入来讲复杂一点，主要复杂在如果处理它的子树。删除分为几种情况，如果删除结点是叶子结点，直接把它和二叉排序树断开即可，不影响树上的其他结点。如果删除结点带左子树或者右子树（不同时），那就将它左子树或者右子树的根结点代替它，连接到树上。如果删除结点同时带有左子树和右子树呢？想要对原排序树的破坏最小，最好的办法是找到该结点的前驱或者后继结点，这可以很容易的找到。假设我们这里使用删除结点的前驱结点，要先将前驱结点的值赋给删除结点，如果前驱结点就是删除结点的左孩子（删除结点及其子孙只有左孩子，斜树），就将前驱结点的左子树接到删除结点的左子树上；如果前驱结点是某个结点的右孩子（删除结点及其子孙不只有左孩子），还要将它的左子树接到它父母的右子树上。</p>
-<p>###时间复杂度<br>如果二叉排序树是平衡的，那么查找的时间复杂度是O(logn)；如果是不平衡，比如最极端的斜树，那么时间复杂度是O(n)。</p>
-<p>###优缺点<br>二叉排序树保留了有序表查找高效的特点，最理想的情况能达到O(logn)的时间复杂度，并且解决了插入和删除记录的问题，能够保证树的整体结构不受影响。缺点就是可能在插入的过程中，二叉排序树不能保持平衡，出现了某一边的树远远大于另一边，降低了查找的效率。后面提到的平衡二叉树解决了这个问题。</p>
-</blockquote>
-<h2 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h2><blockquote>
-<p>平衡二叉树的出现是为了解决二叉排序树可能出现的不平衡问题。平衡二叉树的概念是树中任何结点的平衡因子只能是-1,0,1，也就左子树和右子树的深度相差最多是1。为了实现这个目的，每次插入记录后，都会检查二叉树是否处在平衡状态，如果不是的话，会进行相应的旋转操作使之平衡。平衡的过程就是从新插入的结点向上查找，如果某个结点的BF=2，就顺时针旋转。最简单的旋转就是对于斜树，直接将BF=2结点的孩子作为新的子树根结点，将BF=2连接到它的右孩子。稍复杂的旋转就是BF=2和它的左孩子有相同的旋转方向，这样将它的左孩子作为新的子数根结点，BF=2连接在新根结点的右子树上，再将新的根结点原来的右孩子连接到BF=2的左子树上。最复杂的旋转就是BF=2和它的左孩子是相反的旋转方向，就要将它的左孩子先进行一次右旋转，再对BF=2作左旋转。同样，如果找到某个结点的BF=-2，做逆时针旋转，旋转的方法和顺时针旋转类似。</p>
-</blockquote>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><blockquote>
-<p>由于平衡二叉树的特性，它的时间复杂度一直是O(logn)。</p>
-</blockquote>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote>
-<p>平衡二叉树的优点就在于将不平衡消灭在最初的阶段，保持了很好的查找特性。缺点？比较复杂？</p>
-</blockquote>
-<h2 id="2-3树"><a href="#2-3树" class="headerlink" title="2-3树"></a>2-3树</h2><blockquote>
-<p>其中的每一个节点都具有两个孩子（称为2节点）或者三个孩子（称为3节点）。并且2-3树中所有的叶子都在同一层上。<br> 一个2节点包含一个元素和两个孩子（或者没有孩子）。<br> 一个3节点包含一小一大两个元素和三个孩子（或者没有孩子）<br><img src="https://haymaicc.github.io/res/structure_1.jpg" alt=""></p>
-</blockquote>
-<h3 id="2-3树的插入实现"><a href="#2-3树的插入实现" class="headerlink" title="2-3树的插入实现"></a>2-3树的插入实现</h3><p>(1)对于空树，插入一个2节点即可；<br>(2)插入节点到一个2节点的叶子上。由于本身就只有一个元素，所以只需要将其升级为3节点即可。<br><img src="https://haymaicc.github.io/res/structure_2.jpg" alt=""><br>(3)插入节点到一个3节点的叶子上。因为3节点本身最大容量，因此需要拆分，且将树中两元素或者插入元素的三者中选择其一向上移动一层。<br><img src="https://haymaicc.github.io/res/structure_3.jpg" alt=""></p>
-<h3 id="2-3树的删除实现"><a href="#2-3树的删除实现" class="headerlink" title="2-3树的删除实现"></a>2-3树的删除实现</h3><p>(1)所删元素位于一个3节点的叶子节点上，直接删除，不会影响树结构。<br>(2)所删元素位于一个2节点上，直接删除，破坏树结构<br>分为四种情况<br><img src="https://haymaicc.github.io/res/structure_4.jpg" alt=""><br>3）所删元素位于非叶子的分支节点。此时按树中序遍历得到此元素的前驱或后续元素，补位。<br><img src="https://haymaicc.github.io/res/structure_5.jpg" alt=""></p>
-<h2 id="2-3-4树"><a href="#2-3-4树" class="headerlink" title="2-3-4树"></a>2-3-4树</h2><blockquote>
-<p>2-3-4树是2-3树的扩展，包括了4节点的使用，一个4节点包含小中大三个元素和四个孩子（或没有孩子）。</p>
-</blockquote>
-<h3 id="2-3-4树插入实现"><a href="#2-3-4树插入实现" class="headerlink" title="2-3-4树插入实现"></a>2-3-4树插入实现</h3><p>构建一个数组为{7,1,2,5,6,9,8,4,3}的2-3-4树的过程<br><img src="https://haymaicc.github.io/res/structure_6.jpg" alt=""></p>
-<h3 id="2-3-4树删除实现"><a href="#2-3-4树删除实现" class="headerlink" title="2-3-4树删除实现"></a>2-3-4树删除实现</h3><p>删除顺序使1,6,3,4,5,2,9<br><img src="https://haymaicc.github.io/res/structure_7.jpg" alt=""></p>
-<h2 id="B树"><a href="#B树" class="headerlink" title="B树"></a>B树</h2><blockquote>
-<p>B树（B-树）是一种平衡的多路查找树。2-3树和2-3-4树都是B树的特例。节点最大的孩子数组称为B树的阶（order），因此，2-3树是3阶B树，2-3-4树是4阶B树。<br><img src="https://haymaicc.github.io/res/structure_8.jpg" alt=""></p>
-<p>B树的插入和删除和2-3树、2-3-4树类似。</p>
-</blockquote>
-<p>B树的数据结构为内外存的数据交互准备的。当要处理的数据很大时，无法一次全部装入内存。这时对B树调整，使得B树的阶数与硬盘存储的页面大小相匹配。<br>比如说一棵B树的阶为1001（即1个节点包含1000个关键字），高度为2（从0开始），它可以存储超过10亿个关键字（1001x1001x1000+1001x1000+1000）,<br>只要让根节点持久的保留在内存中，那么在这颗树上，寻找某一个关键字至多需要两次硬盘的读取即可。</p>
-<p>对于n个关键字的m阶B树，最坏情况查找次数计算<br>第一层至少1个节点，第二层至少2个节点，由于除根节点外每个分支节点至少有⌈m/2⌉棵子树，则第三层至少有2x⌈m/2⌉个节点。。。这样第k+1层至少有2x(⌈m/2⌉)^(k-1),实际上，k+1层的节点就是叶子节点。若m阶B树有n个关键字，那么当你找到叶子节点，其实也就等于查找不成功的节点为n+1，因此<br>n+1&gt;=2x(⌈m/2⌉)^(k-1),即<br>k&lt;=log<a href="(n+1">m/2</a>/2+1)<br>在含有n个关键字的B树上查找时，从根节点到关键字节点的路径上涉及的节点数不超多 log<a href="(n+1">m/2</a>/2+1)</p>
-<h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>下图B树，我们要遍历它，假设每个节点都属于硬盘的不同页面，我们为了中序遍历所有的元素，页面2-页面1-页面3-页面1-页面4-页面1-页面5.<br>而且我们每经过节点遍历时，都会对节点中的元素进行一次遍历，糟糕！有没有可能让遍历时每个元素只访问一次呢？<br><img src="https://haymaicc.github.io/res/structure_9.jpg" alt=""><br>下图就是B+树，灰色关键字，在根节点出现，在叶子节点中再次列出。<br><img src="https://haymaicc.github.io/res/structure_10.jpg" alt=""></p>
-<blockquote>
-<p>B+树适合随机查找，只不过查到后是索引，不能提供实际记录的访问，还需要到达包含此关键字的终端节点。非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。B+树适合带有范围的查找。B+树插入、删除类似B树。<br>[详细了解B树和B+树]{<a href="http://blog.csdn.net/acs713/article/details/6880375}" target="_blank" rel="external">http://blog.csdn.net/acs713/article/details/6880375}</a></p>
-</blockquote>
+<p><img src="https://haymaicc.github.io/res/mybatis_3.jpg" alt=""></p>
+<h3 id="executor-有五种"><a href="#executor-有五种" class="headerlink" title="executor(有五种)"></a>executor(有五种)</h3><p><code>SimpleExecutor</code>：每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。（可以是Statement或PrepareStatement对象）<br><code>ReuseExecutor</code>：执行update或select，以sql作为key查找Statement对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于Map<string, statement="">内，供下一次使用。（可以是Statement或PrepareStatement对象）<br><code>BatchExecutor</code>：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理的；BatchExecutor相当于维护了多个桶，每个桶里都装了很多属于自己的SQL，就像苹果蓝里装了很多苹果，番茄蓝里装了很多番茄，最后，再统一倒进仓库。（可以是Statement或PrepareStatement对象）<br><code>CachingExecutor</code>：装饰设计模式典范，先从缓存中获取查询结果，存在就返回，不存在，再委托给Executor delegate去数据库取，delegate可以是上面任一的SimpleExecutor、ReuseExecutor、BatchExecutor。<br><code>ClosedExecutor</code>：毫无用处，读者可自行查看其源码，仅作为一种标识，和Serializable标记接口作用相当。</string,></p>
+<h3 id="Excutor内部调用statementhadler-对jdbc-的stement操作的封装"><a href="#Excutor内部调用statementhadler-对jdbc-的stement操作的封装" class="headerlink" title="Excutor内部调用statementhadler (对jdbc 的stement操作的封装)"></a>Excutor内部调用statementhadler (对jdbc 的stement操作的封装)</h3><h3 id="并且用resultSethandler-封装返回结果。"><a href="#并且用resultSethandler-封装返回结果。" class="headerlink" title="并且用resultSethandler 封装返回结果。"></a>并且用resultSethandler 封装返回结果。</h3><h2 id="阅读源码的主要几个重要类"><a href="#阅读源码的主要几个重要类" class="headerlink" title="阅读源码的主要几个重要类"></a>阅读源码的主要几个重要类</h2><ul>
+<li>SqlSession            作为MyBatis工作的主要顶层API，表示和数据库交互的会话，完成必要数据库增删改查功能</li>
+<li>Executor              MyBatis执行器，是MyBatis 调度的核心，负责SQL语句的生成和查询缓存的维护</li>
+<li>StatementHandler   封装了JDBC Statement操作，负责对JDBC statement 的操作，如设置参数、将Statement结果集转换成List集合。</li>
+<li>ParameterHandler   负责对用户传递的参数转换成JDBC Statement 所需要的参数，</li>
+<li>ResultSetHandler    负责将JDBC返回的ResultSet结果集对象转换成List类型的集合；</li>
+<li>TypeHandler          负责java数据类型和jdbc数据类型之间的映射和转换</li>
+<li>MappedStatement   MappedStatement维护了一条<select|update|delete|insert>节点的封装， </select|update|delete|insert></li>
+<li>SqlSource            负责根据用户传递的parameterObject，动态地生成SQL语句，将信息封装到BoundSql对象中，并返回</li>
+<li>BoundSql             表示动态生成的SQL语句以及相应的参数信息</li>
+<li>Configuration        MyBatis所有的配置信息都维持在Configuration对象之中。</li>
+</ul>
 
       
     </div>
@@ -573,7 +532,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+            <a href="/tags/java/" rel="tag"># java</a>
           
         </div>
       
@@ -586,8 +545,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/07/IO/" rel="next" title="各种IO的区别">
-                <i class="fa fa-chevron-left"></i> 各种IO的区别
+              <a href="/2017/05/17/zk/" rel="next" title="zookeeper 学习">
+                <i class="fa fa-chevron-left"></i> zookeeper 学习
               </a>
             
           </div>
@@ -595,10 +554,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/17/zk/" rel="prev" title="zookeeper 学习">
-                zookeeper 学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -774,7 +729,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#查找"><span class="nav-number">1.</span> <span class="nav-text">查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#顺序查找-O-n"><span class="nav-number">2.</span> <span class="nav-text">顺序查找 O(n)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二分-折半查找（有序表）-O-logn"><span class="nav-number">2.1.</span> <span class="nav-text">二分/折半查找（有序表） O(logn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插值查找-O-logn"><span class="nav-number">2.2.</span> <span class="nav-text">插值查找  O(logn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#斐波那契查找-O-logn"><span class="nav-number">2.3.</span> <span class="nav-text">斐波那契查找 O(logn)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线形索引查找"><span class="nav-number">3.</span> <span class="nav-text">线形索引查找</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#稠密索引-O-logn"><span class="nav-number">3.1.</span> <span class="nav-text">稠密索引 O(logn)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分块索引-介于O-n-和O-logn-之间"><span class="nav-number">3.2.</span> <span class="nav-text">分块索引  介于O(n)和O(logn)之间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倒排索引"><span class="nav-number">3.3.</span> <span class="nav-text">倒排索引</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉排序树"><span class="nav-number">4.</span> <span class="nav-text">二叉排序树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找："><span class="nav-number">4.1.</span> <span class="nav-text">查找：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">4.2.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除"><span class="nav-number">4.3.</span> <span class="nav-text">删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#平衡二叉树（AVL）"><span class="nav-number">5.</span> <span class="nav-text">平衡二叉树（AVL）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂度"><span class="nav-number">5.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">5.2.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3树"><span class="nav-number">6.</span> <span class="nav-text">2-3树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3树的插入实现"><span class="nav-number">6.1.</span> <span class="nav-text">2-3树的插入实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3树的删除实现"><span class="nav-number">6.2.</span> <span class="nav-text">2-3树的删除实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-4树"><span class="nav-number">7.</span> <span class="nav-text">2-3-4树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4树插入实现"><span class="nav-number">7.1.</span> <span class="nav-text">2-3-4树插入实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-4树删除实现"><span class="nav-number">7.2.</span> <span class="nav-text">2-3-4树删除实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B树"><span class="nav-number">8.</span> <span class="nav-text">B树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-树"><span class="nav-number">9.</span> <span class="nav-text">B+树</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis是啥"><span class="nav-number">2.</span> <span class="nav-text">mybatis是啥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mybatis入门"><span class="nav-number">3.</span> <span class="nav-text">mybatis入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用简介"><span class="nav-number">3.1.</span> <span class="nav-text">使用简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlSessionFactory："><span class="nav-number">3.2.</span> <span class="nav-text">SqlSessionFactory：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlSessionFactoryBuilder"><span class="nav-number">3.3.</span> <span class="nav-text">SqlSessionFactoryBuilder</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlSessionFactory"><span class="nav-number">3.4.</span> <span class="nav-text">SqlSessionFactory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SqlSession"><span class="nav-number">3.5.</span> <span class="nav-text">SqlSession</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从配置文件入手了解怎么使用mybatis"><span class="nav-number">4.</span> <span class="nav-text">从配置文件入手了解怎么使用mybatis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mapper-接口没有实现类，是怎么执行数据库操作的，原理是什么？？"><span class="nav-number">5.</span> <span class="nav-text">mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么？？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mybatis-mapper-执行原理图-画的不好不要怪我，捂脸-jpg-："><span class="nav-number">5.1.</span> <span class="nav-text">mybatis  mapper 执行原理图(画的不好不要怪我，捂脸.jpg)：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sqlseesion-的实现原理"><span class="nav-number">6.</span> <span class="nav-text">sqlseesion 的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sqlsession中有confirguration-配置文件信息"><span class="nav-number">6.1.</span> <span class="nav-text">sqlsession中有confirguration(配置文件信息)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据configuration-调用executor"><span class="nav-number">6.2.</span> <span class="nav-text">根据configuration 调用executor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#executor-有五种"><span class="nav-number">6.3.</span> <span class="nav-text">executor(有五种)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Excutor内部调用statementhadler-对jdbc-的stement操作的封装"><span class="nav-number">6.4.</span> <span class="nav-text">Excutor内部调用statementhadler (对jdbc 的stement操作的封装)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并且用resultSethandler-封装返回结果。"><span class="nav-number">6.5.</span> <span class="nav-text">并且用resultSethandler 封装返回结果。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#阅读源码的主要几个重要类"><span class="nav-number">7.</span> <span class="nav-text">阅读源码的主要几个重要类</span></a></li></ol></div>
             
 
           </div>

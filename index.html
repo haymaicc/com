@@ -429,56 +429,14 @@
 
       
         
-          
-            <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><strong>介绍mybatis</strong><br><strong>mybatis入门</strong><br><strong>从配置文件入手了解怎么使用mybatis</strong><br><strong>mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么</strong><br><strong>sqlsession 内部实现的原理</strong><br><strong>阅读源码的主要几个重要类</strong></p>
-<h2 id="mybatis是啥"><a href="#mybatis是啥" class="headerlink" title="mybatis是啥"></a>mybatis是啥</h2><blockquote>
-<p>MyBatis 世界上流行最广泛的SQL 映射框架，由 Clinton Begin 在 2002年创建，其后，捐献给了Apache 基金会，成立了iBatis 项目。<br>2010年 5月，将代码库迁致 Google Code，并更名为MyBatis。<br>关于以前的版本，请访问   <a href="http://ibatis.apache.org" target="_blank" rel="external"></a><br>关于更名后最新的版本，请访问：<a href="http://code.google.com/p/mybatis" target="_blank" rel="external"></a></p>
-</blockquote>
-<p>MyBatis 是一个可以自定义 SQL、存储过程和高级映射的持久层框架。MyBatis 摒除了大部分的 JDBC 代码、手工设置参数和结果集重获。<br>MyBatis 只使用简单的 XML 和注解来配置和映射基本数据类型、 Map 接口和 POJO 到数据库记录</p>
-<h2 id="mybatis入门"><a href="#mybatis入门" class="headerlink" title="mybatis入门"></a>mybatis入门</h2><p><a href="http://www.mybatis.org/mybatis-3/zh/getting-started.html" target="_blank" rel="external">官方文档</a></p>
-<h3 id="使用简介"><a href="#使用简介" class="headerlink" title="使用简介"></a>使用简介</h3><p>每一个 MyBatis 应该都是以一个 <code>SqlSessionFactory</code>实例为中心。<br>一个SqlSessionFactory实例可以使用 <code>SqlSessionFactoryBuilder</code> 来创造。从配置类中创造的定制 SqlSessionFactoryBuilder 实例，<br>可以使用XML 配置文件来生成一个SqlSessionFactory实例<br>SqlSessionFactoryBuilder通过Java io流读取配置文件构建 SqlSessionFactory对象<br><code>Resources</code>A class to simplify access to resources through the classloader.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">String resource = &quot;org/mybatis/example/Configuration.xml&quot;;</div><div class="line">Reader reader = Resources.getResourceAsReader(resource);</div><div class="line">SqlSessionFactory sqlSessionFactory= new SqlSessionFactoryBuilder().build(reader);</div></pre></td></tr></table></figure>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</div><div class="line"><span class="meta">&lt;!DOCTYPE configuration</span></div><div class="line">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</div><div class="line">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</div><div class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"development"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"development"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;driver&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;url&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;username&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;password&#125;"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">environment</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">environments</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"org/mybatis/example/BlogMapper.xml"</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="SqlSessionFactory："><a href="#SqlSessionFactory：" class="headerlink" title="SqlSessionFactory："></a>SqlSessionFactory：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SqlSessionFactory</span> </span>&#123;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">()</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(<span class="keyword">boolean</span> var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(Connection var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(TransactionIsolationLevel var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1, <span class="keyword">boolean</span> var2)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1, TransactionIsolationLevel var2)</span></span>;</div><div class="line">    <span class="function">SqlSession <span class="title">openSession</span><span class="params">(ExecutorType var1, Connection var2)</span></span>;</div><div class="line">    <span class="function">Configuration <span class="title">getConfiguration</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="SqlSessionFactoryBuilder"><a href="#SqlSessionFactoryBuilder" class="headerlink" title="SqlSessionFactoryBuilder"></a>SqlSessionFactoryBuilder</h3><blockquote>
-<p>这个类可以被实例化、使用和丢弃，一旦创建了 SqlSessionFactory，就不再需要它了。因此 SqlSessionFactoryBuilder 实例的最佳范围是方法范围<br>（也就是局部方法变量）。你可以重用 SqlSessionFactoryBuilder 来创建多个 SqlSessionFactory 实例，但是最好还是不要让其一直存在以保证所有的<br> XML 解析资源开放给更重要的事情。</p>
-</blockquote>
-<h3 id="SqlSessionFactory"><a href="#SqlSessionFactory" class="headerlink" title="SqlSessionFactory"></a>SqlSessionFactory</h3><blockquote>
-<p>SqlSessionFactory 一旦被创建就应该在应用的运行期间一直存在，没有任何理由对它进行清除或重建。使用 SqlSessionFactory<br>的最佳实践是在应用运行期间不要重复创建多次，多次重建 SqlSessionFactory 被视为一种代码“坏味道（bad smell）”。因此 SqlSessionFactory<br>的最佳范围是应用范围。有很多方法可以做到，最简单的就是使用单例模式或者静态单例模式。</p>
-</blockquote>
-<h3 id="SqlSession"><a href="#SqlSession" class="headerlink" title="SqlSession"></a>SqlSession</h3><blockquote>
-<p>每个线程都应该有它自己的 SqlSession 实例。SqlSession 的实例不是线程安全的，因此是不能被共享的，所以它的最佳的范围是请求或方法范围。<br>绝对不能将 SqlSession 实例的引用放在一个类的静态域，甚至一个类的实例变量也不行。也绝不能将 SqlSession 实例的引用放在任何类型的管理范围中，<br>比如 Serlvet 架构中的 HttpSession。如果你现在正在使用一种 Web 框架，要考虑 SqlSession 放在一个和 HTTP 请求对象相似的范围中。换句话说，<br>每次收到的 HTTP 请求，就可以打开一个 SqlSession，返回一个响应，就关闭它。这个关闭操作是很重要的,<br>你应该把这个关闭操作放到 finally 块中以确保每次都能执行关闭。</p>
-</blockquote>
-<p>下面的示例就是一个确保 SqlSession 关闭的标准模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SqlSession session = sqlSessionFactory.openSession();</div><div class="line">    try &#123;</div><div class="line">        // do work</div><div class="line">    &#125; </div><div class="line">    finally &#123;</div><div class="line">        session.close();</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
-<p>在你的所有的代码中一致性地使用这种模式来保证所有数据库资源都能被正确地关闭。</p>
-<h2 id="从配置文件入手了解怎么使用mybatis"><a href="#从配置文件入手了解怎么使用mybatis" class="headerlink" title="从配置文件入手了解怎么使用mybatis"></a>从配置文件入手了解怎么使用mybatis</h2><blockquote>
-<p>主要分为 xml 配置文件和xml 映射文件，<a href="http://www.mybatis.org/mybatis-3/zh/configuration.html" target="_blank" rel="external">官方文档</a>写的很详细不做赘述。</p>
-</blockquote>
-<h2 id="mapper-接口没有实现类，是怎么执行数据库操作的，原理是什么？？"><a href="#mapper-接口没有实现类，是怎么执行数据库操作的，原理是什么？？" class="headerlink" title="mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么？？"></a>mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么？？</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">SqlSession session = sqlSessionFactory.openSession();</div><div class="line">try &#123;</div><div class="line">  BlogMapper mapper = session.getMapper(BlogMapper.class);</div><div class="line">  mapper.insert(Blog blog); </div><div class="line">&#125; finally &#123;</div><div class="line">  session.close();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="mybatis-mapper-执行原理图-画的不好不要怪我，捂脸-jpg-："><a href="#mybatis-mapper-执行原理图-画的不好不要怪我，捂脸-jpg-：" class="headerlink" title="mybatis  mapper 执行原理图(画的不好不要怪我，捂脸.jpg)："></a>mybatis  mapper 执行原理图(画的不好不要怪我，捂脸.jpg)：</h3><p><img src="https://haymaicc.github.io/res/mybatis_1.jpg" alt=""><br>详细怎么使用动态代理来实现可以参考 <a href="https://my.oschina.net/zudajun/blog/666223" target="_blank" rel="external">Mybatis3.3.x技术内幕（二）：动态代理之投鞭断流（自动映射器Mapper的底层实现原理）</a></p>
-<h2 id="sqlseesion-的实现原理"><a href="#sqlseesion-的实现原理" class="headerlink" title="sqlseesion 的实现原理"></a>sqlseesion 的实现原理</h2><p>上面讲到了由mapper 接口执行方法，到sqlsession的api 的调用，下面简单的介绍一下sqlseesion 的实现原理：<br><img src="https://haymaicc.github.io/res/mybatis_2.jpg" alt=""></p>
-<h3 id="sqlsession中有confirguration-配置文件信息"><a href="#sqlsession中有confirguration-配置文件信息" class="headerlink" title="sqlsession中有confirguration(配置文件信息)"></a>sqlsession中有confirguration(配置文件信息)</h3><blockquote>
-<p>配置文件的读取XML 的解析封装占了mybatis 源码的很多篇幅。简单来说就是mybatis 从xml中取得的信息全部封装在Confirguration类中，很多类都冗余了confirguration 字段。</p>
-</blockquote>
-<h3 id="根据configuration-调用executor"><a href="#根据configuration-调用executor" class="headerlink" title="根据configuration 调用executor"></a>根据configuration 调用executor</h3><blockquote>
-<p>在xml 里有个defaultExecutorType是配置Excutor 的类别的</p>
-</blockquote>
-<p><img src="https://haymaicc.github.io/res/mybatis_3.jpg" alt=""></p>
-<h3 id="executor-有五种"><a href="#executor-有五种" class="headerlink" title="executor(有五种)"></a>executor(有五种)</h3><p><code>SimpleExecutor</code>：每执行一次update或select，就开启一个Statement对象，用完立刻关闭Statement对象。（可以是Statement或PrepareStatement对象）<br><code>ReuseExecutor</code>：执行update或select，以sql作为key查找Statement对象，存在就使用，不存在就创建，用完后，不关闭Statement对象，而是放置于Map<string, statement="">内，供下一次使用。（可以是Statement或PrepareStatement对象）<br><code>BatchExecutor</code>：执行update（没有select，JDBC批处理不支持select），将所有sql都添加到批处理中（addBatch()），等待统一执行（executeBatch()），它缓存了多个Statement对象，每个Statement对象都是addBatch()完毕后，等待逐一执行executeBatch()批处理的；BatchExecutor相当于维护了多个桶，每个桶里都装了很多属于自己的SQL，就像苹果蓝里装了很多苹果，番茄蓝里装了很多番茄，最后，再统一倒进仓库。（可以是Statement或PrepareStatement对象）<br><code>CachingExecutor</code>：装饰设计模式典范，先从缓存中获取查询结果，存在就返回，不存在，再委托给Executor delegate去数据库取，delegate可以是上面任一的SimpleExecutor、ReuseExecutor、BatchExecutor。<br><code>ClosedExecutor</code>：毫无用处，读者可自行查看其源码，仅作为一种标识，和Serializable标记接口作用相当。</string,></p>
-<h3 id="Excutor内部调用statementhadler-对jdbc-的stement操作的封装"><a href="#Excutor内部调用statementhadler-对jdbc-的stement操作的封装" class="headerlink" title="Excutor内部调用statementhadler (对jdbc 的stement操作的封装)"></a>Excutor内部调用statementhadler (对jdbc 的stement操作的封装)</h3><h3 id="并且用resultSethandler-封装返回结果。"><a href="#并且用resultSethandler-封装返回结果。" class="headerlink" title="并且用resultSethandler 封装返回结果。"></a>并且用resultSethandler 封装返回结果。</h3><h2 id="阅读源码的主要几个重要类"><a href="#阅读源码的主要几个重要类" class="headerlink" title="阅读源码的主要几个重要类"></a>阅读源码的主要几个重要类</h2><ul>
-<li>SqlSession            作为MyBatis工作的主要顶层API，表示和数据库交互的会话，完成必要数据库增删改查功能</li>
-<li>Executor              MyBatis执行器，是MyBatis 调度的核心，负责SQL语句的生成和查询缓存的维护</li>
-<li>StatementHandler   封装了JDBC Statement操作，负责对JDBC statement 的操作，如设置参数、将Statement结果集转换成List集合。</li>
-<li>ParameterHandler   负责对用户传递的参数转换成JDBC Statement 所需要的参数，</li>
-<li>ResultSetHandler    负责将JDBC返回的ResultSet结果集对象转换成List类型的集合；</li>
-<li>TypeHandler          负责java数据类型和jdbc数据类型之间的映射和转换</li>
-<li>MappedStatement   MappedStatement维护了一条<select|update|delete|insert>节点的封装， </select|update|delete|insert></li>
-<li>SqlSource            负责根据用户传递的parameterObject，动态地生成SQL语句，将信息封装到BoundSql对象中，并返回</li>
-<li>BoundSql             表示动态生成的SQL语句以及相应的参数信息</li>
-<li>Configuration        MyBatis所有的配置信息都维持在Configuration对象之中。</li>
-</ul>
-
-          
+          <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><strong>介绍mybatis</strong><br><strong>mybatis入门</strong><br><strong>从配置文件入手了解怎么使用mybatis</strong><br><strong>mapper 接口没有实现类，是怎么执行数据库操作的，原理是什么</strong><br><strong>sqlsession 内部实现的原理</strong><br><strong>阅读源码的主要几个重要类</strong></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/30/mybatis/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2340,11 +2298,12 @@
   
 
 
+
+
+
+
   
-
-
-
-
+  
 
 
 
@@ -2374,10 +2333,10 @@
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
   
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
 
   
-  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
 
   
   <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>

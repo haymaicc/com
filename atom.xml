@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haymaicc.github.io/"/>
-  <updated>2017-05-30T11:09:01.000Z</updated>
+  <updated>2017-05-30T11:56:09.000Z</updated>
   <id>http://haymaicc.github.io/</id>
   
   <author>
@@ -14,6 +14,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java_collections</title>
+    <link href="http://haymaicc.github.io/2017/05/30/java-collections/"/>
+    <id>http://haymaicc.github.io/2017/05/30/java-collections/</id>
+    <published>2017-05-30T11:56:09.000Z</published>
+    <updated>2017-05-30T11:56:09.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>spring mvc 学习</title>
+    <link href="http://haymaicc.github.io/2017/05/30/spring-mvc/"/>
+    <id>http://haymaicc.github.io/2017/05/30/spring-mvc/</id>
+    <published>2017-05-30T11:53:02.000Z</published>
+    <updated>2017-05-30T11:53:37.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="java" scheme="http://haymaicc.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://haymaicc.github.io/tags/java/"/>
+    
+  </entry>
   
   <entry>
     <title>mybatis 学习</title>
@@ -152,7 +184,7 @@
     <link href="http://haymaicc.github.io/2017/05/16/data-structure3/"/>
     <id>http://haymaicc.github.io/2017/05/16/data-structure3/</id>
     <published>2017-05-16T04:47:05.000Z</published>
-    <updated>2017-05-30T10:01:50.000Z</updated>
+    <updated>2017-05-31T01:21:03.000Z</updated>
     
     <content type="html"><![CDATA[<p><a href="https://haymaicc.github.io/2017/05/06/data_structure1/">笔记（一）的传送门</a><br><a href="https://haymaicc.github.io/2017/05/07/data-structure2/">笔记（二）的传送门</a></p>
 <h2 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h2><blockquote>
@@ -194,16 +226,16 @@
 <p>查找某个记录时，从根结点开始，如果查找记录大于该结点的值，就走右子树；如果小于该结点的值，就走左子树。不断向下查找，直到找到该记录，或者到叶子结点的值和查找记录不同，未找到该记录。</p>
 <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>插入和查找类似，向下找到最接近它的结点，然后把该记录作为它的左孩子或者右孩子。</p>
 <h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>删除相对查找和插入来讲复杂一点，主要复杂在如果处理它的子树。删除分为几种情况，如果删除结点是叶子结点，直接把它和二叉排序树断开即可，不影响树上的其他结点。如果删除结点带左子树或者右子树（不同时），那就将它左子树或者右子树的根结点代替它，连接到树上。如果删除结点同时带有左子树和右子树呢？想要对原排序树的破坏最小，最好的办法是找到该结点的前驱或者后继结点，这可以很容易的找到。假设我们这里使用删除结点的前驱结点，要先将前驱结点的值赋给删除结点，如果前驱结点就是删除结点的左孩子（删除结点及其子孙只有左孩子，斜树），就将前驱结点的左子树接到删除结点的左子树上；如果前驱结点是某个结点的右孩子（删除结点及其子孙不只有左孩子），还要将它的左子树接到它父母的右子树上。</p>
-<p>###时间复杂度<br>如果二叉排序树是平衡的，那么查找的时间复杂度是O(logn)；如果是不平衡，比如最极端的斜树，那么时间复杂度是O(n)。</p>
-<p>###优缺点<br>二叉排序树保留了有序表查找高效的特点，最理想的情况能达到O(logn)的时间复杂度，并且解决了插入和删除记录的问题，能够保证树的整体结构不受影响。缺点就是可能在插入的过程中，二叉排序树不能保持平衡，出现了某一边的树远远大于另一边，降低了查找的效率。后面提到的平衡二叉树解决了这个问题。</p>
+<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>如果二叉排序树是平衡的，那么查找的时间复杂度是O(logn)；如果是不平衡，比如最极端的斜树，那么时间复杂度是O(n)。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>二叉排序树保留了有序表查找高效的特点，最理想的情况能达到O(logn)的时间复杂度，并且解决了插入和删除记录的问题，能够保证树的整体结构不受影响。缺点就是可能在插入的过程中，二叉排序树不能保持平衡，出现了某一边的树远远大于另一边，降低了查找的效率。后面提到的平衡二叉树解决了这个问题。</p>
 </blockquote>
 <h2 id="平衡二叉树（AVL）"><a href="#平衡二叉树（AVL）" class="headerlink" title="平衡二叉树（AVL）"></a>平衡二叉树（AVL）</h2><blockquote>
 <p>平衡二叉树的出现是为了解决二叉排序树可能出现的不平衡问题。平衡二叉树的概念是树中任何结点的平衡因子只能是-1,0,1，也就左子树和右子树的深度相差最多是1。为了实现这个目的，每次插入记录后，都会检查二叉树是否处在平衡状态，如果不是的话，会进行相应的旋转操作使之平衡。平衡的过程就是从新插入的结点向上查找，如果某个结点的BF=2，就顺时针旋转。最简单的旋转就是对于斜树，直接将BF=2结点的孩子作为新的子树根结点，将BF=2连接到它的右孩子。稍复杂的旋转就是BF=2和它的左孩子有相同的旋转方向，这样将它的左孩子作为新的子数根结点，BF=2连接在新根结点的右子树上，再将新的根结点原来的右孩子连接到BF=2的左子树上。最复杂的旋转就是BF=2和它的左孩子是相反的旋转方向，就要将它的左孩子先进行一次右旋转，再对BF=2作左旋转。同样，如果找到某个结点的BF=-2，做逆时针旋转，旋转的方法和顺时针旋转类似。</p>
 </blockquote>
-<h3 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><blockquote>
+<h3 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><blockquote>
 <p>由于平衡二叉树的特性，它的时间复杂度一直是O(logn)。</p>
 </blockquote>
-<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><blockquote>
 <p>平衡二叉树的优点就在于将不平衡消灭在最初的阶段，保持了很好的查找特性。缺点？比较复杂？</p>
 </blockquote>
 <h2 id="2-3树"><a href="#2-3树" class="headerlink" title="2-3树"></a>2-3树</h2><blockquote>
@@ -224,7 +256,7 @@
 <p>对于n个关键字的m阶B树，最坏情况查找次数计算<br>第一层至少1个节点，第二层至少2个节点，由于除根节点外每个分支节点至少有⌈m/2⌉棵子树，则第三层至少有2x⌈m/2⌉个节点。。。这样第k+1层至少有2x(⌈m/2⌉)^(k-1),实际上，k+1层的节点就是叶子节点。若m阶B树有n个关键字，那么当你找到叶子节点，其实也就等于查找不成功的节点为n+1，因此<br>n+1&gt;=2x(⌈m/2⌉)^(k-1),即<br>k&lt;=log<a href="(n+1">m/2</a>/2+1)<br>在含有n个关键字的B树上查找时，从根节点到关键字节点的路径上涉及的节点数不超多 log<a href="(n+1">m/2</a>/2+1)</p>
 <h2 id="B-树"><a href="#B-树" class="headerlink" title="B+树"></a>B+树</h2><p>下图B树，我们要遍历它，假设每个节点都属于硬盘的不同页面，我们为了中序遍历所有的元素，页面2-页面1-页面3-页面1-页面4-页面1-页面5.<br>而且我们每经过节点遍历时，都会对节点中的元素进行一次遍历，糟糕！有没有可能让遍历时每个元素只访问一次呢？<br><img src="https://haymaicc.github.io/res/structure_9.jpg" alt=""><br>下图就是B+树，灰色关键字，在根节点出现，在叶子节点中再次列出。<br><img src="https://haymaicc.github.io/res/structure_10.jpg" alt=""></p>
 <blockquote>
-<p>B+树适合随机查找，只不过查到后是索引，不能提供实际记录的访问，还需要到达包含此关键字的终端节点。非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。B+树适合带有范围的查找。B+树插入、删除类似B树。<br>[详细了解B树和B+树]{<a href="http://blog.csdn.net/acs713/article/details/6880375}" target="_blank" rel="external">http://blog.csdn.net/acs713/article/details/6880375}</a></p>
+<p>B+树适合随机查找，只不过查到后是索引，不能提供实际记录的访问，还需要到达包含此关键字的终端节点。非叶结点仅具有索引作用，跟记录有关的信息均存放在叶结点中。B+树适合带有范围的查找。B+树插入、删除类似B树。<br><a href="http://blog.csdn.net/acs713/article/details/6880375" target="_blank" rel="external">详细了解B树和B+树</a></p>
 </blockquote>
 ]]></content>
     

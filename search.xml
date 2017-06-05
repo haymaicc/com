@@ -3,17 +3,76 @@
   
     
     <entry>
-      <title><![CDATA[java_collections]]></title>
-      <url>/2017/05/30/java-collections/</url>
+      <title><![CDATA[jms]]></title>
+      <url>/2017/06/04/jms/</url>
       <content type="html"></content>
       
         
     </entry>
     
     <entry>
-      <title><![CDATA[spring mvc 学习]]></title>
-      <url>/2017/05/30/spring-mvc/</url>
-      <content type="html"></content>
+      <title><![CDATA[Java 集合总结]]></title>
+      <url>/2017/05/30/java-collections/</url>
+      <content type="html"><![CDATA[<p>摘自<a href="http://calvin1978.blogcn.com/articles/collection.html" target="_blank" rel="external">关于Java集合的小抄</a>，供自己学习</p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>以数组实现。节约空间，但数组有容量限制。超出限制时会增加50%容量，用System.arraycopy()复制到新的数组。因此最好能给出数组大小的预估值。默认第一次插入元素时创建大小为10的数组。<br>按数组下标访问元素－get(i)、set(i,e) 的性能很高，这是数组的基本优势。<br>如果按下标插入元素、删除元素－add(i,e)、 remove(i)、remove(e)，则要用System.arraycopy()来复制移动部分受影响的元素，性能就变差了。<br>越是前面的元素，修改时要移动的元素越多。直接在数组末尾加入元素－常用的add(e)，删除最后一个元素则无影响。</p>
+<a id="more"></a>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>以双向链表实现。链表无容量限制，但双向链表本身使用了更多空间，每插入一个元素都要构造一个额外的Node对象，也需要额外的链表指针操作。<br>按下标访问元素－get(i)、set(i,e) 要悲剧的部分遍历链表将指针移动到位 (如果i&gt;数组大小的一半，会从末尾移起)。<br>插入、删除元素时修改前后节点的指针即可，不在需要复制移动。但还是要部分遍历链表的指针才能移动到下标所指的位置。<br>只有在链表两头的操作－add()、addFirst()、removeLast()或用iterator()上的remove()倒能省掉指针的移动。<br>Apache Commons 有个TreeNodeList，里面是棵二叉树，可以快速移动指针到位。</p>
+<h3 id="CopyOnWriteArrayList"><a href="#CopyOnWriteArrayList" class="headerlink" title="CopyOnWriteArrayList"></a>CopyOnWriteArrayList</h3><p>并发优化的ArrayList。基于不可变对象策略，在修改时先复制出一个数组快照来修改，改好了，再让内部指针指向新数组。<br>因为对快照的修改对读操作来说不可见，所以读读之间不互斥，读写之间也不互斥，只有写写之间要加锁互斥。但复制快照的成本昂贵，典型的适合读多写少的场景。<br>虽然增加了addIfAbsent(e)方法，会遍历数组来检查元素是否已存在，性能可想像的不会太好。</p>
+<h3 id="遗憾"><a href="#遗憾" class="headerlink" title="遗憾"></a>遗憾</h3><p>无论哪种实现，按值返回下标contains(e), indexOf(e), remove(e) 都需遍历所有元素进行比较，性能可想像的不会太好。<br>没有按元素值排序的SortedList。<br>除了CopyOnWriteArrayList，再没有其他线程安全又并发优化的实现如ConcurrentLinkedList。凑合着用Set与Queue中的等价类时，会缺少一些List特有的方法如get(i)。如果更新频率较高，或数组较大时，还是得用Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全。</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>以Entry[]数组实现的哈希桶数组，用Key的哈希值取模桶数组的大小可得到数组下标。<br>插入元素时，如果两条Key落在同一个桶(比如哈希值1和17取模16后都属于第一个哈希桶)，我们称之为哈希冲突。<br>JDK的做法是链表法，Entry用一个next属性实现多个Entry以单向链表存放。查找哈希值为17的key时，先定位到哈希桶，然后链表遍历桶里所有元素，逐个比较其Hash值然后key值。<br>在JDK8里，新增默认为8的閥值，当一个桶里的Entry超过閥值，就不以单向链表而以红黑树来存放以加快Key的查找速度。<br>当然，最好还是桶里只有一个元素，不用去比较。所以默认当Entry数量达到桶数量的75%时，哈希冲突已比较严重，就会成倍扩容桶数组，并重新分配所有原来的Entry。扩容成本不低，所以也最好有个预估值。<br>取模用与操作(hash &amp; (arrayLength-1))会比较快，所以数组的大小永远是2的N次方， 你随便给一个初始值7会转为3比如12。默认第一次放入元素时的初始值是16。<br>iterator()时顺着哈希桶数组来遍历，看起来是个乱序。</p>
+<h3 id="LinkedHashMap"><a href="#LinkedHashMap" class="headerlink" title="LinkedHashMap"></a>LinkedHashMap</h3><p>扩展HashMap，每个Entry增加双向链表，号称是最占内存的数据结构。<br>支持iterator()时按Entry的插入顺序来排序(如果设置accessOrder属性为true，则所有读写访问都排序)。<br>插入时，Entry把自己加到Header Entry的前面去。如果所有读写访问都要排序，还要把前后Entry的before/after拼接起来以在链表中删除掉自己，所以此时读操作也是线程不安全的了。</p>
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p>以红黑树实现，红黑树又叫自平衡二叉树：<br>对于任一节点而言，其到叶节点的每一条路径都包含相同数目的黑结点。<br>上面的规定，使得树的层数不会差的太远，使得所有操作的复杂度不超过 O（lgn），但也使得插入，修改时要复杂的左旋右旋来保持树的平衡。<br>支持iterator()时按Key值排序，可按实现了Comparable接口的Key的升序排序，或由传入的Comparator控制。可想象的，在树上插入/删除元素的代价一定比HashMap的大。<br>支持SortedMap接口，如firstKey()，lastKey()取得最大最小的key，或sub(fromKey, toKey), tailMap(fromKey)剪取Map的某一段。</p>
+<h3 id="EnumMap"><a href="#EnumMap" class="headerlink" title="EnumMap"></a>EnumMap</h3><p>EnumMap的原理是，在构造函数里要传入枚举类，那它就构建一个与枚举的所有值等大的数组，按Enum. ordinal()下标来访问数组。性能与内存占用俱佳。<br>美中不足的是，因为要实现Map接口，而 V get(Object key)中key是Object而不是泛型K，所以安全起见，EnumMap每次访问都要先对Key进行类型判断，在JMC里录得不低的采样命中频率。</p>
+<h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p>并发优化的HashMap。<br>在JDK7里的经典设计，默认16把写锁(可以设置更多)，有效分散了阻塞的概率。数据结构为Segment[]，每个Segment一把锁。Segment里面才是哈希桶数组。Key先算出它在哪个Segment里，再去算它在哪个哈希桶里。<br>也没有读锁，因为put/remove动作是个原子动作(比如put的整个过程是一个对数组元素/Entry 指针的赋值操作)，读操作不会看到一个更新动作的中间状态。<br>但在JDK8里，Segment[]的设计被抛弃了，改为精心设计的，只在需要锁的时候加锁。<br>支持ConcurrentMap接口，如putIfAbsent(key，value)与相反的replace(key，value)与以及实现CAS的replace(key, oldValue, newValue)。</p>
+<h3 id="ConcurrentSkipListMap"><a href="#ConcurrentSkipListMap" class="headerlink" title="ConcurrentSkipListMap"></a>ConcurrentSkipListMap</h3><p>JDK6新增的并发优化的SortedMap，以SkipList结构实现。Concurrent包选用它是因为它支持基于CAS的无锁算法，而红黑树则没有好的无锁算法。<br>原理上，可以想象为多个链表组成的N层楼，其中的元素从稀疏到密集，每个元素有往右与往下的指针。从第一层楼开始遍历，如果右端的值比期望的大，那就往下走一层，继续往前走。<br>典型的空间换时间。每次插入，都要决定在哪几层插入，同时，要决定要不要多盖一层楼。<br>它的size()同样不能随便调，会遍历来统计。</p>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>所有Set几乎都是内部用一个Map来实现, 因为Map里的KeySet就是一个Set，而value是假值，全部使用同一个Object即可。<br>Set的特征也继承了那些内部的Map实现的特征。<br>HashSet：内部是HashMap。<br>LinkedHashSet：内部是LinkedHashMap。<br>TreeSet：内部是TreeMap的SortedSet。<br>ConcurrentSkipListSet：内部是ConcurrentSkipListMap的并发优化的SortedSet。<br>CopyOnWriteArraySet：内部是CopyOnWriteArrayList的并发优化的Set，利用其addIfAbsent()方法实现元素去重，如前所述该方法的性能很一般。<br>好像少了个ConcurrentHashSet，本来也该有一个内部用ConcurrentHashMap的简单实现，但JDK偏偏没提供。Jetty就自己简单封了一个，Guava则直接用java.util.Collections.newSetFromMap(new ConcurrentHashMap()) 实现。</p>
+<h2 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h2><blockquote>
+<p>Queue是在两端出入的List，所以也可以用数组或链表来实现。</p>
+</blockquote>
+<h3 id="普通队列"><a href="#普通队列" class="headerlink" title="普通队列"></a>普通队列</h3><h4 id="LinkedList-1"><a href="#LinkedList-1" class="headerlink" title="LinkedList"></a>LinkedList</h4><p>是的，以双向链表实现的LinkedList既是List，也是Queue。</p>
+<h4 id="ArrayDeque"><a href="#ArrayDeque" class="headerlink" title="ArrayDeque"></a>ArrayDeque</h4><p>以循环数组实现的双向Queue。大小是2的倍数，默认是16。<br>为了支持FIFO，即从数组尾压入元素（快），从数组头取出元素（超慢），就不能再使用普通ArrayList的实现了，改为使用循环数组。<br>有队头队尾两个下标：弹出元素时，队头下标递增；加入元素时，队尾下标递增。如果加入元素时已到数组空间的末尾，则将元素赋值到数组[0]，同时队尾下标指向0，再插入下一个元素则赋值到数组[1]，队尾下标指向1。如果队尾的下标追上队头，说明数组所有空间已用完，进行双倍的数组扩容。</p>
+<h4 id="PriorityQueue"><a href="#PriorityQueue" class="headerlink" title="PriorityQueue"></a>PriorityQueue</h4><p>用平衡二叉最小堆实现的优先级队列，不再是FIFO，而是按元素实现的Comparable接口或传入Comparator的比较结果来出队，数值越小，优先级越高，越先出队。但是注意其iterator()的返回不会排序。<br>平衡最小二叉堆，用一个简单的数组即可表达，可以快速寻址，没有指针什么的。最小的在queue[0] ，比如queue[4]的两个孩子，会在queue[2<em>4+1] 和 queue[2</em>(4+1)]，即queue[9]和queue[10]。<br>入队时，插入queue[size]，然后二叉地往上比较调整堆。<br>出队时，弹出queue[0]，然后把queque[size]拿出来二叉地往下比较调整堆。<br>初始大小为11，空间不够时自动50%扩容。</p>
+<h3 id="线程安全的队列"><a href="#线程安全的队列" class="headerlink" title="线程安全的队列"></a>线程安全的队列</h3><h4 id="ConcurrentLinkedQueue-Deque"><a href="#ConcurrentLinkedQueue-Deque" class="headerlink" title="ConcurrentLinkedQueue/Deque"></a>ConcurrentLinkedQueue/Deque</h4><p>无界的并发优化的Queue，基于链表，实现了依赖于CAS的无锁算法。<br>ConcurrentLinkedQueue的结构是单向链表和head/tail两个指针，因为入队时需要修改队尾元素的next指针，以及修改tail指向新入队的元素两个CAS动作无法原子，所以需要的特殊的算法。</p>
+<h4 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h4><p>无界的PriorityQueue，也是基于数组存储的二叉堆。一把公共的锁实现线程安全。虽然实现了BlockingQueue接口，但因为无界，其实没有任何阻塞队列的特征，空间不够时会自动扩容。</p>
+<h4 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h4><p>内部包含一个PriorityQueue，同样是无界的。一把公共的锁实现线程安全。元素需实现Delayed接口，每次调用时需返回当前离触发时间还有多久，小于0表示该触发了。<br>pull()时会用peek()查看队头的元素，检查是否到达触发时间。ScheduledThreadPoolExecutor用了类似的结构。</p>
+<h3 id="线程安全的阻塞队列"><a href="#线程安全的阻塞队列" class="headerlink" title="线程安全的阻塞队列"></a>线程安全的阻塞队列</h3><p>BlockingQueue的队列长度受限，用以保证生产者与消费者的速度不会相差太远，避免内存耗尽。队列长度设定后不可改变。当入队时队列已满，或出队时队列已空，不同函数的效果见下表：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">立刻报异常</th>
+<th style="text-align:center">立刻返回布尔</th>
+<th style="text-align:center">阻塞等待</th>
+<th style="text-align:center">可设定等待时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">入队</td>
+<td style="text-align:center">add(e)</td>
+<td style="text-align:center">offer(e)</td>
+<td style="text-align:center">put(e)</td>
+<td>offer(e, timeout, unit)</td>
+</tr>
+<tr>
+<td style="text-align:center">出队</td>
+<td style="text-align:center">remove()</td>
+<td style="text-align:center">poll()</td>
+<td style="text-align:center">take()</td>
+<td>poll(timeout, unit)</td>
+</tr>
+<tr>
+<td style="text-align:center">查看</td>
+<td style="text-align:center">element()</td>
+<td style="text-align:center">peek()</td>
+<td style="text-align:center">无</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h4><p>定长的并发优化的BlockingQueue，也是基于循环数组实现。有一把公共的锁与notFull、notEmpty两个Condition管理队列满或空时的阻塞状态。</p>
+<h4 id="LinkedBlockingQueue-Deque"><a href="#LinkedBlockingQueue-Deque" class="headerlink" title="LinkedBlockingQueue/Deque"></a>LinkedBlockingQueue/Deque</h4><p>可选定长的并发优化的BlockingQueue，基于链表实现，所以可以把长度设为Integer.MAX_VALUE成为无界无等待的。<br>利用链表的特征，分离了takeLock与putLock两把锁，继续用notEmpty、notFull管理队列满或空时的阻塞状态。</p>
+<h3 id="同步队列"><a href="#同步队列" class="headerlink" title="同步队列"></a>同步队列</h3><p>SynchronousQueue同步队列本身无容量，放入元素时，比如等待元素被另一条线程的消费者取走再返回。JDK线程池里用它。<br>JDK7还有个LinkedTransferQueue，在普通线程安全的BlockingQueue的基础上，增加一个transfer(e) 函数，效果与SynchronousQueue一样。</p>
+]]></content>
       
         <categories>
             
@@ -25,6 +84,90 @@
         <tags>
             
             <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Spring Mvc (一)]]></title>
+      <url>/2017/05/30/springmvc1/</url>
+      <content type="html"><![CDATA[<p>本文摘自<a href="http://downpour.iteye.com/blog/1330537" target="_blank" rel="external">SpringMVC深度探险</a>系列。</p>
+<h2 id="从大的角度来看Spring-Mvc"><a href="#从大的角度来看Spring-Mvc" class="headerlink" title="从大的角度来看Spring Mvc"></a>从大的角度来看Spring Mvc</h2><p>B／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：<br><code>以服务器端应用程序为主导来进行框架设计</code><br><code>以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计</code><br>前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。</p>
+<a id="more"></a>
+<h2 id="MVC模型"><a href="#MVC模型" class="headerlink" title="MVC模型"></a>MVC模型</h2><p>我们选取当前比较热门的两大框架Struts2和SpringMVC作为代码示例<br>首先，我们将用户注册场景中最为核心的“用户类”定义出来：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;  </div><div class="line">   <span class="keyword">private</span> String email;  </div><div class="line">   <span class="keyword">private</span> String password;  </div><div class="line">   <span class="comment">// 省略了setter和getter方法  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>紧接着是一个简单的JSP表单：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/register"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Email:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Password:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上述这两段代码无论是SpringMVC还是Struts2，都可以共用。而在请求响应处理类（也就是Controller）上的设计差异是两个框架最大的不同。<br>如果使用SpringMVC，那么Controller的代码看上去就像这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span>  </div><div class="line"><span class="meta">@RequestMapping</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;  </div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/register"</span>)  </div><div class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">register</span><span class="params">(String email, String password)</span> </span>&#123;  </div><div class="line">    <span class="comment">// 在这里调用具体的业务逻辑代码  </span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"register-success"</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果使用Struts2，那么Controller的代码看上去就稍有不同：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;  </div><div class="line">     <span class="keyword">private</span> String email;  </div><div class="line">     <span class="keyword">private</span> String password;  </div><div class="line">     <span class="function"><span class="keyword">public</span> String <span class="title">register</span><span class="params">()</span> </span>&#123;  </div><div class="line">         <span class="comment">// 在这里调用具体的业务逻辑代码  </span></div><div class="line">         <span class="keyword">return</span> <span class="string">"register-success"</span>;  </div><div class="line">     &#125;  </div><div class="line">    <span class="comment">// 这里省略了setter和getter方法  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>除此之外，Struts2还需要在某个配置文件中进行请求映射的配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"register"</span> <span class="attr">class</span>=<span class="string">"com.demo2do.sandbox.web.UserController"</span> <span class="attr">method</span>=<span class="string">"register"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/register-success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>框架本身并不通过某种手段来干预或者控制浏览器发送Http请求的行为方式。 </p>
+</blockquote>
+<p>从上面的代码中我们就可以看到，无论是SpringMVC还是Struts2，它们在请求页面的实现中都使用了原生HTML代码。就算是Http请求的发送，也借助于HTML之中对Form提交请求的支持。</p>
+<h3 id="MVC框架的一些普遍特征"><a href="#MVC框架的一些普遍特征" class="headerlink" title="MVC框架的一些普遍特征"></a>MVC框架的一些普遍特征</h3><blockquote>
+<p>框架本身并不通过某种手段来干预或者控制浏览器发送Http请求的行为方式。</p>
+</blockquote>
+<p>从上面的代码中我们就可以看到，无论是SpringMVC还是Struts2，它们在请求页面的实现中都使用了原生HTML代码。就算是Http请求的发送，也借助于HTML之中对Form提交请求的支持</p>
+<blockquote>
+<p>页面（View层）和请求处理类（Controller）之间的映射关系通过某一种配置形式维系起来。</p>
+</blockquote>
+<p>我们可以看到在浏览器和Web服务器之间的映射关系在不同的框架中被赋予了不同的表现形式：在SpringMVC中，使用了Annotation注解；在Struts2中，默认采取XML配置文件。不过无论是哪一种配置形式，隐藏在其背后的都是对于请求映射关系的定义。</p>
+<blockquote>
+<p>Controller层的设计差异是不同MVC框架之间最主要的差异。 </p>
+</blockquote>
+<p>这一点实际上是我们在对于MVC模型自身进行定义时就反复强调的一点。在上面的例子中，我们可以看到SpringMVC使用<code>方法参数</code>来对请求的数据进行映射；而Struts2使用Controller类<code>内部的属性</code>来进行数据请求的映射。 </p>
+<p>在MVC模型中，浏览器端和服务器端的交互关系非常明确：无论采取什么样的框架，<code>总是以一个明确的URL作为中心，辅之以参数请求</code>。因此，URL看上去就像是一个明文的契约，当然，真正蕴藏在背后的是Http协议。所有的这些东西都被放在了台面上，我们可以非常明确地获取到一次交互中所有的Http信息。这也是MVC模型中最为突出的一个特点。 </p>
+<h2 id="组件模型"><a href="#组件模型" class="headerlink" title="组件模型"></a>组件模型</h2><p>在组件模型中，我们则选取较为成熟的Tapestry5作为我们的代码示例。<br>首先，我们来看看请求页面的情况：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">t:type</span>=<span class="string">"form"</span> <span class="attr">t:id</span>=<span class="string">"form"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">t:label</span> <span class="attr">for</span>=<span class="string">"email"</span>/&gt;</span>:<span class="tag">&lt;<span class="name">input</span> <span class="attr">t:type</span>=<span class="string">"TextField"</span> <span class="attr">t:id</span>=<span class="string">"email"</span> <span class="attr">t:validate</span>=<span class="string">"required,minlength=3"</span> <span class="attr">size</span>=<span class="string">"30"</span>/&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">t:label</span> <span class="attr">for</span>=<span class="string">"password"</span>/&gt;</span>:<span class="tag">&lt;<span class="name">input</span> <span class="attr">t:type</span>=<span class="string">"PasswordField"</span> <span class="attr">t:id</span>=<span class="string">"password"</span> <span class="attr">t:validate</span>=<span class="string">"required,minlength=3"</span> <span class="attr">size</span>=<span class="string">"30"</span>/&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Login"</span>/&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在这里，请求的页面不再是原生的HTML代码，而是一个扩展后的HTML，这一扩展包含了对HTML标签的扩展（增加了新的标签，例如<t:label>），也包含了对HTML自身标签中属性的扩展（增加新的支持属性，例如t:type，t:validate）。<br>接着我们来看看服务器端响应程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Register</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> String email;  </div><div class="line">    <span class="keyword">private</span> String password;  </div><div class="line">    </div><div class="line">    <span class="meta">@Component</span>(id = <span class="string">"password"</span>)  </div><div class="line">    <span class="keyword">private</span> PasswordField passwordField;  </div><div class="line">  </div><div class="line">    <span class="meta">@Component</span>  </div><div class="line">    <span class="keyword">private</span> Form form;  </div><div class="line">  </div><div class="line">    <span class="function">String <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"PostRegister"</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">// 这里省略了setter和getter方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></t:label></p>
+<h3 id="与MVC框架相比较"><a href="#与MVC框架相比较" class="headerlink" title="与MVC框架相比较"></a>与MVC框架相比较</h3><p>从上面的代码示例中，我们可以看到一些与MVC模型截然不同的特点： </p>
+<blockquote>
+<p>框架通过对HTML进行行为扩展来干预和控制浏览器与服务器的交互过程。 </p>
+</blockquote>
+<p>我们可以发现，Tapestry5的请求页面被加入了更多的HTML扩展，这些扩展包括对HTML标签的扩展以及HTML标签中属性的扩展。而这些扩展中，有不少直接干预了浏览器与服务器的交互。例如，上面例子中的t:validate=”required,minlength=3”扩展实际上就会被自动映射到服务器端程序中带有@Component(id=”password”)标注的PasswordField组件上，并在提交时自动进行组件化校验。而当页面上的提交按钮被点击触发时，默认在服务器端的onSuccess方法会形成响应并调用其内部逻辑。 </p>
+<blockquote>
+<p>页面组件的实现是整个组件模型的绝对核心</p>
+</blockquote>
+<p>从上述的例子中，我们可以看到组件模型的实现不仅需要服务器端实现，还需要在页面上指定与某个特定组件进行事件绑定。两者缺一不可，必须相互配合，共同完成。因此整个Web程序的交互能力完全取决于页面组件的实现好坏。 </p>
+<blockquote>
+<p>页面组件与服务器端响应程序之间的映射契约并不基于Http协议进行</p>
+</blockquote>
+<p>在上面的例子中，从页面组件到服务器端的响应程序之间的映射关系是通过名称契约而定的。而页面上的每个组件可以指定映射到服务器端程序的具体某一个方法。我们可以看到这种映射方式并不是一种基于URL或者Http协议的映射方式，而是一种命名指定的方式。<br>在组件模型中，浏览器端和服务器端的交互关系并不以一个具体的URL为核心，我们在上述的例子中甚至完全没有看到任何URL的影子。不过这种事件响应式的方式，也提供给我们另外一个编程的思路，而这种基于契约式的请求-响应映射也得到了一部分程序员的喜爱。因而组件模型的粉丝数量也是很多的。 </p>
+<h2 id="MVC模型的各种形态"><a href="#MVC模型的各种形态" class="headerlink" title="MVC模型的各种形态"></a>MVC模型的各种形态</h2><p>之前我们已经谈到，MVC模型是一种以服务器响应程序（也就是Controller）为核心进行程序设计的，因而所有的MVC框架的历史发展进程实际上是一个围绕着Controller不断进行重构和改造的过程。而在这个过程中，不同的MVC框架也就表现出了不同的表现形态。接下来，我们就给出一些具有代表意义的MVC框架表现形态。</p>
+<h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><blockquote>
+<p>Servlet是MVC模型最为基本的表现形态。</p>
+</blockquote>
+<p>Servlet的基本接口定义中： </p>
+<p><code>参数列表</code> —— Http请求被封装为一个HttpServletRequest对象（或者ServletRequest对象），而Http响应封装为一个HttpServletResponse对象（或者ServletResponse对象）<br><code>返回值</code> —— 方法不存在返回值（返回值为void）<br>在这个设计中，HttpServletRequest和HttpServletResponse承担了完整的处理Http请求的任务。而这两个Servlet对象的职责也有所分工：<br><code>HttpServletRequest对象</code> —— 主要用于处理整个Http生命周期中的数据。<br><code>HttpServletResponse对象</code> —— 主要用于处理Http的响应结果。</p>
+<blockquote>
+<p>MVC模型的这一种形态，被笔者冠以一个名称：<code>参数-参数（Param-Param）实现模式</code>。因为在响应方法中，数据与行为的操作载体都以参数的形式出现。 </p>
+</blockquote>
+<h3 id="Struts1-X"><a href="#Struts1-X" class="headerlink" title="Struts1.X"></a>Struts1.X</h3><p>对于Struts1.X，我们还是把关注的重点放在Struts中的Controller层的定义上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response);</div></pre></td></tr></table></figure></p>
+<p>如果和之前的Servlet模型加以比较我们就可以发现，Struts1.X对于基本的Servlet模型做了一定的扩展和重构：<br>1.保留了HttpServletRequest和HttpServletResponse这两大接口作为参数<br>2.将返回值改为ActionForward，并由Struts1.X框架通过处理ActionForward完成对响应结果的处理<br>3.增加了ActionMapping和ActionForm两大参数，前者表示Http请求的一个简要概括，后者表示一个数据模型，用以承载整个请求生命周期中的数据</p>
+<p>经过一番扩展和重构，我们可以发现Struts1.X相比较于原始的Servlet模型已经有了一定的进步。比如，我们可以不再直接操作HttpServletResponse这样的原生Servlet对象来进行Http返回的处理；再比如，对于一些简单的请求数据读取，我们可以不必直接操作生硬的HttpServletRequest接口，而通过ActionForm来完成。 </p>
+<blockquote>
+<p>MVC模型发展到了这里，我们可以看到响应方法中的“返回值”已经能够被调动起来用在整个Http请求的处理过程中。因此，这种在响应方法中参数和返回值同时参与到Http请求的处理过程中的表现形态，被笔者冠以另外一个名称：<code>参数-返回值（Param-Return）实现模式</code>。 </p>
+</blockquote>
+<p>由于Struts1.X已经不再是一个底层的实现规范，于是响应方法“返回值”被框架引入，加入到了整个处理过程之中。我们可以看到，在这里最大的进步之处就在于：引入了新的编程元素，从而优化整个逻辑处理过程。编程元素的引入非常重要，因为对于一个任何一个程序员而言，充分调用所有可以利用的编程要素是衡量一个程序写得好坏的重要标准。之后，我们还可以看到其他的框架在引入编程元素这个方面所做的努力。 </p>
+<h3 id="Webwork2-Struts2"><a href="#Webwork2-Struts2" class="headerlink" title="Webwork2 / Struts2"></a>Webwork2 / Struts2</h3><p>或许是看到了Struts1.X发展上的局限性，Apache社区与Opensymphony开源组织在2005年底宣布未来的Struts项目将与Webwork2项目合并，并联合推出Struts2，通过Apache社区的人气优势与OpenSymphony的技术优势，共同打造下一代的Web层开发框架。这也就是Struts2的由来。 </p>
+<p>从整个过程中，我们可以发现，Webwork2和Struts2是一脉相承的Web层解决方案。而两者能够在一个相当长的时间段内占据开发市场主导地位的重要原因在于其技术上的领先优势。而这一技术上的领先优势，突出表现为对Controller的彻底改造：<br>1.在Controller中彻底杜绝引入HttpServletRequest或者HttpServletResponse这样的原生Servlet对象。<br>2.将请求参数和响应数据都从响应方法中剥离到了Controller中的属性变量</p>
+<p>这两大改造被看作是框架的神来之笔。因为通过这一改造，整个Controller类彻底与Web容器解耦，可以方便地进行单元测试。而摆脱了Servlet束缚的Controller，也为整个编程模型赋予了全新的定义。 </p>
+<p>当然，这种改造的前提条件在于Webwork2 / Struts2引入了另外一个重要的编程概念：ThreadLocal模式。使得Controller成为一个线程安全的对象被Servlet模型所调用，这也就突破了传统Servlet体系下，Servlet对象并非一个线程安全的对象的限制条件。 </p>
+<p>从引入新的编程元素的角度来说，Webwork2 / Struts2无疑也是成功的。因为在传统Servlet模式中的禁地Controller中的属性变量被合理利用了起来作为请求处理过程中的数据部分。这样的改造不仅使得表达式引擎能够得到最大限度的发挥，同时使得整个Controller看起来更像是一个POJO。因而，这种表现形态被笔者冠以的名称是：<code>POJO实现模式</code>。 </p>
+<p>POJO实现模式是一种具有革命性意义的模式，因为它能够把解耦合这样一个观点发挥到极致。从面向对象的角度来看，POJO模式无疑也是所有程序员所追求的一个目标。这也就是Webwork2 / Struts2那么多年来经久不衰的一个重要原因。 </p>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>相比较Webwork2 / Struts2，SpringMVC走了一条比较温和的改良路线。因为SpringMVC自始至终都没有突破传统Servlet编程模型的限制，而是在这过程中不断改良，不断重构，反而在发展中开拓了一条崭新的道路。<br>Controller改造中所涉及到的一些要点：<br><code>1. 使用参数-返回值（Param-Return）实现模式来打造Controller</code><br>方法的参数（email和password）被视作是Http请求参数的概括。而在这里，它们已经被SpringMVC的框架有效处理并屏蔽了内在的处理细节，呈现出来的是与请求参数名称一一对应的参数列表。而返回值ModelAndView则表示Http的响应是一个数据与视图的结合体，表示Http的处理结果。<br><code>2. 引入Annotation来完成请求-响应的映射关系</code><br>引入Annotation来完成请求-响应的映射关系，是SpringMVC的一个重大改造。在早期的SpringMVC以及其他的MVC框架中，通常都是使用XML作为基础配置的。而Annotation的引入将原本分散的关注点合并到了一起，为实现配置简化打下了坚实的基础。<br><code>3. 泛化参数和返回值的含义</code><br>这是一个蕴含的特点。事实上，SpringMVC在响应方法上，可以支持多种多样不同的参数类型和返回值类型。例如，当参数类型为Model时，SpringMVC将会自动将请求参数封装于Model内部而传入请求方法；当返回值类型是String时，直接表示SpringMVC需要返回的视图类型和视图内容。当然，这些泛化的参数和返回值的内容全部都由SpringMVC在框架内部处理了。 </p>
+<h2 id="MVC模型的发展轨迹"><a href="#MVC模型的发展轨迹" class="headerlink" title="MVC模型的发展轨迹"></a>MVC模型的发展轨迹</h2><p>之前讲了那么多MVC模型的实现形态，我们是否能从中总结出一条发展轨迹呢？答案是肯定的，笔者在这里作了一副图：<br><img src="https://haymaicc.github.io/res/contoller.png" alt=""><br>从图中，我们可以看到三类完全不同的发展方向。目前，<code>Struts1.X这一条路被证明已经穷途末路；另外的两条发展轨迹总体来说实力相当，SpringMVC大有赶超之势</code>。 </p>
+]]></content>
+      
+        <categories>
+            
+            <category> SpringMvc </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> SpringMvc </tag>
             
         </tags>
         
@@ -85,14 +228,14 @@
       
         <categories>
             
-            <category> java </category>
+            <category> mybatis </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> java </tag>
+            <tag> mybatis </tag>
             
         </tags>
         
@@ -567,14 +710,14 @@
       
         <categories>
             
-            <category> java </category>
+            <category> POI </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> java </tag>
+            <tag> POI </tag>
             
         </tags>
         

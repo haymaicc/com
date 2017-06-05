@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据结构," />
+  <meta name="keywords" content="SpringMvc," />
 
 
 
@@ -92,31 +92,21 @@
 
 
 
-<meta name="description" content="笔记（一）的传送门
-图
-是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中G表示一个图，V是图G中的顶点，E是图G中边的集合">
+<meta name="description" content="本文摘自SpringMVC深度探险系列。
+从大的角度来看Spring MvcB／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：以服务器端应用程序为主导来进行框架设计以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大话数据结构学习笔记（二）">
-<meta property="og:url" content="http://haymaicc.github.io/2017/05/07/data-structure2/index.html">
+<meta property="og:title" content="Spring Mvc (一)">
+<meta property="og:url" content="http://haymaicc.github.io/2017/05/30/springmvc1/index.html">
 <meta property="og:site_name" content="唐伯虎点蜡烛">
-<meta property="og:description" content="笔记（一）的传送门
-图
-是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中G表示一个图，V是图G中的顶点，E是图G中边的集合">
-<meta property="og:image" content="http://images.cnitblog.com/blog/380281/201307/13102520-912a10a40eb347b1a550f60a4feaae02.png">
-<meta property="og:image" content="http://img.blog.csdn.net/20131113203819437">
-<meta property="og:image" content="http://img.blog.csdn.net/20131113205232156">
-<meta property="og:image" content="http://img.blog.csdn.net/20131112231539062">
-<meta property="og:image" content="http://img.blog.csdn.net/20131113205509265">
-<meta property="og:image" content="http://images.cnitblog.com/blog/380281/201307/13102724-c49b3c87958e493696d55d3306597b5c.png">
-<meta property="og:image" content="http://images.cnitblog.com/blog/380281/201307/13102739-ae381b43e0124cc7908c055f350dc03a.png">
-<meta property="og:image" content="http://images.cnitblog.com/blog/380281/201307/13103212-bec29eec5fda4044a93ee18ee4c10607.png">
-<meta property="og:updated_time" content="2017-05-16T05:33:55.000Z">
+<meta property="og:description" content="本文摘自SpringMVC深度探险系列。
+从大的角度来看Spring MvcB／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：以服务器端应用程序为主导来进行框架设计以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。">
+<meta property="og:image" content="https://haymaicc.github.io/res/contoller.png">
+<meta property="og:updated_time" content="2017-06-04T08:37:55.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="大话数据结构学习笔记（二）">
-<meta name="twitter:description" content="笔记（一）的传送门
-图
-是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中G表示一个图，V是图G中的顶点，E是图G中边的集合">
-<meta name="twitter:image" content="http://images.cnitblog.com/blog/380281/201307/13102520-912a10a40eb347b1a550f60a4feaae02.png">
+<meta name="twitter:title" content="Spring Mvc (一)">
+<meta name="twitter:description" content="本文摘自SpringMVC深度探险系列。
+从大的角度来看Spring MvcB／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：以服务器端应用程序为主导来进行框架设计以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。">
+<meta name="twitter:image" content="https://haymaicc.github.io/res/contoller.png">
 
 
 
@@ -144,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://haymaicc.github.io/2017/05/07/data-structure2/"/>
+  <link rel="canonical" href="http://haymaicc.github.io/2017/05/30/springmvc1/"/>
 
 
 
 
 
-  <title>大话数据结构学习笔记（二） | 唐伯虎点蜡烛</title>
+  <title>Spring Mvc (一) | 唐伯虎点蜡烛</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -313,7 +303,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/07/data-structure2/">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/30/springmvc1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨励志">
@@ -330,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">大话数据结构学习笔记（二）</h1>
+          <h1 class="post-title" itemprop="name headline">Spring Mvc (一)</h1>
         
 
         <div class="post-meta">
@@ -342,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-07T20:01:05+08:00">
-                2017-05-07
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T19:53:02+08:00">
+                2017-05-30
               </time>
             
 
@@ -365,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/SpringMvc/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringMvc</span>
                   </a>
                 </span>
 
@@ -384,8 +374,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/05/07/data-structure2/#SOHUCS" itemprop="discussionUrl">
-                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/07/data-structure2/" itemprop="commentsCount"></span>
+                <a href="/2017/05/30/springmvc1/#SOHUCS" itemprop="discussionUrl">
+                  <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2017/05/30/springmvc1/" itemprop="commentsCount"></span>
                 </a>
               
             
@@ -393,7 +383,7 @@
 
           
           
-             <span id="/2017/05/07/data-structure2/" class="leancloud_visitors" data-flag-title="大话数据结构学习笔记（二）">
+             <span id="/2017/05/30/springmvc1/" class="leancloud_visitors" data-flag-title="Spring Mvc (一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -418,7 +408,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  3,121
+                  3,894
                 </span>
               
 
@@ -440,72 +430,70 @@
       
 
       
-        <p><a href="https://haymaicc.github.io/2017/05/06/data_structure1/">笔记（一）的传送门</a></p>
-<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><blockquote>
-<p>是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为G(V,E)，其中G表示一个图，V是图G中的顶点，E是图G中边的集合</p>
-</blockquote>
+        <p>本文摘自<a href="http://downpour.iteye.com/blog/1330537" target="_blank" rel="external">SpringMVC深度探险</a>系列。</p>
+<h2 id="从大的角度来看Spring-Mvc"><a href="#从大的角度来看Spring-Mvc" class="headerlink" title="从大的角度来看Spring Mvc"></a>从大的角度来看Spring Mvc</h2><p>B／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：<br><code>以服务器端应用程序为主导来进行框架设计</code><br><code>以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计</code><br>前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。</p>
 <a id="more"></a>
-<h3 id="关于图的一些术语解释"><a href="#关于图的一些术语解释" class="headerlink" title="关于图的一些术语解释"></a>关于图的一些术语解释</h3><p><code>顶点（Vertex）</code>：<br>图中的结点又称为顶点。 </p>
-<p><code>无边图</code>：<br>若顶点Vi到Vj之间的边没有方向，则称这条边为无项边（Edge），用序偶对(Vi,Vj)标示。<br>对于下图无向图G1来说，G1=(V1, {E1})，其中顶点集合V1={A,B,C,D}；边集合E1={(A,B),(B,C),(C,D),(D,A),(A,C)}:<br><img src="http://images.cnitblog.com/blog/380281/201307/13102520-912a10a40eb347b1a550f60a4feaae02.png" alt=""></p>
-<p><code>有向图</code>：<br>若从顶点Vi到Vj的边是有方向的，则成这条边为有向边，也称为弧（Arc）。用有序对（Vi，Vj）标示，Vi称为弧尾，Vj称为弧头。如果任意两条边之间都是有向的，则称该图为有向图。<br>有向图G2中，G2=（V2,{E2}），顶点集合（A,B,C,D）,弧集合E2={<a,d>,{B,A},<c,a>,<b,c>}.</b,c></c,a></a,d></p>
-<p><code>有向和无向完全图</code><br><img src="http://img.blog.csdn.net/20131113203819437" alt=""></p>
-<p><code>权（Weight）</code>：<br>有些图的边和弧有相关的数，这个数叫做权（Weight）。这些带权的图通常称为网（Network）</p>
-<p><code>度（Degree）</code>：<br>无向图中顶点v的度是关联于该顶点的边的数目，记为TD(v)。<br>入度（Indegree）：若G为有向图，则把以顶点v为终点的边的数目，称为v的入度，记为ID(v)。<br>出度（Outdegree）：若G为有向图，则把以顶点v为始点的边的数目，称为v的出度，记为OD(v)。<br>如图①：A的度为3。<br>如图②：A的入度为2，出度为1，所以A的度为3。<br><img src="http://img.blog.csdn.net/20131113205232156" alt=""></p>
-<p><code>子图（Subgraph</code>：<br>设G=(V,E)是一个图，若E’是E的子集，V’是V的子集，使得E’中的边仅与V’中顶点相关联，则图G’=(V’,E’)称为图G的子图。<br>如图：②为①的4个子图<br><img src="http://img.blog.csdn.net/20131112231539062" alt=""></p>
-<p><code>路径（Path</code><br>无向图G=(V,E)中从顶点v到顶点v’的路径是一个顶点序列(v=vi0,vi1,…,vin=v’)，其中(vij-1,vij)∈E，1≤j≤n。有向图G=(V,E)中从顶点v到顶点v’的路径是一个顶点序列(v=vi0,vi1,…,vin=v’)，其中〈vij-1,vij〉∈E，1≤j≤n。<br>　简单路径：序列中顶点不重复出现的路径。<br>　环（Cycle）：又称回路，第一个顶点和最后一个顶点相同的路径。<br>　简单回路：又称简单环，除了第一个顶点和最后一个顶点外，其余顶点不重复的回路。</p>
-<p><code>连通</code>：<br>在无向图G中，如果从顶点v到顶点v’有路径，则称v和v’是连通的。<br>    连通图（Connected Graph）：如果对于图中的任意两个顶点vi、vj∈V，vi和vj都是连通的，则称该图为连通图。<br>    连通分量（Connected Component）：无向图中的极大连通子图。<br>    强连通图：在有向图G中，如果对于每一对vi，vj∈V，vi≠vj，从vi到vj和从vj到vi都存在路径，则称G是强连通图。<br>    强连通分量：有向图中的极大连通子图<br><img src="http://img.blog.csdn.net/20131113205509265" alt=""></p>
-<p><code>生成树（Spanning Tree）</code>：<br>含有连通图的全部顶点的一个极小连通子图。</p>
-<h3 id="图的存储结构"><a href="#图的存储结构" class="headerlink" title="图的存储结构"></a>图的存储结构</h3><p><code>邻接矩阵</code>：<br>图的邻接矩阵存储方式是用两个数组来标示图。一个一位数组存储图顶点的信息，一个二维数组（称为邻接矩阵）存储图中边或者弧的信息。</p>
-<p>设图G有n个顶点，则邻接矩阵是一个n*n的方阵，定义为：<br><img src="http://images.cnitblog.com/blog/380281/201307/13102724-c49b3c87958e493696d55d3306597b5c.png" alt=""></p>
-<p>实例如下，左图是一个无向图。右图是邻接矩阵表示：<br><img src="http://images.cnitblog.com/blog/380281/201307/13102739-ae381b43e0124cc7908c055f350dc03a.png" alt=""></p>
-<p>无向网图的创建代码，时间复杂度为O{n + n2 + e}。</p>
-<p><code>邻接表</code><br>用数组和链表结合的存储方式来标示图的方法称为邻接表。</p>
+<h2 id="MVC模型"><a href="#MVC模型" class="headerlink" title="MVC模型"></a>MVC模型</h2><p>我们选取当前比较热门的两大框架Struts2和SpringMVC作为代码示例<br>首先，我们将用户注册场景中最为核心的“用户类”定义出来：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;  </div><div class="line">   <span class="keyword">private</span> String email;  </div><div class="line">   <span class="keyword">private</span> String password;  </div><div class="line">   <span class="comment">// 省略了setter和getter方法  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>紧接着是一个简单的JSP表单：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/register"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Email:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"email"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">label</span>&gt;</span>Password:<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"submit"</span> /&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>上述这两段代码无论是SpringMVC还是Struts2，都可以共用。而在请求响应处理类（也就是Controller）上的设计差异是两个框架最大的不同。<br>如果使用SpringMVC，那么Controller的代码看上去就像这样：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span>  </div><div class="line"><span class="meta">@RequestMapping</span>  </div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;  </div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/register"</span>)  </div><div class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">register</span><span class="params">(String email, String password)</span> </span>&#123;  </div><div class="line">    <span class="comment">// 在这里调用具体的业务逻辑代码  </span></div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"register-success"</span>);  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果使用Struts2，那么Controller的代码看上去就稍有不同：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;  </div><div class="line">     <span class="keyword">private</span> String email;  </div><div class="line">     <span class="keyword">private</span> String password;  </div><div class="line">     <span class="function"><span class="keyword">public</span> String <span class="title">register</span><span class="params">()</span> </span>&#123;  </div><div class="line">         <span class="comment">// 在这里调用具体的业务逻辑代码  </span></div><div class="line">         <span class="keyword">return</span> <span class="string">"register-success"</span>;  </div><div class="line">     &#125;  </div><div class="line">    <span class="comment">// 这里省略了setter和getter方法  </span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>除此之外，Struts2还需要在某个配置文件中进行请求映射的配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">action</span> <span class="attr">name</span>=<span class="string">"register"</span> <span class="attr">class</span>=<span class="string">"com.demo2do.sandbox.web.UserController"</span> <span class="attr">method</span>=<span class="string">"register"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">name</span>=<span class="string">"success"</span>&gt;</span>/register-success.jsp<span class="tag">&lt;/<span class="name">result</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">action</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>原理：（类似于树的孩子表示法的第三种存储方式）<br>图中顶点用一个一维数组存储，当然也可以用单链表存储。<br>图中每个顶点 Vi 的所有邻接点构成一个线性表，由于邻接点的个数不确定，所以我们选择用单链表来存储。无向图成为顶点vi的边表，有向图则称为顶点vi作为弧尾的出边表。</p>
+<p>框架本身并不通过某种手段来干预或者控制浏览器发送Http请求的行为方式。 </p>
 </blockquote>
-<p><img src="http://images.cnitblog.com/blog/380281/201307/13103212-bec29eec5fda4044a93ee18ee4c10607.png" alt=""></p>
-<p><code>十字链表（OrthogonalList）</code><br>十字链表把邻接表与逆邻接表结合起来，解决了出度和入度的问题。</p>
-<h3 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h3><blockquote>
-<p>从图中某个顶点出发访遍图中其余顶点，且使每个顶点仅被访问依次，这一过程叫做图的遍历.</p>
+<p>从上面的代码中我们就可以看到，无论是SpringMVC还是Struts2，它们在请求页面的实现中都使用了原生HTML代码。就算是Http请求的发送，也借助于HTML之中对Form提交请求的支持。</p>
+<h3 id="MVC框架的一些普遍特征"><a href="#MVC框架的一些普遍特征" class="headerlink" title="MVC框架的一些普遍特征"></a>MVC框架的一些普遍特征</h3><blockquote>
+<p>框架本身并不通过某种手段来干预或者控制浏览器发送Http请求的行为方式。</p>
 </blockquote>
-<p>遍历方法： 深度优先遍历和广度优先遍历</p>
-<p><code>深度优先遍历 O(n^2)</code>：从图中某个顶点出发v出发，访问此顶点，然后从v的未被访问的邻接点出发深度优先便利图，直到图中所有和v有相同路径的顶点都被访问。</p>
-<p><code>广度优先遍历（Breadth_First_Search）O(n^2)</code> 又称为广度优先搜索，简称BFS</p>
-<p>深度优先更适合目标比较明确，以找到目标为主要目的的情况。<br>广度优先更适合在不断扩大遍历范围时找到相对最优解的情况。</p>
-<h3 id="图的应用"><a href="#图的应用" class="headerlink" title="图的应用"></a>图的应用</h3><p><code>最小生成树（普里姆算法 O(n^2)）</code></p>
+<p>从上面的代码中我们就可以看到，无论是SpringMVC还是Struts2，它们在请求页面的实现中都使用了原生HTML代码。就算是Http请求的发送，也借助于HTML之中对Form提交请求的支持</p>
 <blockquote>
-<p>我们把构造连通图的最小代价生成树称为最小生成树</p>
+<p>页面（View层）和请求处理类（Controller）之间的映射关系通过某一种配置形式维系起来。</p>
 </blockquote>
-<p>最小生成树实现算法：普利姆算法和克鲁斯卡尔算法</p>
-<p><code>普利姆算法</code></p>
+<p>我们可以看到在浏览器和Web服务器之间的映射关系在不同的框架中被赋予了不同的表现形式：在SpringMVC中，使用了Annotation注解；在Struts2中，默认采取XML配置文件。不过无论是哪一种配置形式，隐藏在其背后的都是对于请求映射关系的定义。</p>
 <blockquote>
-<p>假设 N=(P, {E})是连通网， TE是N上最小生成树中边的集合。算法从 U={u0}（u0∈V），TE={}开始。重复执行下述操作：在所有 u∈U,v∈V-U的边（u,v）∈E中找一条代价最小的边（u0,v0）并入集合TE，同时v0并入U，直至U=V为止。此时TE中必有 n-1条边。则T=（V,{TE}）为最小生成树。</p>
+<p>Controller层的设计差异是不同MVC框架之间最主要的差异。 </p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.ArrayList;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Prim</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> List&lt;Vertex&gt; vertexList = <span class="keyword">new</span> ArrayList&lt;Vertex&gt;();<span class="comment">//结点集</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> List&lt;Edge&gt; EdgeQueue = <span class="keyword">new</span> ArrayList&lt;Edge&gt;();<span class="comment">//边集</span></div><div class="line">	<span class="keyword">public</span> <span class="keyword">static</span> List&lt;Vertex&gt; newVertex = <span class="keyword">new</span> ArrayList&lt;Vertex&gt;();<span class="comment">//已经 访问过的结点</span></div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		primTree();</div><div class="line"></div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">buildGraph</span><span class="params">()</span> </span>&#123;</div><div class="line">		Vertex v1 = <span class="keyword">new</span> Vertex(<span class="string">"a"</span>);</div><div class="line">		Prim.vertexList.add(v1);</div><div class="line">		Vertex v2 = <span class="keyword">new</span> Vertex(<span class="string">"b"</span>);</div><div class="line">		Prim.vertexList.add(v2);</div><div class="line">		Vertex v3 = <span class="keyword">new</span> Vertex(<span class="string">"c"</span>);</div><div class="line">		Prim.vertexList.add(v3);</div><div class="line">		Vertex v4 = <span class="keyword">new</span> Vertex(<span class="string">"d"</span>);</div><div class="line">		Prim.vertexList.add(v4);</div><div class="line">		Vertex v5 = <span class="keyword">new</span> Vertex(<span class="string">"e"</span>);</div><div class="line">		Prim.vertexList.add(v5);</div><div class="line">		addEdge(v1, v2, <span class="number">6</span>);</div><div class="line">		addEdge(v1, v3, <span class="number">7</span>);</div><div class="line">		addEdge(v2, v3, <span class="number">8</span>);</div><div class="line">		addEdge(v2, v5, <span class="number">4</span>);</div><div class="line">		addEdge(v2, v4, <span class="number">5</span>);</div><div class="line">		addEdge(v3, v4, <span class="number">3</span>);</div><div class="line">		addEdge(v3, v5, <span class="number">9</span>);</div><div class="line">		addEdge(v5, v4, <span class="number">7</span>);</div><div class="line">		addEdge(v5, v1, <span class="number">2</span>);</div><div class="line">		addEdge(v4, v2, <span class="number">2</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(Vertex a, Vertex b, <span class="keyword">int</span> w)</span> </span>&#123;</div><div class="line">		Edge e = <span class="keyword">new</span> Edge(a, b, w);</div><div class="line">		Prim.EdgeQueue.add(e);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">primTree</span><span class="params">()</span></span>&#123;</div><div class="line">		buildGraph();</div><div class="line">		Vertex start = vertexList.get(<span class="number">0</span>);</div><div class="line">		newVertex.add(start);</div><div class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> n=<span class="number">0</span>;n&lt;vertexList.size()-<span class="number">1</span>;n++)&#123;</div><div class="line">			Vertex temp = <span class="keyword">new</span> Vertex(start.key);</div><div class="line">			Edge tempedge = <span class="keyword">new</span> Edge(start,start,<span class="number">1000</span>);</div><div class="line">			<span class="keyword">for</span>(Vertex v : newVertex)&#123;</div><div class="line">				<span class="keyword">for</span>(Edge e : EdgeQueue)&#123;</div><div class="line">					<span class="keyword">if</span>(e.start==v &amp;&amp; !containVertex(e.end))&#123;</div><div class="line">						<span class="keyword">if</span>(e.key&lt;tempedge.key)&#123;</div><div class="line">							temp = e.end;</div><div class="line">							tempedge = e;</div><div class="line">						&#125;	</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">			newVertex.add(temp);</div><div class="line">		&#125;</div><div class="line">		Iterator it = newVertex.iterator();</div><div class="line">		<span class="keyword">while</span>(it.hasNext())&#123;</div><div class="line">			Vertex v =(Vertex) it.next();</div><div class="line">			System.out.println(v.key);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">containVertex</span><span class="params">(Vertex vte)</span></span>&#123;</div><div class="line">		<span class="keyword">for</span>(Vertex v : newVertex)&#123;</div><div class="line">			<span class="keyword">if</span>(v.key.equals(vte.key))</div><div class="line">				<span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vertex</span> </span>&#123;</div><div class="line">	String key;</div><div class="line">	Vertex(String key)&#123;</div><div class="line">		<span class="keyword">this</span>.key = key;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Edge</span></span>&#123;</div><div class="line">	Vertex start;</div><div class="line">	Vertex end;</div><div class="line">	<span class="keyword">int</span> key;</div><div class="line">	Edge(Vertex start,Vertex end,<span class="keyword">int</span> key)&#123;</div><div class="line">		<span class="keyword">this</span>.start = start;</div><div class="line">		<span class="keyword">this</span>.end  = end;</div><div class="line">		<span class="keyword">this</span>.key = key;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><code>克鲁斯卡尔算法</code></p>
+<p>这一点实际上是我们在对于MVC模型自身进行定义时就反复强调的一点。在上面的例子中，我们可以看到SpringMVC使用<code>方法参数</code>来对请求的数据进行映射；而Struts2使用Controller类<code>内部的属性</code>来进行数据请求的映射。 </p>
+<p>在MVC模型中，浏览器端和服务器端的交互关系非常明确：无论采取什么样的框架，<code>总是以一个明确的URL作为中心，辅之以参数请求</code>。因此，URL看上去就像是一个明文的契约，当然，真正蕴藏在背后的是Http协议。所有的这些东西都被放在了台面上，我们可以非常明确地获取到一次交互中所有的Http信息。这也是MVC模型中最为突出的一个特点。 </p>
+<h2 id="组件模型"><a href="#组件模型" class="headerlink" title="组件模型"></a>组件模型</h2><p>在组件模型中，我们则选取较为成熟的Tapestry5作为我们的代码示例。<br>首先，我们来看看请求页面的情况：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">t:type</span>=<span class="string">"form"</span> <span class="attr">t:id</span>=<span class="string">"form"</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">t:label</span> <span class="attr">for</span>=<span class="string">"email"</span>/&gt;</span>:<span class="tag">&lt;<span class="name">input</span> <span class="attr">t:type</span>=<span class="string">"TextField"</span> <span class="attr">t:id</span>=<span class="string">"email"</span> <span class="attr">t:validate</span>=<span class="string">"required,minlength=3"</span> <span class="attr">size</span>=<span class="string">"30"</span>/&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">t:label</span> <span class="attr">for</span>=<span class="string">"password"</span>/&gt;</span>:<span class="tag">&lt;<span class="name">input</span> <span class="attr">t:type</span>=<span class="string">"PasswordField"</span> <span class="attr">t:id</span>=<span class="string">"password"</span> <span class="attr">t:validate</span>=<span class="string">"required,minlength=3"</span> <span class="attr">size</span>=<span class="string">"30"</span>/&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"Login"</span>/&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>在这里，请求的页面不再是原生的HTML代码，而是一个扩展后的HTML，这一扩展包含了对HTML标签的扩展（增加了新的标签，例如<t:label>），也包含了对HTML自身标签中属性的扩展（增加新的支持属性，例如t:type，t:validate）。<br>接着我们来看看服务器端响应程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Register</span> </span>&#123;  </div><div class="line">    <span class="keyword">private</span> String email;  </div><div class="line">    <span class="keyword">private</span> String password;  </div><div class="line">    </div><div class="line">    <span class="meta">@Component</span>(id = <span class="string">"password"</span>)  </div><div class="line">    <span class="keyword">private</span> PasswordField passwordField;  </div><div class="line">  </div><div class="line">    <span class="meta">@Component</span>  </div><div class="line">    <span class="keyword">private</span> Form form;  </div><div class="line">  </div><div class="line">    <span class="function">String <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;  </div><div class="line">        <span class="keyword">return</span> <span class="string">"PostRegister"</span>;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    <span class="comment">// 这里省略了setter和getter方法</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></t:label></p>
+<h3 id="与MVC框架相比较"><a href="#与MVC框架相比较" class="headerlink" title="与MVC框架相比较"></a>与MVC框架相比较</h3><p>从上面的代码示例中，我们可以看到一些与MVC模型截然不同的特点： </p>
 <blockquote>
-<p>假设 N=（V, {E}）是连通网，则令最小生成树的初始状态为只有n个顶点而无边的非连通图 T={V,{}}，图中每个顶点自成一格连通分量。在 E 中选择代价最小的边，若该边依附的顶点落在 T 中不同的连通分量上，则将此边加入到T中，否则舍去此边而选择下一条代价最小的边。以此类推，直至T中所有顶点都在同一连通分量上为止。</p>
+<p>框架通过对HTML进行行为扩展来干预和控制浏览器与服务器的交互过程。 </p>
 </blockquote>
-<p>1、新建图G，G中拥有原图中相同的节点，但没有边<br>2、将原图中所有的边按权值从小到大排序<br>3、从权值最小的边开始，如果这条边连接的两个节点于图G中不在同一个连通分量中，则添加这条边到图G中<br>4、重复3，直至图G中所有的节点都在同一个连通分量中</p>
-<h3 id="最短路径"><a href="#最短路径" class="headerlink" title="最短路径"></a>最短路径</h3><blockquote>
-<p>对于网图来说，最短路径是指两个顶点之间经过的边上权值之和最少的路径，并且我们称路径上的第一个顶点式源点，最后一个顶点是终点。</p>
-</blockquote>
-<p>两种计算最短路径算法：迪杰斯特拉(Djikstra)算法和佛洛伊德算法</p>
-<p><code>迪杰斯特拉(Djikstra)算法 O(n^2)</code><br>迪杰斯特拉算法并不是一下子求出开始节点到尾节点的最短路径，而是一步步求出它们之间顶点的最短路径，过程中都是基于已经求出的最短路径的基础上，求得更远顶点的最短路径，最终得到你要的结果。运用的是贪心算法，如果v1-&gt;..-&gt;vi-&gt;…-&gt;vn 是最短路径，那v1-&gt;vi,vi-&gt;vn也是最短路径。</p>
-<p><code>佛洛依德算法 O(n^3)</code></p>
+<p>我们可以发现，Tapestry5的请求页面被加入了更多的HTML扩展，这些扩展包括对HTML标签的扩展以及HTML标签中属性的扩展。而这些扩展中，有不少直接干预了浏览器与服务器的交互。例如，上面例子中的t:validate=”required,minlength=3”扩展实际上就会被自动映射到服务器端程序中带有@Component(id=”password”)标注的PasswordField组件上，并在提交时自动进行组件化校验。而当页面上的提交按钮被点击触发时，默认在服务器端的onSuccess方法会形成响应并调用其内部逻辑。 </p>
 <blockquote>
-<p>通过Floyd计算图G=(V,E)中各个顶点的最短路径时，需要引入一个矩阵S，矩阵S中的元素a[i][j]表示顶点i(第i个顶点)到顶点j(第j个顶点)的距离。<br>假设图G中顶点个数为N，则需要对矩阵S进行N次更新。初始时，矩阵S中顶点a[i][j]的距离为顶点i到顶点j的权值；如果i和j不相邻，则a[i][j]=∞。 接下来开始，对矩阵S进行N次更新。第1次更新时，如果”a[i][j]的距离” &gt; “a[i][0]+a[0][j]”(a[i][0]+a[0][j]表示”i与j之间经过第1个顶点的距离”)，则更新a[i][j]为”a[i][0]+a[0][j]”。 同理，第k次更新时，如果”a[i][j]的距离” &gt; “a[i][k]+a[k][j]”，则更新a[i][j]为”a[i][k]+a[k][j]”。更新N次之后，操作完成！<br>详见<a href="http://www.cnblogs.com/skywang12345/p/3711532.html" target="_blank" rel="external">佛洛依德算法</a>，算法推导过程就是构建矩阵的过程。</p>
+<p>页面组件的实现是整个组件模型的绝对核心</p>
 </blockquote>
-<h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><blockquote>
-<p>在一个表示工程的有向图中，用顶点表示活动，用弧表示活动之间的优先关系，这样的有向图为顶点表示活动的网，我们称为AOV网(Activity On Vertex)。<br>设G=(V,E)是一个具有n个顶点的有向图，V中的顶点序列V1,V2…..,Vn满足若从顶点Vi到顶点Vj有一条路径，则在顶点序列中Vi必在Vj顶点之前。则我们称这样的顶点序列为拓扑序列。<br>所谓拓扑序列，其实就是对一个有向图构造拓扑序列的过程。</p>
+<p>从上述的例子中，我们可以看到组件模型的实现不仅需要服务器端实现，还需要在页面上指定与某个特定组件进行事件绑定。两者缺一不可，必须相互配合，共同完成。因此整个Web程序的交互能力完全取决于页面组件的实现好坏。 </p>
+<blockquote>
+<p>页面组件与服务器端响应程序之间的映射契约并不基于Http协议进行</p>
 </blockquote>
-<p>拓扑排序：是将一个AOV网的各个顶点按一定顺序排列，要求满足若存在<vi，vj>，则排序中的顶点Vi必在顶点Vj之前。对于同一幅图，拓扑排序可有多个拓扑排序。</vi，vj></p>
-<p>算法：<br>（1）从有向图中选择一个无前驱（入度为0）的顶点输出。<br>（2）删除此顶点，并删除已此顶点为为尾的弧。<br>（3）重复（1），（2）步骤，知道输出全部顶点或者AOV网中不存在入度为0的顶点。</p>
-<h3 id="关键路径"><a href="#关键路径" class="headerlink" title="关键路径"></a>关键路径</h3><blockquote>
-<p>在一个表示工程的带权有向图中，用顶点表示事件，用有向图表示活动，用边上的权值表示活动的持续事件，这种这种有向图的边表示活动图，我们称之为AOE网(Activity On Edge Network)。<br>我们把路径上各个活动所持续的时间之和称为路径的长度，从原点到汇点具有最大长度的路径叫做关键路径，在关键路径上的活动叫关键活动。</p>
+<p>在上面的例子中，从页面组件到服务器端的响应程序之间的映射关系是通过名称契约而定的。而页面上的每个组件可以指定映射到服务器端程序的具体某一个方法。我们可以看到这种映射方式并不是一种基于URL或者Http协议的映射方式，而是一种命名指定的方式。<br>在组件模型中，浏览器端和服务器端的交互关系并不以一个具体的URL为核心，我们在上述的例子中甚至完全没有看到任何URL的影子。不过这种事件响应式的方式，也提供给我们另外一个编程的思路，而这种基于契约式的请求-响应映射也得到了一部分程序员的喜爱。因而组件模型的粉丝数量也是很多的。 </p>
+<h2 id="MVC模型的各种形态"><a href="#MVC模型的各种形态" class="headerlink" title="MVC模型的各种形态"></a>MVC模型的各种形态</h2><p>之前我们已经谈到，MVC模型是一种以服务器响应程序（也就是Controller）为核心进行程序设计的，因而所有的MVC框架的历史发展进程实际上是一个围绕着Controller不断进行重构和改造的过程。而在这个过程中，不同的MVC框架也就表现出了不同的表现形态。接下来，我们就给出一些具有代表意义的MVC框架表现形态。</p>
+<h3 id="Servlet"><a href="#Servlet" class="headerlink" title="Servlet"></a>Servlet</h3><blockquote>
+<p>Servlet是MVC模型最为基本的表现形态。</p>
 </blockquote>
-<p>算法:<br>(1) 从开始顶点V0出发，假设ve(0)=0，然后按照拓扑有序求出其他各顶点i的最早开始时间ve(i)，如果得到拓扑序列中顶点数目小于图中的顶点数，则表示图中存在回路，算法结束，否则继续执行。<br>(2) 从结束顶点Vn出发，假设vl(n-1) = ve(n-1);然后求出各顶点i的最晚发生时间。<br>(3) 根据顶点的最早发生时间，和最晚发生时间，依次求出出每条弧的最早开始时间和最晚开始时间，如果两只相等，则为关键活动。关键活动组成的路径则为关键路径。</p>
-<p>拓扑排序和关键路径 使用邻接表存储数据，最小生成树和最短路径用 邻接矩阵 存储数据。</p>
+<p>Servlet的基本接口定义中： </p>
+<p><code>参数列表</code> —— Http请求被封装为一个HttpServletRequest对象（或者ServletRequest对象），而Http响应封装为一个HttpServletResponse对象（或者ServletResponse对象）<br><code>返回值</code> —— 方法不存在返回值（返回值为void）<br>在这个设计中，HttpServletRequest和HttpServletResponse承担了完整的处理Http请求的任务。而这两个Servlet对象的职责也有所分工：<br><code>HttpServletRequest对象</code> —— 主要用于处理整个Http生命周期中的数据。<br><code>HttpServletResponse对象</code> —— 主要用于处理Http的响应结果。</p>
+<blockquote>
+<p>MVC模型的这一种形态，被笔者冠以一个名称：<code>参数-参数（Param-Param）实现模式</code>。因为在响应方法中，数据与行为的操作载体都以参数的形式出现。 </p>
+</blockquote>
+<h3 id="Struts1-X"><a href="#Struts1-X" class="headerlink" title="Struts1.X"></a>Struts1.X</h3><p>对于Struts1.X，我们还是把关注的重点放在Struts中的Controller层的定义上：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response);</div></pre></td></tr></table></figure></p>
+<p>如果和之前的Servlet模型加以比较我们就可以发现，Struts1.X对于基本的Servlet模型做了一定的扩展和重构：<br>1.保留了HttpServletRequest和HttpServletResponse这两大接口作为参数<br>2.将返回值改为ActionForward，并由Struts1.X框架通过处理ActionForward完成对响应结果的处理<br>3.增加了ActionMapping和ActionForm两大参数，前者表示Http请求的一个简要概括，后者表示一个数据模型，用以承载整个请求生命周期中的数据</p>
+<p>经过一番扩展和重构，我们可以发现Struts1.X相比较于原始的Servlet模型已经有了一定的进步。比如，我们可以不再直接操作HttpServletResponse这样的原生Servlet对象来进行Http返回的处理；再比如，对于一些简单的请求数据读取，我们可以不必直接操作生硬的HttpServletRequest接口，而通过ActionForm来完成。 </p>
+<blockquote>
+<p>MVC模型发展到了这里，我们可以看到响应方法中的“返回值”已经能够被调动起来用在整个Http请求的处理过程中。因此，这种在响应方法中参数和返回值同时参与到Http请求的处理过程中的表现形态，被笔者冠以另外一个名称：<code>参数-返回值（Param-Return）实现模式</code>。 </p>
+</blockquote>
+<p>由于Struts1.X已经不再是一个底层的实现规范，于是响应方法“返回值”被框架引入，加入到了整个处理过程之中。我们可以看到，在这里最大的进步之处就在于：引入了新的编程元素，从而优化整个逻辑处理过程。编程元素的引入非常重要，因为对于一个任何一个程序员而言，充分调用所有可以利用的编程要素是衡量一个程序写得好坏的重要标准。之后，我们还可以看到其他的框架在引入编程元素这个方面所做的努力。 </p>
+<h3 id="Webwork2-Struts2"><a href="#Webwork2-Struts2" class="headerlink" title="Webwork2 / Struts2"></a>Webwork2 / Struts2</h3><p>或许是看到了Struts1.X发展上的局限性，Apache社区与Opensymphony开源组织在2005年底宣布未来的Struts项目将与Webwork2项目合并，并联合推出Struts2，通过Apache社区的人气优势与OpenSymphony的技术优势，共同打造下一代的Web层开发框架。这也就是Struts2的由来。 </p>
+<p>从整个过程中，我们可以发现，Webwork2和Struts2是一脉相承的Web层解决方案。而两者能够在一个相当长的时间段内占据开发市场主导地位的重要原因在于其技术上的领先优势。而这一技术上的领先优势，突出表现为对Controller的彻底改造：<br>1.在Controller中彻底杜绝引入HttpServletRequest或者HttpServletResponse这样的原生Servlet对象。<br>2.将请求参数和响应数据都从响应方法中剥离到了Controller中的属性变量</p>
+<p>这两大改造被看作是框架的神来之笔。因为通过这一改造，整个Controller类彻底与Web容器解耦，可以方便地进行单元测试。而摆脱了Servlet束缚的Controller，也为整个编程模型赋予了全新的定义。 </p>
+<p>当然，这种改造的前提条件在于Webwork2 / Struts2引入了另外一个重要的编程概念：ThreadLocal模式。使得Controller成为一个线程安全的对象被Servlet模型所调用，这也就突破了传统Servlet体系下，Servlet对象并非一个线程安全的对象的限制条件。 </p>
+<p>从引入新的编程元素的角度来说，Webwork2 / Struts2无疑也是成功的。因为在传统Servlet模式中的禁地Controller中的属性变量被合理利用了起来作为请求处理过程中的数据部分。这样的改造不仅使得表达式引擎能够得到最大限度的发挥，同时使得整个Controller看起来更像是一个POJO。因而，这种表现形态被笔者冠以的名称是：<code>POJO实现模式</code>。 </p>
+<p>POJO实现模式是一种具有革命性意义的模式，因为它能够把解耦合这样一个观点发挥到极致。从面向对象的角度来看，POJO模式无疑也是所有程序员所追求的一个目标。这也就是Webwork2 / Struts2那么多年来经久不衰的一个重要原因。 </p>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>相比较Webwork2 / Struts2，SpringMVC走了一条比较温和的改良路线。因为SpringMVC自始至终都没有突破传统Servlet编程模型的限制，而是在这过程中不断改良，不断重构，反而在发展中开拓了一条崭新的道路。<br>Controller改造中所涉及到的一些要点：<br><code>1. 使用参数-返回值（Param-Return）实现模式来打造Controller</code><br>方法的参数（email和password）被视作是Http请求参数的概括。而在这里，它们已经被SpringMVC的框架有效处理并屏蔽了内在的处理细节，呈现出来的是与请求参数名称一一对应的参数列表。而返回值ModelAndView则表示Http的响应是一个数据与视图的结合体，表示Http的处理结果。<br><code>2. 引入Annotation来完成请求-响应的映射关系</code><br>引入Annotation来完成请求-响应的映射关系，是SpringMVC的一个重大改造。在早期的SpringMVC以及其他的MVC框架中，通常都是使用XML作为基础配置的。而Annotation的引入将原本分散的关注点合并到了一起，为实现配置简化打下了坚实的基础。<br><code>3. 泛化参数和返回值的含义</code><br>这是一个蕴含的特点。事实上，SpringMVC在响应方法上，可以支持多种多样不同的参数类型和返回值类型。例如，当参数类型为Model时，SpringMVC将会自动将请求参数封装于Model内部而传入请求方法；当返回值类型是String时，直接表示SpringMVC需要返回的视图类型和视图内容。当然，这些泛化的参数和返回值的内容全部都由SpringMVC在框架内部处理了。 </p>
+<h2 id="MVC模型的发展轨迹"><a href="#MVC模型的发展轨迹" class="headerlink" title="MVC模型的发展轨迹"></a>MVC模型的发展轨迹</h2><p>之前讲了那么多MVC模型的实现形态，我们是否能从中总结出一条发展轨迹呢？答案是肯定的，笔者在这里作了一副图：<br><img src="https://haymaicc.github.io/res/contoller.png" alt=""><br>从图中，我们可以看到三类完全不同的发展方向。目前，<code>Struts1.X这一条路被证明已经穷途末路；另外的两条发展轨迹总体来说实力相当，SpringMVC大有赶超之势</code>。 </p>
 
       
     </div>
@@ -556,7 +544,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据结构/" rel="tag"># 数据结构</a>
+            <a href="/tags/SpringMvc/" rel="tag"># SpringMvc</a>
           
         </div>
       
@@ -569,8 +557,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/06/data_structure1/" rel="next" title="大话数据结构学习笔记（一）">
-                <i class="fa fa-chevron-left"></i> 大话数据结构学习笔记（一）
+              <a href="/2017/05/30/mybatis/" rel="next" title="mybatis 学习">
+                <i class="fa fa-chevron-left"></i> mybatis 学习
               </a>
             
           </div>
@@ -579,8 +567,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/05/07/IO/" rel="prev" title="各种IO的区别">
-                各种IO的区别 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/30/java-collections/" rel="prev" title="Java 集合总结">
+                Java 集合总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -757,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图"><span class="nav-number">1.</span> <span class="nav-text">图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于图的一些术语解释"><span class="nav-number">1.1.</span> <span class="nav-text">关于图的一些术语解释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的存储结构"><span class="nav-number">1.2.</span> <span class="nav-text">图的存储结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的遍历"><span class="nav-number">1.3.</span> <span class="nav-text">图的遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图的应用"><span class="nav-number">1.4.</span> <span class="nav-text">图的应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最短路径"><span class="nav-number">1.5.</span> <span class="nav-text">最短路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拓扑排序"><span class="nav-number">1.6.</span> <span class="nav-text">拓扑排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关键路径"><span class="nav-number">1.7.</span> <span class="nav-text">关键路径</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从大的角度来看Spring-Mvc"><span class="nav-number">1.</span> <span class="nav-text">从大的角度来看Spring Mvc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC模型"><span class="nav-number">2.</span> <span class="nav-text">MVC模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC框架的一些普遍特征"><span class="nav-number">2.1.</span> <span class="nav-text">MVC框架的一些普遍特征</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件模型"><span class="nav-number">3.</span> <span class="nav-text">组件模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#与MVC框架相比较"><span class="nav-number">3.1.</span> <span class="nav-text">与MVC框架相比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC模型的各种形态"><span class="nav-number">4.</span> <span class="nav-text">MVC模型的各种形态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet"><span class="nav-number">4.1.</span> <span class="nav-text">Servlet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Struts1-X"><span class="nav-number">4.2.</span> <span class="nav-text">Struts1.X</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Webwork2-Struts2"><span class="nav-number">4.3.</span> <span class="nav-text">Webwork2 / Struts2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SpringMVC"><span class="nav-number">4.4.</span> <span class="nav-text">SpringMVC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MVC模型的发展轨迹"><span class="nav-number">5.</span> <span class="nav-text">MVC模型的发展轨迹</span></a></li></ol></div>
             
 
           </div>

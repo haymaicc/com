@@ -299,7 +299,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/30/java-collections/">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/06/04/jms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨励志">
@@ -318,7 +318,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/30/java-collections/" itemprop="url">java_collections</a></h1>
+                <a class="post-title-link" href="/2017/06/04/jms/" itemprop="url">jms</a></h1>
         
 
         <div class="post-meta">
@@ -330,8 +330,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T19:56:09+08:00">
-                2017-05-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-04T17:15:08+08:00">
+                2017-06-04
               </time>
             
 
@@ -350,8 +350,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/05/30/java-collections/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://haymaicc.github.io/2017/05/30/java-collections/" class="cy_cmt_count" data-xid="2017/05/30/java-collections/" itemprop="commentsCount" ></span>
+                <a href="/2017/06/04/jms/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://haymaicc.github.io/2017/06/04/jms/" class="cy_cmt_count" data-xid="2017/06/04/jms/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -359,7 +359,7 @@
 
           
           
-             <span id="/2017/05/30/java-collections/" class="leancloud_visitors" data-flag-title="java_collections">
+             <span id="/2017/06/04/jms/" class="leancloud_visitors" data-flag-title="jms">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -451,7 +451,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/30/spring-mvc/">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/30/java-collections/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="杨励志">
@@ -470,7 +470,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/05/30/spring-mvc/" itemprop="url">spring mvc 学习</a></h1>
+                <a class="post-title-link" href="/2017/05/30/java-collections/" itemprop="url">Java 集合总结</a></h1>
         
 
         <div class="post-meta">
@@ -482,7 +482,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T19:53:02+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T19:56:09+08:00">
                 2017-05-30
               </time>
             
@@ -524,8 +524,8 @@
                 <i class="fa fa-comment-o"></i>
               </span>
               
-                <a href="/2017/05/30/spring-mvc/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://haymaicc.github.io/2017/05/30/spring-mvc/" class="cy_cmt_count" data-xid="2017/05/30/spring-mvc/" itemprop="commentsCount" ></span>
+                <a href="/2017/05/30/java-collections/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://haymaicc.github.io/2017/05/30/java-collections/" class="cy_cmt_count" data-xid="2017/05/30/java-collections/" itemprop="commentsCount" ></span>
                 </a>
               
             
@@ -533,7 +533,7 @@
 
           
           
-             <span id="/2017/05/30/spring-mvc/" class="leancloud_visitors" data-flag-title="spring mvc 学习">
+             <span id="/2017/05/30/java-collections/" class="leancloud_visitors" data-flag-title="Java 集合总结">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -558,7 +558,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  3,005
                 </span>
               
 
@@ -581,9 +581,195 @@
 
       
         
+          <p>摘自<a href="http://calvin1978.blogcn.com/articles/collection.html">关于Java集合的小抄</a>，供自己学习</p>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h3><p>以数组实现。节约空间，但数组有容量限制。超出限制时会增加50%容量，用System.arraycopy()复制到新的数组。因此最好能给出数组大小的预估值。默认第一次插入元素时创建大小为10的数组。<br>按数组下标访问元素－get(i)、set(i,e) 的性能很高，这是数组的基本优势。<br>如果按下标插入元素、删除元素－add(i,e)、 remove(i)、remove(e)，则要用System.arraycopy()来复制移动部分受影响的元素，性能就变差了。<br>越是前面的元素，修改时要移动的元素越多。直接在数组末尾加入元素－常用的add(e)，删除最后一个元素则无影响。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/30/java-collections/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/30/springmvc1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨励志">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/res/icon.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唐伯虎点蜡烛">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/30/springmvc1/" itemprop="url">Spring Mvc (一)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-30T19:53:02+08:00">
+                2017-05-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringMvc/" itemprop="url" rel="index">
+                    <span itemprop="name">SpringMvc</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
           
             
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/05/30/springmvc1/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://haymaicc.github.io/2017/05/30/springmvc1/" class="cy_cmt_count" data-xid="2017/05/30/springmvc1/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
           
+
+          
+          
+             <span id="/2017/05/30/springmvc1/" class="leancloud_visitors" data-flag-title="Spring Mvc (一)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,894
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>本文摘自<a href="http://downpour.iteye.com/blog/1330537">SpringMVC深度探险</a>系列。</p>
+<h2 id="从大的角度来看Spring-Mvc"><a href="#从大的角度来看Spring-Mvc" class="headerlink" title="从大的角度来看Spring Mvc"></a>从大的角度来看Spring Mvc</h2><p>B／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：<br><code>以服务器端应用程序为主导来进行框架设计</code><br><code>以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计</code><br>前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/30/springmvc1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -679,8 +865,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
+                  <a href="/categories/mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">mybatis</span>
                   </a>
                 </span>
 
@@ -1885,186 +2071,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2016/12/05/sort/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="杨励志">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/res/icon.JPG">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="唐伯虎点蜡烛">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/12/05/sort/" itemprop="url">排序算法Java实现</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-05T18:20:12+08:00">
-                2016-12-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-comment-o"></i>
-              </span>
-              
-                <a href="/2016/12/05/sort/#SOHUCS" itemprop="discussionUrl">
-                  <span id="url::http://haymaicc.github.io/2016/12/05/sort/" class="cy_cmt_count" data-xid="2016/12/05/sort/" itemprop="commentsCount" ></span>
-                </a>
-              
-            
-          
-
-          
-          
-             <span id="/2016/12/05/sort/" class="leancloud_visitors" data-flag-title="排序算法Java实现">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计</span>
-                
-                <span title="字数统计">
-                  2,347
-                </span>
-              
-
-              
-
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="冒泡排序-0-N-2"><a href="#冒泡排序-0-N-2" class="headerlink" title="冒泡排序 0(N^2)"></a>冒泡排序 0(N^2)</h3><p>执行非常慢，概念上最简单。最大的会一直被交换，冒泡上来</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">int</span>[] arrays = &#123; <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">4</span> &#125;;</div><div class="line"><span class="keyword">int</span> out, in;</div><div class="line"><span class="keyword">for</span> (out = arrays.length - <span class="number">1</span>; out &gt; <span class="number">1</span>; out--) &#123; <span class="comment">// outer loop(backward)</span></div><div class="line">    <span class="keyword">for</span> (in = <span class="number">0</span>; in &lt; out; in++) &#123; <span class="comment">// inter loop(forward)</span></div><div class="line">        <span class="keyword">if</span> (arrays[in] &gt; arrays[in + <span class="number">1</span>]) &#123; <span class="comment">// out of order</span></div><div class="line">            <span class="keyword">int</span> temp = arrays[in]; <span class="comment">// swap them</span></div><div class="line">            arrays[in] = arrays[in + <span class="number">1</span>];</div><div class="line">            arrays[in + <span class="number">1</span>] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/12/05/sort/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2114,7 +2120,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2125,7 +2131,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -2136,7 +2142,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -2268,9 +2274,6 @@
 
 
 
-  
-  
-
 
 
 
@@ -2296,12 +2299,6 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three.min.js"></script>
-
-  
-  <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
 
 
   

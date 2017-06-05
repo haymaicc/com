@@ -116,7 +116,7 @@
     <link href="http://haymaicc.github.io/2017/05/30/springmvc1/"/>
     <id>http://haymaicc.github.io/2017/05/30/springmvc1/</id>
     <published>2017-05-30T11:53:02.000Z</published>
-    <updated>2017-06-04T08:37:55.000Z</updated>
+    <updated>2017-06-05T01:33:48.000Z</updated>
     
     <content type="html"><![CDATA[<p>本文摘自<a href="http://downpour.iteye.com/blog/1330537" target="_blank" rel="external">SpringMVC深度探险</a>系列。</p>
 <h2 id="从大的角度来看Spring-Mvc"><a href="#从大的角度来看Spring-Mvc" class="headerlink" title="从大的角度来看Spring Mvc"></a>从大的角度来看Spring Mvc</h2><p>B／S模型解决的实际问题是请求—响应，其中不外乎两个角色，服务方和请求方。因而也就产生了两种截然不同的针对表示层的解决方案的设计思路：<br><code>以服务器端应用程序为主导来进行框架设计</code><br><code>以浏览器页面组件（及其自身的事件触发模型）为主导来进行框架设计</code><br>前一种被称之为MVC模型；后一种则被称之为组件模型，也有称之为事件模型。</p>
@@ -181,7 +181,7 @@
 <p>从引入新的编程元素的角度来说，Webwork2 / Struts2无疑也是成功的。因为在传统Servlet模式中的禁地Controller中的属性变量被合理利用了起来作为请求处理过程中的数据部分。这样的改造不仅使得表达式引擎能够得到最大限度的发挥，同时使得整个Controller看起来更像是一个POJO。因而，这种表现形态被笔者冠以的名称是：<code>POJO实现模式</code>。 </p>
 <p>POJO实现模式是一种具有革命性意义的模式，因为它能够把解耦合这样一个观点发挥到极致。从面向对象的角度来看，POJO模式无疑也是所有程序员所追求的一个目标。这也就是Webwork2 / Struts2那么多年来经久不衰的一个重要原因。 </p>
 <h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3><p>相比较Webwork2 / Struts2，SpringMVC走了一条比较温和的改良路线。因为SpringMVC自始至终都没有突破传统Servlet编程模型的限制，而是在这过程中不断改良，不断重构，反而在发展中开拓了一条崭新的道路。<br>Controller改造中所涉及到的一些要点：<br><code>1. 使用参数-返回值（Param-Return）实现模式来打造Controller</code><br>方法的参数（email和password）被视作是Http请求参数的概括。而在这里，它们已经被SpringMVC的框架有效处理并屏蔽了内在的处理细节，呈现出来的是与请求参数名称一一对应的参数列表。而返回值ModelAndView则表示Http的响应是一个数据与视图的结合体，表示Http的处理结果。<br><code>2. 引入Annotation来完成请求-响应的映射关系</code><br>引入Annotation来完成请求-响应的映射关系，是SpringMVC的一个重大改造。在早期的SpringMVC以及其他的MVC框架中，通常都是使用XML作为基础配置的。而Annotation的引入将原本分散的关注点合并到了一起，为实现配置简化打下了坚实的基础。<br><code>3. 泛化参数和返回值的含义</code><br>这是一个蕴含的特点。事实上，SpringMVC在响应方法上，可以支持多种多样不同的参数类型和返回值类型。例如，当参数类型为Model时，SpringMVC将会自动将请求参数封装于Model内部而传入请求方法；当返回值类型是String时，直接表示SpringMVC需要返回的视图类型和视图内容。当然，这些泛化的参数和返回值的内容全部都由SpringMVC在框架内部处理了。 </p>
-<h2 id="MVC模型的发展轨迹"><a href="#MVC模型的发展轨迹" class="headerlink" title="MVC模型的发展轨迹"></a>MVC模型的发展轨迹</h2><p>之前讲了那么多MVC模型的实现形态，我们是否能从中总结出一条发展轨迹呢？答案是肯定的，笔者在这里作了一副图：<br><img src="https://haymaicc.github.io/res/contoller.png" alt=""><br>从图中，我们可以看到三类完全不同的发展方向。目前，<code>Struts1.X这一条路被证明已经穷途末路；另外的两条发展轨迹总体来说实力相当，SpringMVC大有赶超之势</code>。 </p>
+<h2 id="MVC模型的发展轨迹"><a href="#MVC模型的发展轨迹" class="headerlink" title="MVC模型的发展轨迹"></a>MVC模型的发展轨迹</h2><p>之前讲了那么多MVC模型的实现形态，我们是否能从中总结出一条发展轨迹呢？答案是肯定的，笔者在这里作了一副图：<br><img src="https://haymaicc.github.io/res/controller.png" alt=""><br>从图中，我们可以看到三类完全不同的发展方向。目前，<code>Struts1.X这一条路被证明已经穷途末路；另外的两条发展轨迹总体来说实力相当，SpringMVC大有赶超之势</code>。 </p>
 ]]></content>
     
     <summary type="html">

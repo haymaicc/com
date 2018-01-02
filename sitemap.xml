@@ -2,9 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://haymaicc.github.io/2017/12/16/jvm2/</loc>
+    
+    <lastmod>2018-01-02T12:44:16.169Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://haymaicc.github.io/2017/12/08/jvm3/</loc>
+    
+    <lastmod>2017-12-16T07:32:04.590Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://haymaicc.github.io/2017/12/05/jvm1/</loc>
     
-    <lastmod>2017-12-06T04:42:13.926Z</lastmod>
+    <lastmod>2017-12-08T07:15:01.013Z</lastmod>
     
   </url>
   

@@ -3,6 +3,213 @@
   
     
     <entry>
+      <title><![CDATA[《深入理解java虚拟机》读书笔记(二)]]></title>
+      <url>/2017/12/16/jvm2/</url>
+      <content type="html"><![CDATA[<p>这个章节主要介绍常用的JavaJDK中的命令行工具</p>
+<a id="more"></a>
+<h2 id="常用的JDK命令行工具"><a href="#常用的JDK命令行工具" class="headerlink" title="常用的JDK命令行工具"></a>常用的JDK命令行工具</h2><ul>
+<li>jps : JVM Process Status Tool    <blockquote>
+<p>显示指定系统内所有的HotSpot虚拟机进程</p>
+</blockquote>
+</li>
+<li>jinfo : Configuration Info for Java<blockquote>
+<p>显示虚拟机配置信息</p>
+</blockquote>
+</li>
+<li>jstat : JVM Statistics Monitoring Tool<blockquote>
+<p>用于收集Hotspot虚拟机各方面的运行数据</p>
+</blockquote>
+</li>
+<li>jstack : JVM Stack Trace    <blockquote>
+<p>显示虚拟机的线程快照</p>
+</blockquote>
+</li>
+<li>jmap : JVM Memory Map    <blockquote>
+<p>生成虚拟机的内存转储快照，生成heapdump文件</p>
+</blockquote>
+</li>
+<li>jhat : JVM Heap Dump Browser<blockquote>
+<p>用于分析heapdump文件，它会建立一个HTTP/HTML服务器，让用户在浏览器上查看分析结果</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="jps-产看虚拟机进程信息"><a href="#jps-产看虚拟机进程信息" class="headerlink" title="jps:产看虚拟机进程信息"></a>jps:产看虚拟机进程信息</h3><p>这个命令类似于linux的ps命令，列出本机所有java进程的pid<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">jps [ options ] [ hostid ] </div><div class="line">``` </div><div class="line"></div><div class="line">```$xslt</div><div class="line">~ jps</div><div class="line">58785 Jps</div><div class="line">53044</div><div class="line">55109</div><div class="line">``` </div><div class="line"></div><div class="line">### jinfo:查看虚拟机配置参数信息</div></pre></td></tr></table></figure></p>
+<p>jinfo [option] <pid><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">option，一般使用 &quot;-flag &lt;name&gt;&quot;来看参数大小；&quot;flag [+|-]&lt;name&gt;&quot; 禁用参数；&quot;-flag &lt;name&gt;=&lt;value&gt;&quot;设置参数值</div><div class="line"></div><div class="line">### jstat:查看虚拟机各运行状态信息</div></pre></td></tr></table></figure></pid></p>
+<p>jstat -<option> [-t] [-h<lines>] <vmid> [<interval> [<count>]]<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">option，选项，我们一般使用 -gc 查看gc情况</div><div class="line">vmid，VM的进程号，即当前运行的java进程号</div><div class="line">interval，间隔时间，单位为秒或者毫秒</div><div class="line">count，打印次数，如果缺省则打印无数次</div></pre></td></tr></table></figure></count></interval></vmid></lines></option></p>
+<p>~ jstat -gc 53044<br> S0C    S1C    S0U    S1U      EC       EU        OC         OU       MC     MU    CCSC   CCSU   YGC     YGCT    FGC    FGCT     GCT<br> 0.0   23552.0  0.0   23552.0 527360.0 338944.0  405504.0   401837.1  278544.0 259673.2 40240.0 36034.9     60    4.192   0      0.000    4.192<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">S0C、S1C、S0U、S1U：Survivor 0/1区容量（Capacity）和使用量（Used）</div><div class="line">EC、EU：Eden区容量和使用量</div><div class="line">OC、OU：年老代容量和使用量</div><div class="line">PC、PU：永久代容量和使用量</div><div class="line">YGC、YGT：年轻代GC次数和GC耗时</div><div class="line">FGC、FGCT：Full GC次数和Full GC耗时</div><div class="line">GCT：GC总耗时</div><div class="line"></div><div class="line">### jstack:虚拟机堆栈跟踪</div><div class="line">&gt;jstack命令用于生成虚拟机当前时刻的线程快照。线程快照指的是当前虚拟机内的每一条线程正在执行的方法堆栈的集合，生成线程快照的作用是，可用于定位线程出现长时间停顿的原因，如线程间死锁，死循环，请求外部资源导致的长时间等待等问题，当线程出现停顿时 就可以用jstack各个线程调用的堆栈情况。 </div><div class="line"></div><div class="line">jstack命令格式</div></pre></td></tr></table></figure></p>
+<p>jstack [option] pid<br>jstack [option] executable core<br>jstack [option] [server-id@]remote-hostname-or-ip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line">### jmap:生成虚拟机内存转储快照</div></pre></td></tr></table></figure></p>
+<p>jmap [option] pid<br>jmap [option] executable core<br>jmap [option] [server-id@]remote-hostname-or-ip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">常用的option选项有： </div><div class="line">-dump 生成Java堆转储快照，格式为： -dump:[live , ]format=b , file=,其中live子参数 说明只dump出存活的对象</div><div class="line">-finalizerinfo 显示在F-Queue中等待Finalizer线程执行finalize方法的对象</div><div class="line">-heap 显示Java堆详细信息，如使用哪种回收器，参数配置，分代状况等</div></pre></td></tr></table></figure></p>
+<p>jmap -dump:format=b,file=Downloads/1.bat 4221<br>Dumping heap to /Users/haymai/Downloads/1.bat …<br>Heap dump file created<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> dump出来的文件可以用MAT、VisualVM等工具查看，这里用jhat查看</div><div class="line">```jhat -port 8080 1.bat</div><div class="line">   Reading from 1.bat...</div><div class="line">   Dump file created Thu Dec 28 17:51:49 CST 2017</div><div class="line">   Snapshot read, resolving...</div><div class="line">   Resolving 4232934 objects...</div><div class="line">   Chasing references, expect 846 dots..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</div><div class="line">   Eliminating duplicate references..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................</div><div class="line">   Snapshot resolved.</div><div class="line">   Started HTTP server on port 7000</div><div class="line">   Server is ready.</div></pre></td></tr></table></figure></p>
+<p>打开浏览器输入<a href="http://127.0.0.1:8080" target="_blank" rel="external">http://127.0.0.1:8080</a> 就可以查看了。</p>
+<p>显示堆信息，如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">$ jmap -heap -J-d64 4221</div><div class="line">Attaching to process ID 4221, please wait...</div><div class="line">Debugger attached successfully.</div><div class="line">Server compiler detected.</div><div class="line">JVM version is 25.121-b13</div><div class="line"></div><div class="line">using thread-local object allocation.</div><div class="line">Parallel GC with 4 thread(s)</div><div class="line"></div><div class="line">Heap Configuration:</div><div class="line">   MinHeapFreeRatio         = 0</div><div class="line">   MaxHeapFreeRatio         = 100</div><div class="line">   MaxHeapSize              = 2147483648 (2048.0MB)</div><div class="line">   NewSize                  = 44564480 (42.5MB)</div><div class="line">   MaxNewSize               = 715653120 (682.5MB)</div><div class="line">   OldSize                  = 89653248 (85.5MB)</div><div class="line">   NewRatio                 = 2</div><div class="line">   SurvivorRatio            = 8</div><div class="line">   MetaspaceSize            = 21807104 (20.796875MB)</div><div class="line">   CompressedClassSpaceSize = 1073741824 (1024.0MB)</div><div class="line">   MaxMetaspaceSize         = 17592186044415 MB</div><div class="line">   G1HeapRegionSize         = 0 (0.0MB)</div><div class="line"></div><div class="line">Heap Usage:</div><div class="line">PS Young Generation</div><div class="line">Eden Space:</div><div class="line">   capacity = 654835712 (624.5MB)</div><div class="line">   used     = 122404352 (116.73388671875MB)</div><div class="line">   free     = 532431360 (507.76611328125MB)</div><div class="line">   18.692375775620498% used</div><div class="line">From Space:</div><div class="line">   capacity = 30408704 (29.0MB)</div><div class="line">   used     = 0 (0.0MB)</div><div class="line">   free     = 30408704 (29.0MB)</div><div class="line">   0.0% used</div><div class="line">To Space:</div><div class="line">   capacity = 29360128 (28.0MB)</div><div class="line">   used     = 0 (0.0MB)</div><div class="line">   free     = 29360128 (28.0MB)</div><div class="line">   0.0% used</div><div class="line">PS Old Generation</div><div class="line">   capacity = 143654912 (137.0MB)</div><div class="line">   used     = 46104504 (43.96868133544922MB)</div><div class="line">   free     = 97550408 (93.03131866455078MB)</div><div class="line">   32.09392798207972% used</div><div class="line"></div><div class="line">26052 interned Strings occupying 3039136 bytes.</div></pre></td></tr></table></figure></p>
+<h3 id="jhat"><a href="#jhat" class="headerlink" title="jhat"></a>jhat</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">jhat [-stack &lt;bool&gt;] [-refs &lt;bool&gt;] [-port &lt;port&gt;] [-baseline &lt;file&gt;] [-debug &lt;int&gt;]</div></pre></td></tr></table></figure>
+<p>一般和jmap配合使用，如上方的<br><code>jhat -port 8080 1.bat</code></p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[《深入理解java虚拟机》读书笔记(三)]]></title>
+      <url>/2017/12/08/jvm3/</url>
+      <content type="html"><![CDATA[<h2 id="虚拟机类加载机制"><a href="#虚拟机类加载机制" class="headerlink" title="虚拟机类加载机制"></a>虚拟机类加载机制</h2><blockquote>
+<p>虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。</p>
+</blockquote>
+<h3 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h3><blockquote>
+<p>类从被加载到虚拟机内存中开始，到卸载出内存为止，它的整个生命周期包括：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）、初始化（Initialization）、使用（Using）和卸载（Unloading）7个阶段。其中验证、准备、解析3个部分统称为连接（Linking）<br><img src="https://haymaicc.github.io/res/jvm2.png" alt=""></p>
+</blockquote>
+<h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><blockquote>
+<p>对于任意一个类，都需要由加载它的类加载器和这个类本身一同确立其在Java虚拟机中的唯一性，每一个类加载器，都拥有一个独立的类名称空间。这句话可以表达得更通俗一些：比较两个类是否“相等”，只有在这两个类是由同一个类加载器加载的前提下才有意义，否则，即使这两个类来源于同一个Class文件，被同一个虚拟机加载，只要加载它们的类加载器不同，那这两个类就必定不相等。</p>
+</blockquote>
+<h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><p>绝大部分Java程序都会使用到以下3种系统提供的类加载器:<br>1、启动类加载器（Bootstrap ClassLoader）</p>
+<blockquote>
+<p>这个类将器负责将存放在＜JAVA_HOME＞\lib目录中的，或者被-Xbootclasspath参数所指定的路径中的，并且是虚拟机识别的（仅按照文件名识别，如rt.jar，名字不符合的类库即使放在lib目录中也不会被加载）类库加载到虚拟机内存中。启动类加载器无法被Java程序直接引用，用户在编写自定义类加载器时，如果需要把加载请求委派给引导类加载器，那直接使用null代替即可。</p>
+</blockquote>
+<p>2、扩展类加载器（Extension ClassLoader）</p>
+<blockquote>
+<p>这个加载器由sun.misc.Launcher $ExtClassLoader实现，它负责加载＜JAVA_HOME＞\lib\ext目录中的，或者被java.ext.dirs系统变量所指定的路径中的所有类库，开发者可以直接使用扩展类加载器。</p>
+</blockquote>
+<p>3、应用程序类加载器（Application ClassLoader）</p>
+<blockquote>
+<p>这个类加载器由sun.misc.Launcher $App-ClassLoader实现。由于这个类加载器是ClassLoader中的getSystemClassLoader（）方法的返回值，所以一般也称它为系统类加载器。它负责加载用“户类路径（ClassPath）上所指定的类库，开发者可以直接使用这个类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。</p>
+</blockquote>
+<p>我们的应用程序都是由这3种类加载器互相配合进行加载的，如果有必要，还可以加入自己定义的类加载器。这些类加载器之间的关系一般如图所示。<br><img src="https://haymaicc.github.io/res/jvm2.png" alt=""></p>
+<p>双亲委派模型要求除了顶层的启动类加载器外，其余的类加载器都应当有自己的父类加载器。这里类加载器之间的父子关系一般不会以继承（Inheritance）的关系来实现，而是都使用组合（Composition）关系来复用父加载器的代码。</p>
+<p>双亲委派模型的工作过程是：如果一个类加载器收到了类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一个层次的类加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父加载器反馈自己无法完成这个加载请求（它的搜索范围中没有找到所需的类）时，子加载器才会尝试自己去加载。</p>
+<h2 id="Java内存模型与线程"><a href="#Java内存模型与线程" class="headerlink" title="Java内存模型与线程"></a>Java内存模型与线程</h2><h3 id="主内存与工作内存"><a href="#主内存与工作内存" class="headerlink" title="主内存与工作内存"></a>主内存与工作内存</h3><blockquote>
+<p>Java内存模型规定了所有的变量都存储在主内存（Main Memory）中（虚拟机内存的一部分）。每条线程还有自己的工作内存（Working Memory），线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作（读取、赋值等）都必须在工作内存中进行，而不能直接读写主内存中的变量。不同的线程之间也无法直接访问对方工作内存中的变量，线程间变量值的传递均需要通过主内存来完成，线程、主内存、工作内存三者的交互关系如图所示。<br><img src="https://haymaicc.github.io/res/jvm4.jpg" alt=""></p>
+</blockquote>
+<h3 id="内存间交互操作"><a href="#内存间交互操作" class="headerlink" title="内存间交互操作"></a>内存间交互操作</h3><p>关于主内存与工作内存之间具体的交互协议，即一个变量如何从主内存拷贝到工作内存、如何从工作内存同步回主内存之类的实现细节，Java内存模型中定义了以下8种操作来完成，虚拟机实现时必须保证下面提及的每一种操作都是原子的、不可再分的。</p>
+<p><code>lock（锁定）</code><br>作用于主内存的变量，它把一个变量标识为一条线程独占的状态。</p>
+<p><code>unlock（解锁）</code><br>作用于主内存的变量，它把一个处于锁定状态的变量释放出来，释放后的变量才可以被其他线程锁定。</p>
+<p><code>read（读取）</code><br>作用于主内存的变量，它把一个变量的值从主内存传输到线程的工作内存中，以便随后的load动作使用。</p>
+<p><code>load（载入）</code><br>作用于工作内存的变量，它把read操作从主内存中得到的变量值放入工作内存的变量副本中。</p>
+<p><code>use（使用）</code><br>作用于工作内存的变量，它把工作内存中一个变量的值传递给执行引擎，每当虚拟机遇到一个需要使用到变量的值的字节码指令时将会执行这个操作。</p>
+<p><code>assign（赋值）</code><br>作用于工作内存的变量，它把一个从执行引擎接收到的值赋给工作内存的变量，每当虚拟机遇到一个给变量赋值的字节码指令时执行这个操作。</p>
+<p><code>store（存储）</code><br>作用于工作内存的变量，它把工作内存中一个变量的值传送到主内存中，以便随后的write操作使用。</p>
+<p><code>write（写入）</code><br>作用于主内存的变量，它把store操作从工作内存中得到的变量的值放入主内存的变量中。</p>
+<p>Java内存模型还规定了在执行上述8种基本操作时必须满足如下规则：</p>
+<ul>
+<li>不允许read和load、store和write操作之一单独出现，即不允许一个变量从主内存读取了但工作内存不接受，或者从工作内存发起回写了但主内存不接受的情况出现。</li>
+<li>不允许一个线程丢弃它的最近的assign操作，即变量在工作内存中改变了之后必须把该变化同步回主内存。</li>
+<li>不允许一个线程无原因地（没有发生过任何assign操作）把数据从线程的工作内存同步回主内存中</li>
+<li>一个新的变量只能在主内存中“诞生”，不允许在工作内存中直接使用一个未被初始化（load或assign）的变量，换句话说，就是对一个变量实施use、store操作之前，必须先执行过了assign和load操作。</li>
+<li>一个变量在同一个时刻只允许一条线程对其进行lock操作，但lock操作可以被同一条线程重复执行多次，多次执行lock后，只有执行相同次数的unlock操作，变量才会被解锁。</li>
+<li>如果对一个变量执行lock操作，那将会清空工作内存中此变量的值，在执行引擎使用这个变量前，需要重新执行load或assign操作初始化变量的值。</li>
+<li>如果一个变量事先没有被lock操作锁定，那就不允许对它执行unlock操作，也不允许去unlock一个被其他线程锁定住的变量。</li>
+<li>对一个变量执行unlock操作之前，必须先把此变量同步回主内存中（执行store、write操作）。</li>
+</ul>
+<h3 id="对于volatile型变量的特殊规则"><a href="#对于volatile型变量的特殊规则" class="headerlink" title="对于volatile型变量的特殊规则"></a>对于volatile型变量的特殊规则</h3><blockquote>
+<p>关键字volatile可以说是Java虚拟机提供的最轻量级的同步机制，但是它并不容易完全被正确、完整地理解，以至于许多程序员都习惯不去使用它，遇到需要处理多线程数据竞争问题的时候一律使用synchronized来进行同步。</p>
+</blockquote>
+<p>当一个变量定义为volatile之后，它将具备两种特性:</p>
+<ul>
+<li><p>保证此变量对所有线程的可见性</p>
+<blockquote>
+<p>这里的“可见性”是指当一条线程修改了这个变量的值，新值对于其他线程来说是可以立即得知的。而普通变量不能做到这一点，普通变量的值在线程间传递均需要通过主内存来完成。</p>
+</blockquote>
+<p>由于volatile变量只能保证可见性，在不符合以下两条规则的运算场景中，我们仍然要通过加锁（使用synchronized或java.util.concurrent中的原子类）来保证原子性。</p>
+<ul>
+<li>运算结果并不依赖变量的当前值，或者能够确保只有单一的线程修改变量的值。</li>
+<li>变量不需要与其他的状态变量共同参与不变约束。</li>
+</ul>
+</li>
+<li><p>禁止指令重排序优化</p>
+<blockquote>
+<p>普通的变量仅仅会保证在该方法的执行过程中所有依赖赋值结果的地方都能获取到正确的结果，而不能保证变量赋值操作的顺序与程序代码中的执行顺序一致。因为在一个线程的方法执行过程中无法感知到这点，这也就是Java内存模型中描述的所谓的“线程内表现为串行的语义。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="原子性、可见性与有序性"><a href="#原子性、可见性与有序性" class="headerlink" title="原子性、可见性与有序性"></a>原子性、可见性与有序性</h3><ul>
+<li><p>原子性（Atomicity)</p>
+<blockquote>
+<p>由Java内存模型来直接保证的原子性变量操作包括read、load、assign、use、store和write，我们大致可以认为基本数据类型的访问读写是具备原子性的。如果应用场景需要一个更大范围的原子性保证（经常会遇到），Java内存模型还提供了lock和unlock操作来满足这种需求，尽管虚拟机未把lock和unlock操作直接开放给用户使用，但是却提供了更高层次的字节码指令monitorenter和monitorexit来隐式地使用这两个操作，这两个字节码指令反映到Java代码中就是同步块——synchronized关键字，因此在synchronized块之间的操作也具备原子性。</p>
+</blockquote>
+</li>
+<li><p>可见性（Visibility)</p>
+<blockquote>
+<p>可见性是指当一个线程修改了共享变量的值，其他线程能够立即得知这个修改。上文在讲解volatile变量的时候我们已详细讨论过这一点。Java内存模型是通过在变量修改后将新值同步回主内存，在变量读取前从主内存刷新变量值这种依赖主内存作为传递媒介的方式来实现可见性的，无论是普通变量还是volatile变量都是如此，普通变量与volatile变量的区别是，volatile的特殊规则保证了新值能立即同步到主内存，以及每次使用前立即从主内存刷新。因此，可以说volatile保证了多线程操作时变量的可见性，而普通变量则不能保证这一点。</p>
+</blockquote>
+<p> 除了volatile之外，Java还有两个关键字能实现可见性，即synchronized和final。同步块的可见性是由“对一个变量执行unlock操作之前，必须先把此变量同步回主内存中（执行store、write操作）”这条规则获得的，而final关键字的可见性是指：被final修饰的字段在构造器中一旦初始化完成，并且构造器没有把“this”的引用传递出去（this引用逃逸是一件很危险的事情，其他线程有可能通过这个引用访问到“初始化了一半”的对象），那在其他线程中就能看见final字段的值。</p>
+</li>
+<li><p>有序性（Ordering）</p>
+<blockquote>
+<p>Java内存模型的有序性在前面讲解volatile时也详细地讨论过了，Java程序中天然的有序性可以总结为一句话：如果在本线程内观察，所有的操作都是有序的；如果在一个线程中观察另一个线程，所有的操作都是无序的。前半句是指“线程内表现为串行的语义”（Within-Thread As-If-Serial Semantics），后半句是指“指令重排序”现象和“工作内存与主内存同步延迟”现象。</p>
+</blockquote>
+</li>
+</ul>
+<p>Java语言提供了volatile和synchronized两个关键字来保证线程之间操作的有序性，volatile关键字本身就包含了禁止指令重排序的语义，而synchronized则是由“一个变量在同一个时刻只允许一条线程对其进行lock操作”这条规则获得的，这条规则决定了持有同一个锁的两个同步块只能串行地进入。</p>
+<blockquote>
+<p>synchronized注意：首先，synchronized同步块对同一条线程来说是可重入的，不会出现自己把自己锁死的问题。其次，同步块在已进入的线程执行完之前，会阻塞后面其他线程的进入。第12章讲过，Java的线程是映射到操作系统的原生线程之上的，如果要阻塞或唤醒一个线程，都需要操作系统来帮忙完成，这就需要从用户态转换到核心态中，因此状态转换需要耗费很多的处理器时间。对于代码简单的同步块（如被synchronized修饰的getter（）或setter（）方法），状态转换消耗的时间有可能比用户代码执行的时间还要长。所以synchronized是Java语言中一个重量级（Heavyweight）的操作，有经验的程序员都会在确实必要的情况下才使用这种操作。而虚拟机本身也会进行一些优化，譬如在通知操作系统阻塞线程之前加入一段自旋等待过程，避免频繁地切入到核心态之中。</p>
+</blockquote>
+<h3 id="先行发生原则"><a href="#先行发生原则" class="headerlink" title="先行发生原则"></a>先行发生原则</h3><p>如果Java内存模型中所有的有序性都仅仅靠volatile和synchronized来完成，那么有一些操作将会变得很烦琐，但是我们在编写Java并发代码的时候并没有感觉到这一点，这是因为Java语言中有一个“先行发生”（happens-before）的原则。这个原则非常重要，它是判断数据是否存在竞争、线程是否安全的主要依据，依靠这个原则，我们可以通过几条规则一揽子地解决并发环境下两个操作之间是否可能存在冲突的所有问题。</p>
+<p>先行发生是Java内存模型中定义的两项操作之间的偏序关系，如果说操作A先行发生于操作B，其实就是说在发生操作B之前，操作A产生的影响能被操作B观察到，“影响”包括修改了内存中共享变量的值、发送了消息、调用了方法等。</p>
+<p>“天然的”先行发生关系:</p>
+<ul>
+<li>程序次序规则（Program Order Rule）<blockquote>
+<p>在一个线程内，按照程序代码顺序，书写在前面的操作先行发生于书写在后面的操作。准确地说，应该是控制流顺序而不是程序代码顺序，因为要考虑分支、循环等结构。</p>
+</blockquote>
+</li>
+<li>管程锁定规则（Monitor Lock Rule）<blockquote>
+<p>一个unlock操作先行发生于后面对同一个锁的lock操作。这里必须强调的是同一个锁，而“后面”是指时间上的先后顺序。</p>
+</blockquote>
+</li>
+<li>volatile变量规则（Volatile Variable Rule）<blockquote>
+<p>对一个volatile变量的写操作先行发生于后面对这个变量的读操作，这里的“后面”同样是指时间上的先后顺序。</p>
+</blockquote>
+</li>
+<li>线程启动规则（Thread Start Rule）<blockquote>
+<p>Thread对象的start（）方法先行发生于此线程的每一个动作。</p>
+</blockquote>
+</li>
+<li>线程终止规则（Thread Termination Rule）<blockquote>
+<p>线程中的所有操作都先行发生于对此线程的终止检测，我们可以通过Thread.join（）方法结束、Thread.isAlive（）的返回值等手段检测到线程已经终止执行。</p>
+</blockquote>
+</li>
+<li>线程中断规则（Thread Interruption Rule）<blockquote>
+<p>对线程interrupt（）方法的调用先行发生于被中断线程的代码检测到中断事件的发生，可以通过Thread.interrupted（）方法检测到是否有中断发生。</p>
+</blockquote>
+</li>
+<li>对象终结规则（Finalizer Rule）<blockquote>
+<p>一个对象的初始化完成（构造函数执行结束）先行发生于它的finalize（）方法的开始。</p>
+</blockquote>
+</li>
+<li>传递性（Transitivity)<blockquote>
+<p>如果操作A先行发生于操作B，操作B先行发生于操作C，那就可以得出操作A先行发生于操作C的结论。</p>
+</blockquote>
+</li>
+</ul>
+<p>时间先后顺序与先行发生原则之间基本没有太大的关系，所以我们衡量并发安全问题的时候不要受到时间顺序的干扰，一切必须以先行发生原则为准。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[《深入理解java虚拟机》读书笔记(一)]]></title>
       <url>/2017/12/05/jvm1/</url>
       <content type="html"><![CDATA[<h2 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h2><blockquote>

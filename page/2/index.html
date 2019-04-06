@@ -299,6 +299,185 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/07/IO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="杨励志">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/res/icon.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唐伯虎点蜡烛">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/07/IO/" itemprop="url">各种IO的区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-07T23:07:20+08:00">
+                2017-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/2017/05/07/IO/#SOHUCS" itemprop="discussionUrl">
+                  <span id="url::http://haymaicc.github.io/2017/05/07/IO/" class="cy_cmt_count" data-xid="2017/05/07/IO/" itemprop="commentsCount" ></span>
+                </a>
+              
+            
+          
+
+          
+          
+             <span id="/2017/05/07/IO/" class="leancloud_visitors" data-flag-title="各种IO的区别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  356
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="BIO（同步阻塞IO）"><a href="#BIO（同步阻塞IO）" class="headerlink" title="BIO（同步阻塞IO）"></a>BIO（同步阻塞IO）</h2><p>使用ServerSocket绑定IP地址和监听端口，客户端发起连接，通过三次握手建立连接，用socket来进行通信，通过输入输出流的方式来进行同步阻塞的通信<br>每次客户端发起连接请求，都会启动一个线程<br>线程数量：客户端并发访问数为1：1，由于线程是JAVA虚拟机中非常宝贵的资源，一旦线程数急剧增加，系统性能会急剧下降，导致线程栈溢出，创建新的线程失败，并最终导致宕机<br>所以在JDK1.4之前，人们想到了一种方法，即PIO方式</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/07/IO/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://haymaicc.github.io/2017/05/07/data-structure2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1598,7 +1777,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">18</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1707,7 +1886,7 @@
         <div class="copyright" >
   
   &copy;  2016 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-/res/icon.JPG"></i>
   </span>

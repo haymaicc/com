@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haymaicc.github.io/"/>
-  <updated>2018-01-02T12:45:45.145Z</updated>
+  <updated>2018-01-04T11:23:32.310Z</updated>
   <id>http://haymaicc.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>《深入理解java虚拟机》读书笔记(三)</title>
-    <link href="http://haymaicc.github.io/2017/12/16/jvm3/"/>
-    <id>http://haymaicc.github.io/2017/12/16/jvm3/</id>
-    <published>2017-12-16T10:07:20.000Z</published>
-    <updated>2018-01-02T12:45:45.145Z</updated>
+    <title>《深入理解java虚拟机》读书笔记(四)</title>
+    <link href="http://haymaicc.github.io/2017/12/18/jvm4/"/>
+    <id>http://haymaicc.github.io/2017/12/18/jvm4/</id>
+    <published>2017-12-18T11:07:20.000Z</published>
+    <updated>2018-01-04T11:23:32.310Z</updated>
     
     <content type="html"><![CDATA[<h2 id="虚拟机类加载机制"><a href="#虚拟机类加载机制" class="headerlink" title="虚拟机类加载机制"></a>虚拟机类加载机制</h2><blockquote>
 <p>虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。</p>
@@ -169,11 +169,11 @@
   </entry>
   
   <entry>
-    <title>《深入理解java虚拟机》读书笔记(二)</title>
-    <link href="http://haymaicc.github.io/2017/12/08/jvm2/"/>
-    <id>http://haymaicc.github.io/2017/12/08/jvm2/</id>
-    <published>2017-12-08T11:07:20.000Z</published>
-    <updated>2018-01-02T13:05:22.444Z</updated>
+    <title>《深入理解java虚拟机》读书笔记(三)</title>
+    <link href="http://haymaicc.github.io/2017/12/16/jvm3/"/>
+    <id>http://haymaicc.github.io/2017/12/16/jvm3/</id>
+    <published>2017-12-16T11:07:20.000Z</published>
+    <updated>2018-01-04T11:23:32.304Z</updated>
     
     <content type="html"><![CDATA[<p>这个章节主要介绍常用的JavaJDK中的命令行工具</p>
 <a id="more"></a>
@@ -317,6 +317,32 @@
       &lt;h2 id=&quot;运行时数据区域&quot;&gt;&lt;a href=&quot;#运行时数据区域&quot; class=&quot;headerlink&quot; title=&quot;运行时数据区域&quot;&gt;&lt;/a&gt;运行时数据区域&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;Java虚拟机在执行Java程序的过程中会把它所管理的内存划分为若干个不同的数据区域，这些区域都有各自的用途，以及创建和销毁的时间，有的区域随着虚拟机进程的启动而存在，有些区域则依赖用户线程的启动和结束而建立和销毁。根据《Java虚拟机规范（Java SE 7版）》的规定，Java虚拟机所管理的内存将会包括以下几个运行时数据区域：&lt;/p&gt;
 &lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="java" scheme="http://haymaicc.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="http://haymaicc.github.io/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《深入理解java虚拟机》读书笔记(二)</title>
+    <link href="http://haymaicc.github.io/2017/12/05/jvm2/"/>
+    <id>http://haymaicc.github.io/2017/12/05/jvm2/</id>
+    <published>2017-12-05T11:07:20.000Z</published>
+    <updated>2018-01-04T11:34:45.992Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个章节主要介绍垃圾收集器</p>
+<a id="more"></a>
+<p>如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。</p>
+<p>Java虚拟机规范中对垃圾收集器应该如何实现并没有任何规定，因此不同的厂商、不同版本的虚拟机所提供的垃圾收集器都可能会有很大差别，并且一般都会提供参数供用户根据自己的应用特点和要求组合出各个年代所使用的收集器。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这个章节主要介绍垃圾收集器&lt;/p&gt;
     
     </summary>
     

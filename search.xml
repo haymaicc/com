@@ -3,8 +3,8 @@
   
     
     <entry>
-      <title><![CDATA[《深入理解java虚拟机》读书笔记(三)]]></title>
-      <url>/2017/12/16/jvm3/</url>
+      <title><![CDATA[《深入理解java虚拟机》读书笔记(四)]]></title>
+      <url>/2017/12/18/jvm4/</url>
       <content type="html"><![CDATA[<h2 id="虚拟机类加载机制"><a href="#虚拟机类加载机制" class="headerlink" title="虚拟机类加载机制"></a>虚拟机类加载机制</h2><blockquote>
 <p>虚拟机把描述类的数据从Class文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的Java类型，这就是虚拟机的类加载机制。</p>
 </blockquote>
@@ -152,8 +152,8 @@
     </entry>
     
     <entry>
-      <title><![CDATA[《深入理解java虚拟机》读书笔记(二)]]></title>
-      <url>/2017/12/08/jvm2/</url>
+      <title><![CDATA[《深入理解java虚拟机》读书笔记(三)]]></title>
+      <url>/2017/12/16/jvm3/</url>
       <content type="html"><![CDATA[<p>这个章节主要介绍常用的JavaJDK中的命令行工具</p>
 <a id="more"></a>
 <h2 id="常用的JDK命令行工具"><a href="#常用的JDK命令行工具" class="headerlink" title="常用的JDK命令行工具"></a>常用的JDK命令行工具</h2><ul>
@@ -287,6 +287,30 @@
 <h4 id="空间分配担保"><a href="#空间分配担保" class="headerlink" title="空间分配担保"></a>空间分配担保</h4><blockquote>
 <p>在发生Minor GC之前，虚拟机会先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果这个条件成立，那么Minor GC可以确保是安全的。如果不成立，则虚拟机会查看HandlePromotionFailure设置值是否允许担保失败。如果允许，那么会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试着进行一次Minor GC，尽管这次Minor GC是有风险的；如果小于，或者HandlePromotionFailure设置不允许冒险，那这时也要改为进行一次Full GC。</p>
 </blockquote>
+]]></content>
+      
+        <categories>
+            
+            <category> java </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> java </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[《深入理解java虚拟机》读书笔记(二)]]></title>
+      <url>/2017/12/05/jvm2/</url>
+      <content type="html"><![CDATA[<p>这个章节主要介绍垃圾收集器</p>
+<a id="more"></a>
+<p>如果说收集算法是内存回收的方法论，那么垃圾收集器就是内存回收的具体实现。</p>
+<p>Java虚拟机规范中对垃圾收集器应该如何实现并没有任何规定，因此不同的厂商、不同版本的虚拟机所提供的垃圾收集器都可能会有很大差别，并且一般都会提供参数供用户根据自己的应用特点和要求组合出各个年代所使用的收集器。</p>
 ]]></content>
       
         <categories>
